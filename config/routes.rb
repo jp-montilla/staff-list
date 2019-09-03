@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :employees
+
+    root to: "employees#index"
+  end
+
   devise_for :employees
   root 'landing#index'
 

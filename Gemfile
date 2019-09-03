@@ -20,6 +20,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'hirb', '~> 0.7.3'
 gem 'better_errors', '~> 2.5', '>= 2.5.1'
 gem 'devise'
+gem 'administrate', '~> 0.11.0'
 
 
 group :development, :test do
