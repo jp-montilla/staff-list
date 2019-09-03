@@ -1,0 +1,29 @@
+<h1>Landing#index</h1>
+
+
+<% if employee_signed_in? %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Profile Picture</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @employees %>
+        <% @employees.each do |employee|%>
+          <tr>
+            <td></td>
+            <td></td>
+            <td> <%= employee.email %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
