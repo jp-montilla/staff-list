@@ -7,6 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
+    before_action :authenticate_employee!
 
     def authenticate_admin
       # TODO Add authentication logic here.
