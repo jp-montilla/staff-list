@@ -30,15 +30,20 @@ By default, it renders:
   <div class="app-container">
     <%#= render "navigation" -%>
     <div class="sidenav">
-        <%= link_to 'Home', root_path%>
-        <%= link_to 'Admin', root_path%>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
+        <div class="sidenav">
+          <%= link_to 'Home', root_path%>
+          <%= link_to 'Admin', admin_employees_path%>
+          <% if current_employee.role == 'Employee'%>
+            <%= link_to 'Edit Profile', admin_employees_path%>
+          <% end %>
+          <%= link_to "Logout", destroy_employee_session_path, method: :delete %>
+        </div>
       </div>
 
     <main class="main-content main" role="main">
       <%= render "flashes" -%>
+      Logged in as <strong><%= current_employee.username %></strong>.
+
       <%= yield %>
     </main>
   </div>

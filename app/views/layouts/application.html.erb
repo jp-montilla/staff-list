@@ -14,10 +14,11 @@
     <% if employee_signed_in? %>
       <div class="sidenav">
         <%= link_to 'Home', root_path%>
-        <%= link_to 'Admin', root_path%>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
+        <%= link_to 'Admin', admin_employees_path%>
+        <% if current_employee.role == 'Employee'%>
+          <%= link_to 'Edit Profile', admin_employees_path%>
+        <% end %>
+        <%= link_to "Logout", destroy_employee_session_path, method: :delete %>
       </div>
     <% end %>
 
@@ -33,8 +34,7 @@
         <% end %>
 
         <% if employee_signed_in? %>
-          Logged in as <strong><%= current_employee.email %></strong>.
-          <%= link_to "Logout", destroy_employee_session_path, method: :delete, :class => 'navbar-link'  %>
+          Logged in as <strong><%= current_employee.username %></strong>.
         <% else %>
           <%= link_to "Login", new_employee_session_path, :class => 'navbar-link'  %>
         <% end %>
