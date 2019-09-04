@@ -39,8 +39,7 @@
 
         <% if employee_signed_in? %>
           Logged in as <strong><%= current_employee.username %></strong>.
-        <% else %>
-          <%= link_to "Login", new_employee_session_path, :class => 'navbar-link'  %>
+        
         <% end %>
         <div style="height: 20px"></div>
 
