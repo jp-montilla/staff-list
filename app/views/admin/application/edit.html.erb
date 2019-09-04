@@ -29,7 +29,13 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
       class: "button",
     ) if valid_action?(:show) && show_action?(:show, page.resource) %>
   </div>
+  || 
+  <div>
+    <%= link_to 'Cancel', admin_employees_path, :class => 'button'%>
+  </div>
+
 </header>
+
 
 <section class="main-content__body">
   <%= render "form", page: page %>
