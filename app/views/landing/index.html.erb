@@ -16,7 +16,11 @@
       <% if @employees %>
         <% @employees.each do |employee|%>
           <tr>
-            <td></td>
+            <td>
+              <% if employee.role == 'Admin'%>
+                <%= image_tag("avatar.png", {:style => "width:100px;"}) %>
+              <% end %>
+            </td>
             <td> <%= employee.username %> </td>
             <td> <%= employee.email %> </td>
             <td> <%= employee.role %> </td>

@@ -31,6 +31,10 @@ By default, it renders:
     <%#= render "navigation" -%>
     <div class="sidenav">
         <div class="sidenav">
+          <% if current_employee.role == 'Admin'%>
+                <%= image_tag("avatar.png", {:style => "width:150px;", :class => "avatar"}) %>
+              <% end %>
+          <div style="height: 20px"></div>
           <%= link_to 'Home', root_path%>
           <%= link_to 'Admin', admin_employees_path%>
           <% if current_employee.role == 'Employee'%>
