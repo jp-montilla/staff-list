@@ -8,7 +8,6 @@ class MaterialDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    employee: Field::BelongsTo,
     id: Field::Number,
     name: Field::String,
     material_type: Field::Select.with_options(
@@ -17,6 +16,13 @@ class MaterialDashboard < Administrate::BaseDashboard
     status: Field::Select.with_options(
       collection: ['Deployed', 'Stored', 'Defective']
     ),
+    employee: Field::BelongsTo,
+    # employee: Field::Hidden.with_options(
+    #   value: nil
+    # ),
+    # employee: Field::Select.with_options(
+    #   collection: [0]
+    # ),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -27,20 +33,20 @@ class MaterialDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    # :employee,
     :id,
     :name,
     :material_type,
+    :employee,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    # :employee,
     :id,
     :name,
     :material_type,
     :status,
+    :employee,
     :created_at,
     :updated_at,
   ].freeze
@@ -49,10 +55,10 @@ class MaterialDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    # :employee,
     :name,
     :material_type,
     :status,
+    :employee,
   ].freeze
 
   # Overwrite this method to customize how materials are displayed

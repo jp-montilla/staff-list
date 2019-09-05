@@ -24,6 +24,8 @@ gem 'administrate', '~> 0.11.0'
 
 gem 'pry', '~> 0.12.2'
 gem 'administrate-field-carrierwave', '~> 0.5.0'
+gem 'administrate-field-hidden', '~> 0.0.3'
+
 
 
 group :development, :test do

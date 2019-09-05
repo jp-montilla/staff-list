@@ -54,6 +54,9 @@ GEM
     administrate-field-carrierwave (0.5.0)
       administrate (< 1.0.0)
       rails (>= 4.2, < 7)
+    administrate-field-hidden (0.0.3)
+      administrate (< 1.0.0)
+      rails (>= 4.2)
     arel (8.0.0)
     autoprefixer-rails (9.6.1)
       execjs
@@ -236,6 +239,7 @@ PLATFORMS
 DEPENDENCIES
   administrate (~> 0.11.0)
   administrate-field-carrierwave (~> 0.5.0)
+  administrate-field-hidden (~> 0.0.3)
   better_errors (~> 2.5, >= 2.5.1)
   byebug
   capybara (>= 2.15)

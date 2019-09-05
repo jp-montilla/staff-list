@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :choices
     # resources :answers
     resources :materials
-    resources :assigneds
+    # resources :assigneds
 
     root to: "employees#index"
   end

@@ -23,6 +23,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     #   remove: false,
     #   remote_url: false
     # )
+    material: Field::HasMany
+    # material: Field::HasMany.with_options(show: %i[name material_type])
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -47,6 +49,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :email,
     :role,
     :created_at,
+    :material
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -65,6 +68,6 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(employee)
-    "Employee #{employee.username}"
+    "#{employee.username}"
   end
 end

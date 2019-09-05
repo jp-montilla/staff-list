@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190904073656) do
+ActiveRecord::Schema.define(version: 20190905015529) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "answer"
@@ -20,15 +20,6 @@ ActiveRecord::Schema.define(version: 20190904073656) do
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_answers_on_employee_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
-  end
-
-  create_table "assigneds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "employee_id"
-    t.bigint "material_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_assigneds_on_employee_id"
-    t.index ["material_id"], name: "index_assigneds_on_material_id"
   end
 
   create_table "choices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -60,6 +51,8 @@ ActiveRecord::Schema.define(version: 20190904073656) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "employee_id"
+    t.index ["employee_id"], name: "index_materials_on_employee_id"
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -72,7 +65,6 @@ ActiveRecord::Schema.define(version: 20190904073656) do
 
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
-  add_foreign_key "assigneds", "employees"
-  add_foreign_key "assigneds", "materials"
   add_foreign_key "choices", "questions"
+  add_foreign_key "materials", "employees"
 end
