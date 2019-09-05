@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :employees
     resources :questions
     resources :choices
-    resources :answers
+    # resources :answers
     resources :materials
     resources :assigneds
 
