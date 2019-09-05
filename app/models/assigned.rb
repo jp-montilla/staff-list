@@ -1,4 +1,4 @@
 class Assigned < ApplicationRecord
   belongs_to :employee
-  belongs_to :equipment
+  belongs_to :material
 end

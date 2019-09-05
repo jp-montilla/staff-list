@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :employees
+    resources :questions
+    resources :choices
+    resources :answers
+    resources :materials
+    resources :assigneds
 
     root to: "employees#index"
   end

@@ -2,8 +2,8 @@
 
 one:
   employee: one
-  equipment: one
+  material: one
 
 two:
   employee: two
-  equipment: two
+  material: two

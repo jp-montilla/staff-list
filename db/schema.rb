@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190903083448) do
+ActiveRecord::Schema.define(version: 20190904073656) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "answer"
@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 20190903083448) do
 
   create_table "assigneds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "employee_id"
-    t.bigint "equipment_id"
+    t.bigint "material_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_assigneds_on_employee_id"
-    t.index ["equipment_id"], name: "index_assigneds_on_equipment_id"
+    t.index ["material_id"], name: "index_assigneds_on_material_id"
   end
 
   create_table "choices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 20190903083448) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
-  create_table "equipment", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "equipment_type"
+    t.string "material_type"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,6 +73,6 @@ ActiveRecord::Schema.define(version: 20190903083448) do
   add_foreign_key "answers", "employees"
   add_foreign_key "answers", "questions"
   add_foreign_key "assigneds", "employees"
-  add_foreign_key "assigneds", "equipment"
+  add_foreign_key "assigneds", "materials"
   add_foreign_key "choices", "questions"
 end
