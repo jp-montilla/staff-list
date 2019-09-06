@@ -16,7 +16,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     show_in_list: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    choices: Field::HasMany
+    choice: Field::HasMany
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -39,7 +39,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     :show_in_list,
     :created_at,
     :updated_at,
-    :choices
+    :choice
   ].freeze
 
   # FORM_ATTRIBUTES
