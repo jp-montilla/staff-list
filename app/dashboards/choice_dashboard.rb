@@ -8,7 +8,8 @@ class ChoiceDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    question: Field::BelongsTo,
+    # question: Field::BelongsTo,
+    question: BelongsToCustomField,
     id: Field::Number,
     choice: Field::String,
     created_at: Field::DateTime,
