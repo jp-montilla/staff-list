@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "with users and roles" do
+RSpec.describe "user and roles" do
 
   def log_in_as(employee)
     visit new_employee_session_path
@@ -9,8 +9,8 @@ RSpec.describe "with users and roles" do
     click_button("Log in")
   end
 
-  let(:employee1) { Employee.create(email: "test@example.com", password: "password", role: 'Employee') }
-  let(:employee2) { Employee.create(email: "test@example.com", password: "password", role: 'Admin') }
+  let(:employee1) { create(:employee, :user) }
+  let(:employee1) { create(:employee, :admin) }
 
   it "allows a logged-in employee to view the index page" do 
     log_in_as(employee1)
