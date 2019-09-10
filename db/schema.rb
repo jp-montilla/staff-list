@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190905015529) do
+ActiveRecord::Schema.define(version: 20190910080924) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "answer"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20190905015529) do
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "question"
     t.string "answer_type"
-    t.integer "show"
+    t.integer "view_to_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
