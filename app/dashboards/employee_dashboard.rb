@@ -17,12 +17,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
     password: Field::Password,
     password_confirmation: Field::Password,
     created_at: Field::DateTime,
-    # profile_picture: Field::Carrierwave.with_options(
-    #   image: :standard,
-    #   multiple: false,
-    #   remove: false,
-    #   remote_url: false
-    # )
+    profile_picture: CarrierwaveField,
     material: Field::HasMany
     # material: Field::HasMany.with_options(show: %i[name material_type])
   }.freeze
@@ -34,7 +29,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
-    # :profile_picture,
+    :profile_picture,
     :username,
     :email,
     :role
@@ -44,7 +39,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    # :profile_picture,
+    :profile_picture,
     :username,
     :email,
     :role,
@@ -56,7 +51,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    # :profile_picture,
+    :profile_picture,
     :email,
     :username,
     :role,
