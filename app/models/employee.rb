@@ -1,9 +1,9 @@
 class Employee < ApplicationRecord
   has_many :answer, dependent: :destroy
-  # has_many :assigned
-  # has_many :material, through: :assigned
   has_many :material
 
+  # validates :email, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: true
 
 
   # Include default devise modules. Others available are:

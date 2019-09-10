@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :employee do
     email { "test@example.com" }
+    username { "username" }
     password { "password" }
-
-    trait :user do
-      role { "Employee" }
-    end
+    password_confirmation { "password" }
+    role { "Employee" }
+    
     trait :admin do
       role { "Admin" }
     end
