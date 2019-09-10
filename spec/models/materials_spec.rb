@@ -18,4 +18,24 @@ RSpec.describe Material, type: :model do
     expect(material).to be_valid
   end
 
+  it "should not accept record without name" do
+    foo = build(:material, name: nil)
+    expect(foo).to_not be_valid
+  end
+
+  it "should not accept record without material type" do
+    foo = build(:material, material_type: nil)
+    expect(foo).to_not be_valid
+  end
+
+  it "should not accept record without status" do
+    foo = build(:material, status: nil)
+    expect(foo).to_not be_valid
+  end
+
+  it "should not accept record without name, material type and status" do
+    foo = build(:material, name: nil, material_type: nil, status: nil)
+    expect(foo).to_not be_valid
+  end
+
 end
