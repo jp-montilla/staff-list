@@ -31,10 +31,17 @@
             </td>
             <td> <%= employee.email %> </td>
             <td> <%= employee.role %> </td>
+
             <% @questions.each do |question|%>
-              <!-- <td><%= question.question%></td> -->
-              <td style="color: red">No answer yet</td>
+              <% @answers.each do |answer|%>
+                <% if question.id == answer.question_id && answer.employee_id == employee.id%>
+                  <td><%= answer.answer%></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+              <% end %>
             <% end %>
+
           </tr>
         <% end %>
       <% end %>

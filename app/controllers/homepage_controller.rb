@@ -3,7 +3,7 @@ class HomepageController < ApplicationController
   def index
     @employees = Employee.where(role: 'Employee')
     @questions = Question.where(view_to_list: 1)
-
+    @answers = Answer.all
   end
 
   def show
