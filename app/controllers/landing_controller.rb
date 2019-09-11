@@ -1,6 +1,6 @@
 class LandingController < ApplicationController
   before_action :authenticate_employee!
   def index
-    @employees = Employee.all
+    @employees = Employee.where(role: 'Employee')
   end
 end

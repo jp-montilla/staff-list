@@ -31,23 +31,16 @@ By default, it renders:
     <%#= render "navigation" -%>
     <div class="sidenav">
         <div class="sidenav">
-          <% if current_employee.role == 'Admin'%>
-                <%= image_tag("avatar.png", {:style => "width:150px;", :class => "avatar"}) %>
-          <% end %>
-          
+          <%= image_tag(current_employee.profile_picture, {:style => "width:150px;", :class => "avatar"}) %>
           <div style="height: 20px"></div>
-          
           <%= link_to 'Home', root_path%>
           <div style="height: 30px"></div>
 
-          <%= link_to 'Employee', admin_employees_path%>
-          <%= link_to 'Material', admin_materials_path%>
-          <%= link_to 'Question', admin_questions_path%>
-          <%= link_to 'Choice', admin_choices_path%>
+          <%= link_to 'Employees', admin_employees_path%>
+          <%= link_to 'Materials', admin_materials_path%>
+          <%= link_to 'Questions', admin_questions_path%>
+          <%= link_to 'Choices', admin_choices_path%>
 
-          <% if current_employee.role == 'Employee'%>
-            <%= link_to 'Edit Profile', admin_employees_path%>
-          <% end %>
           <div style="height: 30px"></div>
 
           <%= link_to "Logout", destroy_employee_session_path, method: :delete %>
