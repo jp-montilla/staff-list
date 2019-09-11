@@ -10,6 +10,9 @@
         <th scope="col">Username</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
+        <% @questions.each do |question|%>
+          <th scope="col"><%= question.question%></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -17,11 +20,21 @@
         <% @employees.each do |employee|%>
           <tr>
             <td>
-            <%= link_to image_tag(employee.profile_picture, {:style => "width:100px;"}), root_path%>
+            <%= link_to image_tag(employee.profile_picture, {:style => "width:100px;"}), homepage_path(employee.id)%>
             </td>
-            <td> <%= link_to employee.username, root_path %> </td>
-            <td> <%= link_to employee.email, root_path %> </td>
-            <td> <%= link_to employee.role, root_path %> </td>
+            <td>
+              <%= link_to employee.username, homepage_path(employee.id) %>
+              <% if employee.username == current_employee.username %>
+                <br/>
+                <p style="color: green">CURRENT USER</p>
+              <% end %>
+            </td>
+            <td> <%= employee.email %> </td>
+            <td> <%= employee.role %> </td>
+            <% @questions.each do |question|%>
+              <!-- <td><%= question.question%></td> -->
+              <td style="color: red">No answer yet</td>
+            <% end %>
           </tr>
         <% end %>
       <% end %>

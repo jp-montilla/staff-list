@@ -28,6 +28,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     :id,
     :question,
     :answer_type,
+    :view_to_list,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

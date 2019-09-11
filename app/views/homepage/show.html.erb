@@ -1,0 +1,19 @@
+<%= image_tag(@employee.profile_picture, {:style => "width:200px;"})%>
+
+<hr>
+<h3>INFO</h3>
+<%= @employee.username %><br/>
+<%= @employee.email %><br/>
+<%= @employee.role %><br/>
+<hr>
+
+<h3>ASSIGNED EQUIPMENTS</h3>
+<% @employee.material.each do|material| %>
+  <%= material.name %><br/>
+<% end%>
+<hr>
+
+<h3>QUESTIONS</h3>
+<% @questions.each do |question|%>
+  <%= question.question %><br/>
+<% end %>
