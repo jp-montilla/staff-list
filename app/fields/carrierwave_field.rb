@@ -5,9 +5,6 @@ class CarrierwaveField < Administrate::Field::Base
     data.url
   end
 
-  def thumbnail
-    data.url(:thumbnail)
-  end
 
   def to_s
     data

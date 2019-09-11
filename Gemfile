@@ -22,6 +22,8 @@ gem 'better_errors', '~> 2.5', '>= 2.5.1'
 gem 'devise'
 gem 'administrate', '~> 0.11.0'
 
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'jquery-rails'
 gem 'pry', '~> 0.12.2'
 gem 'administrate-field-carrierwave', '~> 0.5.0'
 gem 'administrate-field-hidden', '~> 0.0.3'
