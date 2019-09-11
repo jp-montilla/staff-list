@@ -8,10 +8,32 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
     before_action :authenticate_employee!
+    before_action :view_page
+    include Pundit
 
     def authenticate_admin
       # TODO Add authentication logic here.
     end
+
+    def pundit_user
+      current_employee
+    end
+
+    def view_page
+      @employee = Employee.find(current_employee.id)
+      authorize (@employee)
+    end
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+    private
+
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || root_path)
+    end
+
+
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.
