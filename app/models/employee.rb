@@ -5,8 +5,8 @@ class Employee < ApplicationRecord
   mount_uploader :profile_picture, ProfilePictureUploader
 
   # validates :email, uniqueness: { case_sensitive: false }
-  validates :username, uniqueness: true
-  validates :username, presence: true
+  validates :name, uniqueness: true
+  validates :name, presence: true
   validates :profile_picture, presence: true
 
 

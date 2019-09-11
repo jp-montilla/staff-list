@@ -9,7 +9,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    username: Field::String,
+    name: Field::String,
     email: Field::String,
     role: Field::Select.with_options(
       collection: ['Employee']
@@ -30,7 +30,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :profile_picture,
-    :username,
+    :name,
     :email,
     :role
   ].freeze
@@ -40,7 +40,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :profile_picture,
-    :username,
+    :name,
     :email,
     :role,
     :created_at,
@@ -53,7 +53,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :profile_picture,
     :email,
-    :username,
+    :name,
     :role,
     :password,
     :password_confirmation
@@ -63,6 +63,6 @@ class EmployeeDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(employee)
-    "#{employee.username}"
+    "#{employee.name}"
   end
 end

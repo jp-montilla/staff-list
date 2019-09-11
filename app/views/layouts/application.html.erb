@@ -14,7 +14,7 @@
     <% if employee_signed_in? %>
       <div class="sidenav">
         <%= image_tag(current_employee.profile_picture, {:style => "width:150px;", :class => "avatar"}) %>
-        <strong><%= current_employee.username %></strong>
+        <strong><%= current_employee.name %></strong>
         <div style="height: 20px"></div>
         <%= link_to 'Home', root_path%>
         <% if current_employee.role == 'Employee'%>

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Employee, type: :model do
 
   describe "validations" do
-    it { is_expected.to validate_uniqueness_of :username }
-    it { is_expected.to validate_presence_of :username }
+    it { is_expected.to validate_uniqueness_of :name }
+    it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :profile_picture }
   end
 
@@ -16,13 +16,13 @@ RSpec.describe Employee, type: :model do
   it "creates an employee record" do
     employee = create(:employee)
     expect(employee.email).to eq("test@example.com")
-    expect(employee.username).to eq("username")
+    expect(employee.name).to eq("username")
     expect(employee.password).to eq("password")
   end
 
   it "should have a unique email" do
     create(:employee)
-    foo = build(:employee, username: 'usernameChange')
+    foo = build(:employee, name: 'usernameChange')
     expect(foo).to_not be_valid
   end
 
