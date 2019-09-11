@@ -16,7 +16,7 @@ class MaterialDashboard < Administrate::BaseDashboard
     status: Field::Select.with_options(
       collection: ['Deployed', 'Stored', 'Defective']
     ),
-    employee: Field::BelongsTo,
+    employee: AssignToField,
     # employee: Field::Hidden.with_options(
     #   value: nil
     # ),
