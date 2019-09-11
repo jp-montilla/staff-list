@@ -6,6 +6,8 @@ class Employee < ApplicationRecord
 
   # validates :email, uniqueness: { case_sensitive: false }
   validates :username, uniqueness: true
+  validates :username, presence: true
+  validates :profile_picture, presence: true
 
 
   # Include default devise modules. Others available are:

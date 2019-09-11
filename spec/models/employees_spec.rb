@@ -4,6 +4,8 @@ RSpec.describe Employee, type: :model do
 
   describe "validations" do
     it { is_expected.to validate_uniqueness_of :username }
+    it { is_expected.to validate_presence_of :username }
+    it { is_expected.to validate_presence_of :profile_picture }
   end
 
   describe "associations" do

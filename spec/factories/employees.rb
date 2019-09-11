@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :employee do
+    profile_picture { Rack::Test::UploadedFile.new(Rails.root.join('spec/support/avatar.png'), 'image/png') }
     email { "test@example.com" }
     username { "username" }
     password { "password" }
