@@ -8,7 +8,7 @@ module Admin
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
     before_action :authenticate_employee!
-    before_action :view_page
+    before_action :admin
     include Pundit
 
     def authenticate_admin
@@ -19,9 +19,9 @@ module Admin
       current_employee
     end
 
-    def view_page
+    def admin
       @employee = Employee.find(current_employee.id)
-      authorize (@employee)
+      authorize(@employee, :admin?)
     end
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

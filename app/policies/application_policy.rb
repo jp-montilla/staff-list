@@ -34,7 +34,7 @@ class ApplicationPolicy
     false
   end
 
-  def view_page?
+  def admin?
     user.role == 'Admin'
   end
 
