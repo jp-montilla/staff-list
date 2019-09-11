@@ -3,4 +3,7 @@ class HomepageController < ApplicationController
   def index
     @employees = Employee.where(role: 'Employee')
   end
+
+  def show
+  end
 end
