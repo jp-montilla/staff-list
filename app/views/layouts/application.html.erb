@@ -14,11 +14,14 @@
     <% if employee_signed_in? %>
       <div class="sidenav">
         <%= image_tag(current_employee.profile_picture, {:style => "width:150px;", :class => "avatar"}) %>
+        <strong><%= current_employee.username %></strong>
         <div style="height: 20px"></div>
         <%= link_to 'Home', root_path%>
-        <%= link_to 'Admin', admin_employees_path%>
         <% if current_employee.role == 'Employee'%>
           <%= link_to 'Edit Profile', admin_employees_path%>
+        <% else %>
+          <%= link_to 'Admin', admin_employees_path%>
+          <%= link_to 'Change Password', admin_employees_path%>
         <% end %>
         <%= link_to "Logout", destroy_employee_session_path, method: :delete %>
       </div>
@@ -33,11 +36,6 @@
         <% end %>
         <% if alert %>
           <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
-
-        <% if employee_signed_in? %>
-          Logged in as <strong><%= current_employee.username %></strong>.
-        
         <% end %>
         <div style="height: 20px"></div>
 
