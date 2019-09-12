@@ -16,6 +16,22 @@ module Admin
     end
 
 
+    def update
+      @employee = Employee.find(params[:id])
+      if @employee.update(employee_params)
+        flash[:success] = "Employee updated successfully!"
+        redirect_to admin_employee_path
+      else
+        flash[:error] = 'All fields are required!'
+        redirect_to edit_admin_employee_path
+      end
+    end
+
+
+    private
+      def employee_params
+        params.require(:employee).permit(:name, :email, :profile_picture)
+      end
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
