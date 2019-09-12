@@ -1,10 +1,28 @@
-<%= image_tag(@employee.profile_picture, {:style => "width:200px;"})%>
 
 <hr>
-<h3>INFO</h3>
-<%= @employee.name %><br/>
-<%= @employee.email %><br/>
-<%= @employee.role %><br/>
+<div>
+  
+<div class="row" style="background: #d4d7dd">
+  <div class="col-4">
+    <%= image_tag(@employee.profile_picture, {:style => "width:300px;"})%>
+  </div>
+  <div class="col-6">
+    <br/><br/>
+    <br/><br/>
+    <div class="card border-primary mb-3" style="max-width: 50rem;">
+      <div class="card-header">BASIC INFORMATION</div>
+      <div class="card-body">
+        <h5><span style="color: green">Name: </span><%= @employee.name %></h5>
+        <h5><span style="color: green">Email: </span><%= @employee.email %></h5>
+        <h5><span style="color: green">Role: </span><%= @employee.role %></h5>
+        <% if current_employee.name == @employee.name %>
+          <a href="#" class="card-text">Edit Basic Information</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <hr>
 
 <h3>ASSIGNED EQUIPMENTS</h3>
@@ -17,3 +35,15 @@
 <% @questions.each do |question|%>
   <%= question.question %><br/>
 <% end %>
+<hr>
+
+
+<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Primary card title</h5>
+    <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+  </div>
+</div>
+
+

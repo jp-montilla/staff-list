@@ -15,6 +15,11 @@ module Admin
       @resources = Employee.where(role: 'Admin').page(params[:page]).per(10)
     end
 
+    def edit
+      super
+      # @employee = Employee.find(params[:id])
+      # authorize(@employee)
+    end
 
     def update
       @employee = Employee.find(params[:id])

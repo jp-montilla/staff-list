@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
   has_many :answer, dependent: :destroy
-  has_many :material
+  has_many :material, dependent: :nullify
 
   mount_uploader :profile_picture, ProfilePictureUploader
 

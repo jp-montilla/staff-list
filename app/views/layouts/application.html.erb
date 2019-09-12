@@ -18,7 +18,7 @@
         <div style="height: 20px"></div>
         <%= link_to 'Home', root_path%>
         <% if current_employee.role == 'Employee'%>
-          <%= link_to 'Edit Profile', root_path%>
+          <%= link_to 'Profile', homepage_path(current_employee.id)%>
         <% else %>
           <%= link_to 'Admin', admin_employees_path%>
           <%= link_to 'Change Password', root_path%>
