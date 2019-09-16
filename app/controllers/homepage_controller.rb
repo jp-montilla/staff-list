@@ -9,5 +9,7 @@ class HomepageController < ApplicationController
   def show
     @employee = Employee.find(params[:id])
     @questions = Question.all
+    @answers = Answer.where(employee_id: params[:id])
+    @answer = Answer.new
   end
 end

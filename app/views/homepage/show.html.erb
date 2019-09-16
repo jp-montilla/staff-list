@@ -25,16 +25,55 @@
 
 <hr>
 
-<h3>ASSIGNED EQUIPMENTS</h3>
-<% @employee.material.each do|material| %>
-  <%= material.name %><br/>
-<% end%>
+<div style="padding: 20px">
+  <h3>ASSIGNED EQUIPMENTS</h3>
+  <% @employee.material.each do|material| %>
+  <label style="font-size: 2rem"><span class="badge badge-info"><%= material.name %></span></label>
+  <% end%>
+</div>
+
 <hr>
 
-<h3>QUESTIONS</h3>
-<% @questions.each do |question|%>
-  <%= question.question %><br/>
-<% end %>
+<div style="padding: 20px" >
+  <h3>QUESTIONS</h3>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Answer</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |question|%>
+        <tr>
+          <td><%= question.question %></td>
+          <td>
+            <% @answers.each do |answer| %>
+              <% if answer.question_id == question.id%>
+                <p><%= answer.answer %></p>
+              <% else %>
+                <span class="badge badge-danger">Unanswered</span>
+              <% end %>
+            <% end %>
+          </td> 
+          <td>
+            <% @answers.each do |answer| %>
+              <% if answer.question_id != question.id%>
+                <button class="btn btn-primary btn-sm">Answer Question</button>
+              <% else%>
+                <button class="btn btn-success btn-sm">Edit Answer</button>
+                <button class="btn btn-danger btn-sm">Remove Answer</button>
+              <% end %>
+            <% end %> 
+          </td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>
 <hr>
 
 

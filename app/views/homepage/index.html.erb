@@ -38,7 +38,7 @@
                   <% if question.id == answer.question_id && answer.employee_id == employee.id%>
                     <td><%= answer.answer%></td>
                   <% else %>
-                    <td></td>
+                    <td><span class="badge badge-danger">Unanswered</span></td>
                   <% end %>
                 <% end %>
               <% else %>
