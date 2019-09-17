@@ -2,7 +2,7 @@
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |e|%>
-    <p class="alert alert-primary"><%= e %></p>
+    <p class="alert alert-danger"><%= e %></p>
   <% end %>
 <% end %>
 
@@ -21,8 +21,8 @@
   <% end %>
 <% else %>
   <%= form_for(@answer, url:answer_choice_path) do |f|%>
-    <%= hidden_field_tag 'question_id', @question.id  %>
-    <%= hidden_field_tag 'employee_id', current_employee.id  %>
+    <%= f.hidden_field :question_id, :value => @question.id %>
+    <%= f.hidden_field :employee_id, :value => current_employee.id %>
     <% @choices.each do |choice| %>
       <% if choice.question_id == @question.id%>
         <%= f.radio_button :answer, choice.choice, required: true %>

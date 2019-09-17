@@ -32,19 +32,19 @@
             <td> <%= employee.email %> </td>
             <td> <%= employee.role %> </td>
 
-            <% @questions.each do |question|%>
-              <% if @answers != []%>
-                <% @answers.each do |answer|%>
-                  <% if question.id == answer.question_id && answer.employee_id == employee.id%>
-                    <td><%= answer.answer%></td>
-                  <% else %>
-                    <td><span class="badge badge-danger">Unanswered</span></td>
-                  <% end %>
-                <% end %>
+
+
+             <% @questions.each do |question|%>
+
+              <% if question.answer != [] and question.answer.where(employee_id: employee.id).pluck(:answer) != []%>
+                <td><%= question.answer.where(employee_id: employee.id).pluck(:answer).first%></td>
               <% else %>
-                <td></td>
+                <td><span class="badge badge-danger">Unanswered</span></td>
               <% end %>
             <% end %>
+
+
+
 
           </tr>
         <% end %>

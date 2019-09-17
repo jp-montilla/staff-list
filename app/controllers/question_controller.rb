@@ -12,12 +12,13 @@ class QuestionController < ApplicationController
   end
 
   def create_answer_choice
+    # binding.pry
     @answer = Answer.new(set_params)
     if @answer.save
-      redirect_to users_path
+      redirect_to homepage_path(current_employee.id)
     else
       flash[:errors] = @answer.errors.full_messages
-      redirect_to users_new_path
+      redirect_to homepage_path(current_employee.id)
     end
   end
 
