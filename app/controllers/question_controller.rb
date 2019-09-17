@@ -5,14 +5,7 @@ class QuestionController < ApplicationController
     @answer = Answer.new
   end
 
-  def create_answer_text
-  end
-
-  def create_answer_numerical
-  end
-
-  def create_answer_choice
-    # binding.pry
+  def create
     @answer = Answer.new(set_params)
     if @answer.save
       redirect_to homepage_path(current_employee.id)
