@@ -15,6 +15,22 @@ class QuestionController < ApplicationController
     end
   end
 
+  def edit
+    @answer = Answer.find(params[:id])
+    @choices = Choice.all
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
+    if @answer.update(update_params)
+      flash[:success] = 'Answer updated successfully.'
+      redirect_to homepage_path(current_employee.id)
+    else
+      flash[:errors] = @answer.errors.full_messages
+      redirect_to homepage_path(current_employee.id)
+    end
+  end
+
   def destroy
     @answer = Answer.find(params[:id])
     if @answer.destroy
@@ -29,5 +45,8 @@ class QuestionController < ApplicationController
   private
     def set_params
       params.require(:answer).permit(:answer, :question_id, :employee_id)
+    end
+    def update_params
+      params.require(:answer).permit(:answer)
     end
 end

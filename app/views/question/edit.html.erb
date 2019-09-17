@@ -1,4 +1,4 @@
-<h1><%= @question.question%></h1>
+<h1><%= @answer.question.question%></h1>
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |e|%>
@@ -7,22 +7,20 @@
 <% end %>
 
 
-<% if @question.answer_type == 'Numerical'%>
-  <%= form_for(@answer, url:answer_numerical_path) do |f|%>
+<% if @answer.question.answer_type == 'Numerical'%>
+  <%= form_for(@answer, url: update_answer_path) do |f|%>
     <%= f.label :answer%>
     <%= f.number_field :answer%>
     <%= f.submit 'Submit'%>
   <% end %>
-<% elsif @question.answer_type == 'Text' %>
-  <%= form_for(@answer, url:answer_text_path) do |f|%>
+<% elsif @answer.question.answer_type == 'Text' %>
+  <%= form_for(@answer, url: update_answer_path) do |f|%>
     <%= f.label :answer%>
     <%= f.text_area :answer%>
     <%= f.submit 'Submit'%>
   <% end %>
 <% else %>
-  <%= form_for(@answer, url:answer_choice_path) do |f|%>
-    <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.hidden_field :employee_id, :value => current_employee.id %>
+  <%= form_for(@answer, url: update_answer_path) do |f|%>
     <% @choices.each do |choice| %>
       <% if choice.question_id == @question.id%>
         <%= f.radio_button :answer, choice.choice, required: true %>
