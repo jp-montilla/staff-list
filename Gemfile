@@ -19,7 +19,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'hirb', '~> 0.7.3'
 gem 'better_errors', '~> 2.5', '>= 2.5.1'
-gem 'devise'
+# gem 'devise'
+gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'administrate', '~> 0.11.0'
 
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
