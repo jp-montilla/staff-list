@@ -15,6 +15,17 @@ class QuestionController < ApplicationController
     end
   end
 
+  def destroy
+    @answer = Answer.find(params[:id])
+    if @answer.destroy
+      flash[:success] = 'Answer deleted successfully.'
+      redirect_to homepage_path(current_employee.id)
+    else
+      flash[:errors] = @answer.errors.full_messages
+      redirect_to homepage_path(current_employee.id)
+    end
+  end
+
   private
     def set_params
       params.require(:answer).permit(:answer, :question_id, :employee_id)

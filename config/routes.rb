@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get 'question/answer/:id' => 'question#new', as: :answer_create
   post 'question/create' => 'question#create', as: :answer_question
+  delete 'question/:id/delete', :to => 'question#destroy', as: :delete_answer
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
