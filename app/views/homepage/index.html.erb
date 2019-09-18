@@ -1,56 +1,12 @@
 
 <h1>List of Employees</h1>
 
+<div id="paginator">
+  <%= paginate @employees, remote: true %>
+</div>
 
-<% if employee_signed_in? %>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Profile Picture</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
-        <% @questions.each do |question|%>
-          <th scope="col"><%= question.question%></th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% if @employees %>
-        <% @employees.each do |employee|%>
-          <tr>
-            <td>
-            <%= link_to image_tag(employee.profile_picture, {:style => "width:100px;"}), homepage_path(employee.id)%>
-            </td>
-            <td>
-              <%= link_to employee.name, homepage_path(employee.id) %>
-              <% if employee.name == current_employee.name %>
-                <br/>
-                <p style="color: green">CURRENT USER</p>
-              <% end %>
-            </td>
-            <td> <%= employee.email %> </td>
-            <td> <%= employee.role %> </td>
+<div id="pages-employees">
+  <%= render 'homepage/employee' %>
+</div>
 
 
-
-             <% @questions.each do |question|%>
-
-              <% if question.answer != [] and question.answer.where(employee_id: employee.id).pluck(:answer) != []%>
-                <td><%= question.answer.where(employee_id: employee.id).pluck(:answer).first%></td>
-              <% else %>
-                <td><span class="badge badge-danger">Unanswered</span></td>
-              <% end %>
-            <% end %>
-
-
-
-
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-
-<% end %>

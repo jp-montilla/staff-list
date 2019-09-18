@@ -24,6 +24,8 @@ gem 'better_errors', '~> 2.5', '>= 2.5.1'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'administrate', '~> 0.11.0'
 gem "chartkick"
+gem 'kaminari'
+
 
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'jquery-rails'

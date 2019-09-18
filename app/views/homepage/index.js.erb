@@ -1,0 +1,2 @@
+$("#pages-employees").html("<%= j render 'homepage/employee' %>")
+$("#paginator").html("<%= j paginate(@employees, remote: true) %>")
