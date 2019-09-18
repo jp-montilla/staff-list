@@ -1,2 +1,73 @@
-<%= pie_chart Material.group(:status).count, donut: true %>
-<%= pie_chart Material.group(:material_type).count, donut: true %>
+
+
+
+<div class="charts">
+
+  <div id="status_report">
+    <h1  class="text-center">Material Status Report</h1>
+    <div id="buttons">
+      <button id="btn_donut_status" class="btn btn-primary">Pie Chart</button>
+      <button id="btn_line_status" class="btn btn-success">Line Chart</button>
+      <button id="btn_bar_status" class="btn btn-warning">Bar Chart</button>
+      <button id="btn_area_status" class="btn btn-info">Area Chart</button>
+    </div>
+      <div id="charts">
+        <div id="donut_status">
+          <%= pie_chart Material.group(:status).count, donut: true%>
+        </div>
+
+        <div id="line_status">
+          <%= line_chart Material.group(:status).count %>
+        </div>
+
+        <div id="bar_status">
+          <%= bar_chart Material.group(:status).count%>
+        </div>
+
+        <div id="area_status">
+          <%= area_chart Material.group(:status).count%>
+        </div>
+      </div>
+      <div class="text-center" style="background: black; padding: 20px">
+        <button id="view_type_report" class="btn btn-danger btn-lg">View Material Type Report</button><hr/>
+      </div>
+    </div>
+    
+    <div id="type_report">
+
+      <h1 class="text-center">Material Type Report</h1>
+
+      <div id="buttons">
+        <button id="btn_donut_type" class="btn btn-primary">Pie Chart</button>
+        <button id="btn_line_type" class="btn btn-success">Line Chart</button>
+        <button id="btn_bar_type" class="btn btn-warning">Bar Chart</button>
+        <button id="btn_area_type" class="btn btn-info">Area Chart</button>
+      </div>
+
+      <div id="charts">
+        <div id="donut_type">
+          <%= pie_chart Material.group(:material_type).count, donut: true%>
+        </div>
+
+        <div id="line_type">
+          <%= line_chart Material.group(:material_type).count %>
+        </div>
+
+        <div id="bar_type">
+          <%= bar_chart Material.group(:material_type).count%>
+        </div>
+
+        <div id="area_type">
+          <%= area_chart Material.group(:material_type).count%>
+        </div>
+      </div>
+
+      <div class="text-center" style="background: black; padding: 20px">
+        <button id="view_status_report" class="btn btn-danger btn-lg">View Material Status Report</button>
+      </div>
+    </div>
+
+
+</div>
+
+

@@ -11,10 +11,77 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery3
+
+
 //= require_tree .
 
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
 //= require chartkick
 //= require Chart.bundle
+
+$(document).ready(function(){
+	$('#view_type_report').click(function(){
+		$('#type_report').show()
+		$('#status_report').hide()
+	});
+	$('#view_status_report').click(function(){
+		$('#type_report').hide()
+		$('#status_report').show()
+	});
+
+
+  $("#btn_donut_status").click(function(){
+    $("#donut_status").show()
+    $("#line_status").hide()
+    $("#bar_status").hide()
+    $("#area_status").hide()
+  });
+  $("#btn_line_status").click(function(){
+    $("#donut_status").hide()
+    $("#line_status").show()
+    $("#bar_status").hide()
+    $("#area_status").hide()
+  });
+  $("#btn_bar_status").click(function(){
+    $("#donut_status").hide()
+    $("#line_status").hide()
+    $("#bar_status").show()
+    $("#area_status").hide()
+  });
+  $("#btn_area_status").click(function(){
+    $("#donut_status").hide()
+    $("#line_status").hide()
+    $("#bar_status").hide()
+    $("#area_status").show()
+  });
+
+
+  $("#btn_donut_type").click(function(){
+    $("#donut_type").show()
+    $("#line_type").hide()
+    $("#bar_type").hide()
+    $("#area_type").hide()
+  });
+  $("#btn_line_type").click(function(){
+    $("#donut_type").hide()
+    $("#line_type").show()
+    $("#bar_type").hide()
+    $("#area_type").hide()
+  });
+  $("#btn_bar_type").click(function(){
+    $("#donut_type").hide()
+    $("#line_type").hide()
+    $("#bar_type").show()
+    $("#area_type").hide()
+  });
+  $("#btn_area_type").click(function(){
+    $("#donut_type").hide()
+    $("#line_type").hide()
+    $("#bar_type").hide()
+    $("#area_type").show()
+  });
+  
+
+});

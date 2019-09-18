@@ -56,3 +56,28 @@
   .sidenav a {font-size: 18px;}
 }
 
+.charts{
+  #line_status, #bar_status, #area_status{
+    display: none
+  }
+  #line_type, #bar_type, #area_type{
+    display: none
+  }
+  #type_report{
+    display: none
+  }
+  #charts{
+    padding: 50px;
+  }
+  #buttons{
+      width: 50%;
+      height: 150px;
+      margin: 0 auto;
+      padding: 10px 0;
+      align-items: center;
+      justify-content: space-around;
+      display: flex;
+      float: none;
+  }
+}
+
