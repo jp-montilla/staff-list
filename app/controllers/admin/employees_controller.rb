@@ -10,10 +10,7 @@ module Admin
     #     per(10)
     # end
     # 
-    def index
-      super
-      @resources = Employee.where(role: 'Admin').page(params[:page]).per(10)
-    end
+    # 
 
     def edit
       super
