@@ -16,7 +16,7 @@
         <h5><span style="color: green">Email: </span><%= @employee.email %></h5>
         <h5><span style="color: green">Role: </span><%= @employee.role %></h5>
         <% if current_employee.name == @employee.name %>
-          <a href="#" class="card-text">Edit Basic Information</a>
+          <%#= link_to 'Change Password', edit_password_path(current_employee.id)%>
         <% end %>
       </div>
     </div>

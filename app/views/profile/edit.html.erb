@@ -1,0 +1,11 @@
+<h1>Update Password</h1>
+
+<%= form_tag(update_password_path, :method => "patch") do%>
+  <%= label_tag :old_password%>
+  <%= password_field_tag :old_password%><br/>
+  <%= label_tag :new_password%>
+  <%= password_field_tag :new_password%><br/>
+  <%= label_tag :password_confirmation%>
+  <%= password_field_tag :password_confirmation%><br/>
+  <%= submit_tag 'Update Password'%>
+<% end %>
