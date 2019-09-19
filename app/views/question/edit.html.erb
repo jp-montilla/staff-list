@@ -22,7 +22,7 @@
 <% else %>
   <%= form_for(@answer, url: update_answer_path) do |f|%>
     <% @choices.each do |choice| %>
-      <% if choice.question_id == @question.id%>
+      <% if choice.question_id == @answer.question.id%>
         <%= f.radio_button :answer, choice.choice, required: true %>
         <%= f.label :answer, choice.choice %>
       <% end %>
