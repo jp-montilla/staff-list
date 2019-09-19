@@ -2,11 +2,13 @@
   <p class="alert alert-danger"><%= flash[:error]%></p>
 <% end %>
 <%= form_for([namespace, page.resource], html: { class: "form" }) do |f| %>
-
-  Name: <%= f.text_field :name %><br />
+  Name : <%= f.text_field :name %><br />
   Email : <%= f.email_field :email %><br />
-  Profile Picture : <%= f.file_field :profile_picture %><br />
+  Role : <%= f.select(:role, ['Employee', 'Admin'], :prompt => 'Select') %><br/>
+  Profile Picture : <%= f.file_field :profile_picture %>
+  <br />
   <%= f.submit %>
+
 <% end %>
 
 

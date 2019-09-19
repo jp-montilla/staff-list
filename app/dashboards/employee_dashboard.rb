@@ -12,7 +12,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
     name: Field::String,
     email: Field::String,
     role: Field::Select.with_options(
-      collection: ['Employee']
+      collection: ['Employee', 'Admin']
     ),
     password: Field::Password,
     password_confirmation: Field::Password,

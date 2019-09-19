@@ -12,6 +12,10 @@ module Admin
     # 
     # 
 
+    def create
+      super
+    end
+    
     def edit
       super
       # @employee = Employee.find(params[:id])
