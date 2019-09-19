@@ -1,4 +1,4 @@
- <table class="table table-striped">
+ <table class="table table-striped" id="table-index">
     <thead>
       <tr>
         <th scope="col">Profile Picture</th>
@@ -7,11 +7,11 @@
         <th scope="col">Role</th>
         <% @questions.each do |question|%>
           <th scope="col">
-            <% if @questions.count >= 3%>
-              <%= truncate( question.question, :ommision => "... Read More", :length => 15) %>
-            <% else %>
+            <%# if @questions.count >= 3%>
+              <%#= truncate( question.question, :ommision => "... Read More", :length => 15) %>
+            <%# else %>
               <%= question.question%>
-            <% end %>
+            <%# end %>
           </th>
 
         <% end %>
