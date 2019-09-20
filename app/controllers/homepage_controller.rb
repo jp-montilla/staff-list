@@ -17,22 +17,40 @@ class HomepageController < ApplicationController
     @answer = Answer.new
     if params[:edit_answer]
       @answer_edit = Answer.find(params[:edit_answer])
-      # @question = @answer_edit.question
       @choices = Choice.all
       respond_to do |format|
-        format.js {render 'show.js.erb'}
+        format.js {render 'edit.js.erb'}
         format.html
       end
     end
   end
 
-  def edit
+  def update
     @answer = Answer.find(params[:id])
-    @choices = Choice.all
+    if @answer.update(update_params)
+      flash[:success] = 'Answer updated successfully.'
+    else
+      # redirect_to homepage_path(current_employee.id)
+    end
+    @employee = Employee.find(current_employee.id)
+    @questions = Question.all
+    @answers = Answer.where(employee_id: params[:id]) 
     respond_to do |format|
-      format.js {render 'show.js.erb'}
+      format.js {render 'update.js.erb'}
       format.html
     end
   end
+
+
+
+
+
+  private
+    def set_params
+      params.require(:answer).permit(:answer, :question_id, :employee_id)
+    end
+    def update_params
+      params.require(:answer).permit(:answer)
+    end
 
 end

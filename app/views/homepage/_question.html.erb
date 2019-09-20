@@ -1,0 +1,49 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e|%>
+    <p class="alert alert-danger"><%= e %></p>
+  <% end %>
+<% end %>
+<% if flash[:success] %>
+    <p class="alert alert-success"><%= flash[:success] %></p>
+<% end %>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Answer</th>
+        <% if current_employee.id == @employee.id%>
+          <th scope="col">Action</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |question|%>
+        <tr>
+          <td><%= question.question %></td>
+          <td>
+            <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
+              <p><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></p>
+            <% else %>
+              <span class="badge badge-danger">Unanswered</span>
+            <% end %>
+          </td> 
+          <% if current_employee.id == @employee.id%>
+            <td>
+              <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
+                <%#= link_to 'Edit Answer', edit_answer_path(question.answer.where(employee_id: @employee.id).pluck(:id)),  :class => 'btn btn-success btn-sm'%>
+                <%= link_to 'Edit Answer', homepage_path(:edit_answer => question.answer.where(employee_id: @employee.id).pluck(:id)), remote: true, :class => 'btn btn-success btn-sm'%>
+
+
+
+                <%= link_to 'Delete Answer', delete_answer_path(question.answer.where(employee_id: @employee.id).pluck(:id)), data: {:confirm => 'Are you sure?'}, :method => :delete , :class => 'btn btn-danger btn-sm'%>
+              <% else%>
+                <%= link_to 'Answer Question', answer_create_path(question.id), :class => 'btn btn-primary btn-sm'%>
+              <% end %>
+            </td>
+          <% end %> 
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>

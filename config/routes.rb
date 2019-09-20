@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   scope '(:locale)' do
     resources :homepage
+    patch '/homepage/:id', to: 'homepage#update', as: :answer_update
+
 
     get 'question/answer/:id' => 'question#new', as: :answer_create
     post 'question/create' => 'question#create', as: :answer_question
