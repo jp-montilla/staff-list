@@ -15,5 +15,24 @@ class HomepageController < ApplicationController
     @questions = Question.all
     @answers = Answer.where(employee_id: params[:id])
     @answer = Answer.new
+    if params[:edit_answer]
+      @answer_edit = Answer.find(params[:edit_answer])
+      # @question = @answer_edit.question
+      @choices = Choice.all
+      respond_to do |format|
+        format.js {render 'show.js.erb'}
+        format.html
+      end
+    end
   end
+
+  def edit
+    @answer = Answer.find(params[:id])
+    @choices = Choice.all
+    respond_to do |format|
+      format.js {render 'show.js.erb'}
+      format.html
+    end
+  end
+
 end

@@ -34,6 +34,7 @@
 
 <hr>
 
+
 <div style="padding: 20px" >
   <h3>QUESTIONS</h3>
   <% if flash[:errors] %>
@@ -69,7 +70,10 @@
           <% if current_employee.id == @employee.id%>
             <td>
               <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
-                <%= link_to 'Edit Answer', edit_answer_path(question.answer.where(employee_id: @employee.id).pluck(:id)), :class => 'btn btn-success btn-sm'%>
+                <%#= link_to 'Edit Answer', edit_answer_path(question.answer.where(employee_id: @employee.id).pluck(:id)),  :class => 'btn btn-success btn-sm'%>
+                <%= link_to 'Edit Answer', homepage_path(:edit_answer => question.answer.where(employee_id: @employee.id).pluck(:id)), remote: true, :class => 'btn btn-success btn-sm'%>
+
+
 
                 <%= link_to 'Delete Answer', delete_answer_path(question.answer.where(employee_id: @employee.id).pluck(:id)), data: {:confirm => 'Are you sure?'}, :method => :delete , :class => 'btn btn-danger btn-sm'%>
               <% else%>
@@ -80,13 +84,14 @@
         </tr>
       <% end %>
 
-
-
-
-
     </tbody>
   </table>
+
+  <div id="edit-show"></div>
+
 </div>
+
+
 <hr>
 
 
