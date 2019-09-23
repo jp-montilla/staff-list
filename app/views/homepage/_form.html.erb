@@ -10,25 +10,25 @@
     <p class="card-text">
       <% if @answer_edit.question.answer_type == 'Numerical'%>
         <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
-          <%= f.label :answer%>
-          <%= f.number_field :answer%>
-          <%= f.submit 'Submit'%>
+          <%= f.number_field :answer, :class => 'num-input'%>
+          <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% elsif @answer_edit.question.answer_type == 'Text' %>
         <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
-          <%= f.label :answer%>
-          <%= f.text_area :answer%>
-          <%= f.submit 'Submit'%>
+          <%= f.text_area :answer, rows: 7%>
+          <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% else %>
         <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
           <% @choices.each do |choice| %>
             <% if choice.question_id == @answer_edit.question.id%>
-              <%= f.radio_button :answer, choice.choice, required: true %>
-              <%= f.label :answer, choice.choice %>
+              <div class="radio-btn">
+                <%= f.radio_button :answer, choice.choice, required: true %>
+                <%= f.label :answer, choice.choice %>
+              </div>
             <% end %>
           <% end %>
-          <%= f.submit 'Submit'%>
+          <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% end %>
 

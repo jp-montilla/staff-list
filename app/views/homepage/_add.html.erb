@@ -1,40 +1,57 @@
-<h1><%= @question.question%></h1>
-
-<% if flash[:errors] %>
-  <% flash[:errors].each do |e|%>
-    <p class="alert alert-danger"><%= e %></p>
-  <% end %>
-<% end %>
-
-
-<% if @question.answer_type == 'Numerical'%>
-  <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
-    <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.hidden_field :employee_id, :value => current_employee.id %>
-    <%= f.label :answer%>
-    <%= f.number_field :answer%>
-    <%= f.submit 'Submit'%>
-  <% end %>
-<% elsif @question.answer_type == 'Text' %>
-  <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
-  <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.hidden_field :employee_id, :value => current_employee.id %>
-    <%= f.label :answer%>
-    <%= f.text_area :answer%>
-    <%= f.submit 'Submit'%>
-  <% end %>
-<% elsif @question.answer_type == 'Choice' %>
-  <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
-  <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.hidden_field :employee_id, :value => current_employee.id %>
-    <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.hidden_field :employee_id, :value => current_employee.id %>
-    <% @choices.each do |choice| %>
-      <% if choice.question_id == @question.id%>
-        <%= f.radio_button :answer, choice.choice, required: true %>
-        <%= f.label :answer, choice.choice %>
+<div class="card border-success mb-3" style="max-width: 100rem;">
+  
+  <div class="card-header">Answer Question</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title"><%= @question.question%></h5>
+    <p class="card-text">
+      <% if @question.answer_type == 'Numerical'%>
+        <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
+          <%= f.hidden_field :question_id, :value => @question.id %>
+          <%= f.hidden_field :employee_id, :value => current_employee.id %>
+          <%= f.number_field :answer, :class => 'num-input'%>
+          <br/>
+              <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
+        <% end %>
+      <% elsif @question.answer_type == 'Text' %>
+        <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
+        <%= f.hidden_field :question_id, :value => @question.id %>
+          <%= f.hidden_field :employee_id, :value => current_employee.id %>
+          <%= f.text_area :answer, rows: 7%>
+          <br/>
+              <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
+        <% end %>
+      <% elsif @question.answer_type == 'Choice' %>
+        <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
+        <%= f.hidden_field :question_id, :value => @question.id %>
+          <%= f.hidden_field :employee_id, :value => current_employee.id %>
+          <%= f.hidden_field :question_id, :value => @question.id %>
+          <%= f.hidden_field :employee_id, :value => current_employee.id %>
+          <% @choices.each do |choice| %>
+            <% if choice.question_id == @question.id%>
+              <%= f.radio_button :answer, choice.choice, required: true %>
+              <%= f.label :answer, choice.choice %>
+            <% end %>
+          <% end %>
+          <br/>
+              <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= f.submit 'Submit'%>
-  <% end %>
-<% end %>
+    </p>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

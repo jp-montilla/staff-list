@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     patch '/homepage/:id', to: 'homepage#update', as: :answer_update
     delete 'homepage/:id/delete', to: 'homepage#destroy', as: :answer_delete
 
-
     #get 'question/answer/:id' => 'question#new', as: :answer_create
     #post 'question/create' => 'question#create', as: :answer_question
     #get 'question/edit/:id' => 'question#edit', as: :edit_answer

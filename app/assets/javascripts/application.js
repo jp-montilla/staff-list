@@ -82,6 +82,8 @@ $(document).ready(function(){
     $("#bar_type").hide()
     $("#area_type").show()
   });
+
+
   
 
 });

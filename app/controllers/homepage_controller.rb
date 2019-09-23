@@ -71,6 +71,7 @@ class HomepageController < ApplicationController
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
+    flash[:success] = 'Answer deleted successfully.'
     @employee = Employee.find(current_employee.id)
     @questions = Question.all
     respond_to do |format|
@@ -78,8 +79,6 @@ class HomepageController < ApplicationController
       format.html
     end
   end
-
-
 
 
 
