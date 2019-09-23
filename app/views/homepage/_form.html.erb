@@ -6,24 +6,24 @@
   <% end %>
   <div class="card-header">Edit Answer</div>
   <div class="card-body text-dark">
-    <h5 class="card-title"><%= @answer_edit.first.question.question%></h5>
+    <h5 class="card-title"><%= @answer_edit.question.question%></h5>
     <p class="card-text">
-      <% if @answer_edit.first.question.answer_type == 'Numerical'%>
-        <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.first.id), remote: true) do |f|%>
+      <% if @answer_edit.question.answer_type == 'Numerical'%>
+        <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
           <%= f.label :answer%>
           <%= f.number_field :answer%>
           <%= f.submit 'Submit'%>
         <% end %>
-      <% elsif @answer_edit.first.question.answer_type == 'Text' %>
-        <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.first.id), remote: true) do |f|%>
+      <% elsif @answer_edit.question.answer_type == 'Text' %>
+        <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
           <%= f.label :answer%>
           <%= f.text_area :answer%>
           <%= f.submit 'Submit'%>
         <% end %>
       <% else %>
-        <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.first.id), remote: true) do |f|%>
+        <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
           <% @choices.each do |choice| %>
-            <% if choice.question_id == @answer_edit.first.question.id%>
+            <% if choice.question_id == @answer_edit.question.id%>
               <%= f.radio_button :answer, choice.choice, required: true %>
               <%= f.label :answer, choice.choice %>
             <% end %>
