@@ -19,6 +19,7 @@ class HomepageController < ApplicationController
   def new
     @answer = Answer.new
     @question = Question.find(params[:id])
+    @choices = Choice.all
     respond_to do |format|
       format.js {render 'add.js.erb'}
       format.html
@@ -35,28 +36,6 @@ class HomepageController < ApplicationController
         format.js {render 'fresh.js.erb'}
         format.html
       end
-      # redirect_to homepage_path(current_employee.id)
-
-    else
-      flash[:errors] = @answer.errors.full_messages
-      redirect_to homepage_path(current_employee.id)
-    end
-  end
-
-  def update
-    @answer = Answer.find(params[:id])
-    if @answer.update(update_params)
-      # redirect_to homepage_path(current_employee.id)
-      flash[:success] = 'Answer updated successfully.'
-      
-      @employee = Employee.find(current_employee.id)
-      @questions = Question.all
-      respond_to do |format|
-        format.js {render 'fresh.js.erb'}
-        format.html
-
-      end
-
     else
       flash[:errors] = @answer.errors.full_messages
       redirect_to homepage_path(current_employee.id)
@@ -69,6 +48,33 @@ class HomepageController < ApplicationController
     @choices = Choice.all
     respond_to do |format|
       format.js {render 'edit.js.erb'}
+      format.html
+    end
+  end
+
+  def update
+    @answer = Answer.find(params[:id])
+    if @answer.update(update_params)
+      flash[:success] = 'Answer updated successfully.'
+      @employee = Employee.find(current_employee.id)
+      @questions = Question.all
+      respond_to do |format|
+        format.js {render 'fresh.js.erb'}
+        format.html
+      end
+    else
+      flash[:errors] = @answer.errors.full_messages
+      redirect_to homepage_path(current_employee.id)
+    end
+  end
+
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy
+    @employee = Employee.find(current_employee.id)
+    @questions = Question.all
+    respond_to do |format|
+      format.js {render 'fresh.js.erb'}
       format.html
     end
   end

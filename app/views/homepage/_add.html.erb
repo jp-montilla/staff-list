@@ -23,7 +23,7 @@
     <%= f.text_area :answer%>
     <%= f.submit 'Submit'%>
   <% end %>
-<% else %>
+<% elsif @question.answer_type == 'Choice' %>
   <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
   <%= f.hidden_field :question_id, :value => @question.id %>
     <%= f.hidden_field :employee_id, :value => current_employee.id %>
