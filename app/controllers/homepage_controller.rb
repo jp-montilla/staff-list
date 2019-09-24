@@ -17,6 +17,7 @@ class HomepageController < ApplicationController
   end
 
   def new
+    flash[:errors] = nil
     @answer = Answer.new
     @question = Question.find(params[:id])
     @choices = Choice.all
@@ -38,11 +39,18 @@ class HomepageController < ApplicationController
       end
     else
       flash[:errors] = @answer.errors.full_messages
-      redirect_to homepage_path(current_employee.id)
+      @employee = Employee.find(current_employee.id)
+      @question = @answer.question
+      respond_to do |format|
+        format.js {render 'add.js.erb'}
+        format.html
+      end
+
     end
   end
 
   def edit
+    flash[:errors] = nil
     @employee = Employee.find(current_employee.id)
     @answer_edit = Answer.find(params[:id])
     @choices = Choice.all
@@ -64,7 +72,12 @@ class HomepageController < ApplicationController
       end
     else
       flash[:errors] = @answer.errors.full_messages
-      redirect_to homepage_path(current_employee.id)
+      @employee = Employee.find(current_employee.id)
+      @answer_edit = @answer
+      respond_to do |format|
+        format.js {render 'edit.js.erb'}
+        format.html
+      end
     end
   end
 

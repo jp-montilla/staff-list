@@ -1,16 +1,17 @@
 <div class="card border-danger mb-3" style="max-width: 100rem;">
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |e|%>
-      <p class="alert alert-danger"><%= e %></p>
-    <% end %>
-  <% end %>
+  
   <div class="card-header">Edit Answer</div>
   <div class="card-body text-dark">
     <h5 class="card-title"><%= @answer_edit.question.question%></h5>
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |e|%>
+        <p class="alert alert-danger"><%= e %></p>
+      <% end %>
+    <% end %>
     <p class="card-text">
       <% if @answer_edit.question.answer_type == 'Numerical'%>
         <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
-          <%= f.number_field :answer, :class => 'num-input'%>
+          <%= f.number_field :answer, :class => 'num-input', min: "0"%>
           <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% elsif @answer_edit.question.answer_type == 'Text' %>

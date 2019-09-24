@@ -1,14 +1,20 @@
+
 <div class="card border-success mb-3" style="max-width: 100rem;">
-  
   <div class="card-header">Answer Question</div>
   <div class="card-body text-dark">
     <h5 class="card-title"><%= @question.question%></h5>
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |e|%>
+        <p class="alert alert-danger"><%= e %></p>
+      <% end %>
+    <% end %>
+
     <p class="card-text">
       <% if @question.answer_type == 'Numerical'%>
         <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
           <%= f.hidden_field :question_id, :value => @question.id %>
           <%= f.hidden_field :employee_id, :value => current_employee.id %>
-          <%= f.number_field :answer, :class => 'num-input'%>
+          <%= f.number_field :answer, :class => 'num-input', min: "0"%>
           <br/>
               <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>

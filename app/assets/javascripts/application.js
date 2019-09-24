@@ -22,6 +22,7 @@
 //= require Chart.bundle
 
 $(document).ready(function(){
+  $("#cancel-btn").hide()
 	$('#view_type_report').click(function(){
 		$('#type_report').show()
 		$('#status_report').hide()
@@ -81,6 +82,15 @@ $(document).ready(function(){
     $("#line_type").hide()
     $("#bar_type").hide()
     $("#area_type").show()
+  });
+
+  $("#cancel-btn").click(function(){
+    $("#cancel-btn").hide()
+    $("#questions-tbl").removeClass("col-6");
+    $("#questions-tbl").addClass("col-12");
+    $("#form-show").removeClass("col-6");
+    $("#form-show").hide()
+
   });
 
 
