@@ -102,4 +102,16 @@ textarea{
   font-size: 30px;
 }
 
+#choices-tbl{
+  .col-5{
+    margin: 10px;
+    padding: 15px;
+    background-color: yellow;
+
+    div{
+      margin: 5px;
+    }
+  }
+}
+
 

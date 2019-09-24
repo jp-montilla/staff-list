@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # get 'chart/index'
-
-
   namespace :admin do
     resources :employees
     resources :questions
@@ -10,6 +7,14 @@ Rails.application.routes.draw do
 
     root to: "employees#index"
   end
+
+  resources :choice, :except => [:new, :create,:destroy]
+  get '/choice/new/:id', to: 'choice#new', as: :new_choice
+  post '/choice/create', to: 'choice#create', as: :create_choice
+  patch '/choice/:id', to: 'choice#update', as: :update_choice
+  delete '/choice/:id/delete', to: 'choice#destroy', as: :delete_choice
+
+  
 
   devise_for :employees
 

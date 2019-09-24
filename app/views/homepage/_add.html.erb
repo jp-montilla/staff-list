@@ -16,7 +16,7 @@
           <%= f.hidden_field :employee_id, :value => current_employee.id %>
           <%= f.number_field :answer, :class => 'num-input', min: "0"%>
           <br/>
-              <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
+          <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% elsif @question.answer_type == 'Text' %>
         <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
@@ -24,7 +24,7 @@
           <%= f.hidden_field :employee_id, :value => current_employee.id %>
           <%= f.text_area :answer, rows: 7%>
           <br/>
-              <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
+          <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% elsif @question.answer_type == 'Choice' %>
         <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
@@ -39,7 +39,7 @@
             <% end %>
           <% end %>
           <br/>
-              <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
+          <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% end %>
     </p>

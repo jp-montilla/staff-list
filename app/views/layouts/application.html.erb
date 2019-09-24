@@ -21,7 +21,15 @@
         <% if current_employee.role == 'Employee'%>
           <%= link_to 'Profile', homepage_path(current_employee.id)%>
         <% else %>
-          <%= link_to 'Admin', admin_employees_path%>
+          <div style="height: 30px"></div>
+
+          <%= link_to 'Employees', admin_employees_path%>
+          <%= link_to 'Materials', admin_materials_path%>
+          <%= link_to 'Questions', admin_questions_path%>
+          <%= link_to 'Choices', choice_index_path%>
+          
+          <div style="height: 30px"></div>
+
         <% end %>
         <%= link_to "Logout", destroy_employee_session_path, method: :delete %>
       </div>
