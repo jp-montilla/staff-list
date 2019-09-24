@@ -90,9 +90,11 @@ $(document).ready(function(){
     $("#questions-tbl").addClass("col-12");
     $("#form-show").removeClass("col-6");
     $("#form-show").hide()
-
   });
 
+  $("#cancel-btn-choice").click(function(){
+    $(".add_form_choice").hide()
+  });
 
   
 

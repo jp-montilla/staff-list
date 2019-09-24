@@ -1,11 +1,21 @@
-<h1><%= @question.question %></h1>
-<% if flash[:errors] %>
-      <% flash[:errors].each do |e|%>
-        <p class="alert alert-danger"><%= e %></p>
+
+
+<div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
+  <div class="card-header">Edit Choice</div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @question.question %></h5>
+    <p class="card-text">
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |e|%>
+          <p class="alert alert-danger"><%= e %></p>
+        <% end %>
       <% end %>
-    <% end %>
-<%= form_for(@choice, remote: true) do |f|%>
-  <%= f.text_field :choice%>
-  <br/>
-  <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
-<% end %>
+      <%= form_for(@choice, remote: true) do |f|%>
+        <%= f.text_field :choice, :class => 'text-field'%>
+        <br/>
+        <%= f.submit 'Submit', :class => 'btn btn-warning btn-block form_submit'%>
+      <% end %>
+
+    </p>
+  </div>
+</div>

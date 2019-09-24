@@ -8,6 +8,7 @@ class ChoiceController < ApplicationController
 
   def index
     @questions = Question.where(answer_type: 'Choice')
+    @count = 0
   end
 
   def show
@@ -28,6 +29,7 @@ class ChoiceController < ApplicationController
     @choice = Choice.new(set_params)
     if @choice.save
       @questions = Question.where(answer_type: 'Choice')
+      @count = 0
       flash[:success] = "Choice Saved"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
@@ -36,6 +38,7 @@ class ChoiceController < ApplicationController
     else
       flash[:errors] = @choice.errors.full_messages
       @question = @choice.question
+      @count = 0
       @question_box = @question.id.to_s
       respond_to do |format|
         format.js {render 'add.js.erb'}
@@ -45,6 +48,7 @@ class ChoiceController < ApplicationController
   end
 
   def edit
+    flash[:errors] = nil
     @choice = Choice.find(params[:id])
     @question = @choice.question
     @question_box = @question.id.to_s
@@ -58,6 +62,7 @@ class ChoiceController < ApplicationController
     @choice = Choice.find(params[:id])
     if @choice.update(update_params)
       @questions = Question.where(answer_type: 'Choice')
+      @count = 0
       flash[:success] = "Choice Updated"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
@@ -67,6 +72,7 @@ class ChoiceController < ApplicationController
       flash[:errors] = @choice.errors.full_messages
       @question = @choice.question
       @question_box = @question.id.to_s
+      @count = 0
       respond_to do |format|
         format.js {render 'edit.js.erb'}
         format.html
@@ -78,6 +84,7 @@ class ChoiceController < ApplicationController
     @choice = Choice.find(params[:id])
     if @choice.destroy
       @questions = Question.where(answer_type: 'Choice')
+      @count = 0
       flash[:success] = "Choice Deleted"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
@@ -86,6 +93,7 @@ class ChoiceController < ApplicationController
     else
       flash[:errors] = @choice.errors.full_messages
       @questions = Question.where(answer_type: 'Choice')
+      @count = 0
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
         format.html
