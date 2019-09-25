@@ -1,0 +1,26 @@
+<div class="row">
+  <% @employees.each do |employee|%>
+    <div class="col-6" style="border: 1px solid black; padding: 15px; margin-bottom: 5px">
+      <div class="row">
+        <div class="col">
+          <%= image_tag(employee.profile_picture, {:style => "width:100px;"})%>
+          <p><%= employee.email%></p>
+        </div>
+        <div class="col">
+          <label>Assigned Materials</label>
+          <% if employee.material != [] %>
+            <ul style="list-style: none">
+              <% employee.material.each do |material|%>
+                <li><%= material.name%></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <label style="color: red">NONE</label>
+          <% end %>
+          <%= link_to "Assign material", new_assign_path(employee.id), remote: true, :class => 'btn btn-primary btn-block' %>
+        </div>
+      </div>
+    </div>
+    <div class="form_show" id=<%= "form_for_#{employee.id}" %>></div>
+  <% end %>
+</div>

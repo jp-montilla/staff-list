@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     resources :employees
     resources :questions
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
   patch '/choice/:id', to: 'choice#update', as: :update_choice
   delete '/choice/:id/delete', to: 'choice#destroy', as: :delete_choice
 
+
+  resources :assign, :except => [:new, :create,:destroy]
+  get '/assign/new/:id', to: 'assign#new', as: :new_assign
+  post '/assign/create', to: 'assign#create', as: :create_assign
+  patch '/assign/:id', to: 'assign#update', as: :update_assign
+  delete '/assign/:id/delete', to: 'assign#destroy', as: :delete_assign
   
 
   devise_for :employees

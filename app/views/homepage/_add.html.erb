@@ -34,8 +34,10 @@
           <%= f.hidden_field :employee_id, :value => current_employee.id %>
           <% @choices.each do |choice| %>
             <% if choice.question_id == @question.id%>
-              <%= f.radio_button :answer, choice.choice, required: true %>
-              <%= f.label :answer, choice.choice %>
+              <div class="radio-btn">
+                <%= f.radio_button :answer, choice.choice, required: true %>
+                <%= f.label :answer, choice.choice %>
+              </div>
             <% end %>
           <% end %>
           <br/>
