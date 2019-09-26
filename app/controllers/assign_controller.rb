@@ -70,11 +70,6 @@ class AssignController < ApplicationController
       end
     end
   end
-
-  def close
-    
-  end
-
   
 
 

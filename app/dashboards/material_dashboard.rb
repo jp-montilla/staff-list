@@ -58,7 +58,7 @@ class MaterialDashboard < Administrate::BaseDashboard
     :name,
     :material_type,
     :status,
-    :employee,
+    # :employee,
   ].freeze
 
   # Overwrite this method to customize how materials are displayed
