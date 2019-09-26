@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   delete '/choice/:id/delete', to: 'choice#destroy', as: :delete_choice
 
 
-  resources :assign, :except => [:new, :create,:destroy]
+  resources :assign, :except => [:new, :create,:destroy, :show]
   get '/assign/new/:id', to: 'assign#new', as: :new_assign
+  get '/assign/show', to: 'assign#show', as: :assign_close
   patch '/assign/create/:id', to: 'assign#create', as: :create_assign
   patch '/assign/destroy/:id', to: 'assign#destroy', as: :destroy_assign
   

@@ -92,10 +92,6 @@ $(document).ready(function(){
     $("#form-show").hide()
   });
 
-  $("#cancel-btn-choice").click(function(){
-    $(".add_form_choice").hide()
-  });
-
   
 
 });

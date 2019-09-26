@@ -12,6 +12,12 @@ class AssignController < ApplicationController
   end
 
   def show
+    @materials = Material.where(employee_id: nil)
+    @employees = Employee.where(role: 'Employee')
+    respond_to do |format|
+        format.js {render 'reload.js.erb'}
+        format.html
+      end
   end
 
   def new
@@ -63,6 +69,10 @@ class AssignController < ApplicationController
         format.html
       end
     end
+  end
+
+  def close
+    
   end
 
   
