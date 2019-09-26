@@ -15,7 +15,7 @@ class ChoiceController < ApplicationController
   end
 
   def new
-    flash[:errors] = nil
+    flash[:errors] = ""
     @choice = Choice.new
     @question = Question.find(params[:id])
     @question_box = params[:id]
@@ -48,7 +48,7 @@ class ChoiceController < ApplicationController
   end
 
   def edit
-    flash[:errors] = nil
+    flash[:errors] = ""
     @choice = Choice.find(params[:id])
     @question = @choice.question
     @question_box = @question.id.to_s

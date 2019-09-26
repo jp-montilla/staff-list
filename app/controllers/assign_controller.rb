@@ -15,7 +15,7 @@ class AssignController < ApplicationController
   end
 
   def new
-    flash[:errors] = nil
+    flash[:success] = ""
     @employee = Employee.find(params[:id])
     @employee_box = params[:id]
     @materials = Material.where(employee_id: nil)
@@ -26,16 +26,32 @@ class AssignController < ApplicationController
   end
 
   def create
+    @material = Material.find(params[:material_id])
+    @employee = Employee.find(params[:employee])
+    @employee_box = params[:employee]
+    @materials = Material.where(employee_id: nil)
+    @employees = Employee.where(role: 'Employee')
+    if @material.update(update_params)
+      @employee = Employee.find(params[:id])
+      flash[:success] = "#{@material.name} assigned to #{@employee.email}!"
+      respond_to do |format|
+        format.js {render 'fresh.js.erb'}
+        format.html
+      end
+    else
+      flash[:errors] = @choice.errors.full_messages
+      respond_to do |format|
+        format.js {render 'add.js.erb'}
+        format.html
+      end
+    end
   end
-
-  def edit
-  end
-
-  def update
-  end
+  
 
   def destroy
   end
+
+  
 
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -48,11 +64,7 @@ class AssignController < ApplicationController
     end
 
   private
-    def set_params
-      params.require(:choice).permit(:question_id, :choice)
-    end
-
     def update_params
-      params.require(:choice).permit(:choice)
+      params.require(:material).permit(:employee_id)
     end
 end

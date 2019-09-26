@@ -17,7 +17,7 @@ class HomepageController < ApplicationController
   end
 
   def new
-    flash[:errors] = nil
+    flash[:errors] = ""
     @answer = Answer.new
     @question = Question.find(params[:id])
     @choices = Choice.all
@@ -50,7 +50,7 @@ class HomepageController < ApplicationController
   end
 
   def edit
-    flash[:errors] = nil
+    flash[:errors] = ""
     @employee = Employee.find(current_employee.id)
     @answer_edit = Answer.find(params[:id])
     @choices = Choice.all

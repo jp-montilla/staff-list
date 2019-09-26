@@ -2,19 +2,31 @@
   <div class="card-header">Assign material for <strong style="font-size: 20px"><%= @employee.email%></strong></div>
   <div class="card-body">
     <p class="card-text">
-      <table class="table">
-        <tbody>
-          <% @materials.each do |material|%>
-            <tr>
-              <td><%= material.name %></td>
-              <td>
-                <%= link_to 'Add', root_path, :class => 'btn btn-success btn-sm'%>
-              </td>
-            </tr>
-           <% end %>
-        </tbody>
-      </table>
-      
+      <% if flash[:success] and flash[:success] != "" %>
+        <p class="alert alert-success" style="font-size: 15px"><%= flash[:success]%></p>
+      <% end %>
+      <% @materials.each do |material|%>
+        <div class="row">
+          <div class="col-8">
+            <label><%= material.name %> - <%= material.status%></label>
+          </div>
+          <div class="col-4">
+            <%#= link_to 'Assign', create_assign_path(:material => material.id, :employee => @employee.id),  :method => :post, remote: true, :class => 'btn btn-success btn-sm'%>
+
+            <%= form_for(material, url: create_assign_path(:material_id => material.id, :employee => @employee.id),remote: true) do |f|%>
+              <%= f.hidden_field :employee_id, :value => @employee.id %>
+              <%= f.submit 'Assign', :class => 'btn btn-success btn-sm'%>
+            <% end %>
+          </div>
+        </div>
+       <% end %>
+       <hr>
+       <div class="row">
+         <div class="col-6"></div>
+         <div class="col-6">
+          <%= link_to 'Close', root_path, :class => 'btn btn-danger btn-block'%>
+         </div>
+       </div>
     </p>
   </div>
 </div>

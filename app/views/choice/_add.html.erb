@@ -3,7 +3,7 @@
   <div class="card-header">Add new choice</div>
   <div class="card-body">
     <h5 class="card-title"><%= @question.question %></h5>
-    <% if flash[:errors] %>
+    <% if flash[:errors] and flash[:errors] != "" %>
       <% flash[:errors].each do |e|%>
         <p class="alert alert-danger"><%= e %></p>
       <% end %>
