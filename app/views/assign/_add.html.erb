@@ -11,8 +11,6 @@
             <label><%= material.name %> - <%= material.status%></label>
           </div>
           <div class="col-4">
-            <%#= link_to 'Assign', create_assign_path(:material => material.id, :employee => @employee.id),  :method => :post, remote: true, :class => 'btn btn-success btn-sm'%>
-
             <%= form_for(material, url: create_assign_path(:material_id => material.id, :employee => @employee.id),remote: true) do |f|%>
               <%= f.hidden_field :employee_id, :value => @employee.id %>
               <%= f.submit 'Assign', :class => 'btn btn-success btn-sm'%>

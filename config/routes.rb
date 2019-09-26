@@ -19,8 +19,7 @@ Rails.application.routes.draw do
   resources :assign, :except => [:new, :create,:destroy]
   get '/assign/new/:id', to: 'assign#new', as: :new_assign
   patch '/assign/create/:id', to: 'assign#create', as: :create_assign
-  patch '/assign/:id', to: 'assign#update', as: :update_assign
-  delete '/assign/:id/delete', to: 'assign#destroy', as: :delete_assign
+  patch '/assign/destroy/:id', to: 'assign#destroy', as: :destroy_assign
   
 
   devise_for :employees

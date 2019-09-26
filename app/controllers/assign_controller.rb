@@ -39,16 +39,30 @@ class AssignController < ApplicationController
         format.html
       end
     else
-      flash[:errors] = @choice.errors.full_messages
+      flash[:errors] = @material.errors.full_messages
       respond_to do |format|
         format.js {render 'add.js.erb'}
         format.html
       end
     end
   end
-  
 
   def destroy
+    @material = Material.find(params[:id])
+    @materials = Material.where(employee_id: nil)
+    @employees = Employee.where(role: 'Employee')
+    if @material.update(update_params)
+      respond_to do |format|
+        format.js {render 'reload.js.erb'}
+        format.html
+      end
+    else
+      flash[:errors] = @choice.errors.full_messages
+      respond_to do |format|
+        format.js {render 'add.js.erb'}
+        format.html
+      end
+    end
   end
 
   

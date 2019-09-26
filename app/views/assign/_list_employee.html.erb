@@ -15,7 +15,10 @@
                     <label><%= material.name%></label>
                   </div>
                   <div class="col">
-                    <button class="btn btn-danger btn-sm">Remove</button>
+                    <%= form_for(material, url: destroy_assign_path(material.id),remote: true) do |f|%>
+                      <%= f.hidden_field :employee_id, :value => nil %>
+                      <%= f.submit 'Remove', :class => 'btn btn-danger btn-sm'%>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
@@ -23,7 +26,10 @@
           <% else %>
             <label style="color: red">NONE</label><hr>
           <% end %>
-          <%= link_to "Assign material", new_assign_path(employee.id), remote: true, :class => 'btn btn-primary btn-sm' %>
+          <% if @materials.count > 0%>
+            <%= link_to "Assign material", new_assign_path(employee.id), remote: true, :class => 'btn btn-primary btn-sm' %>
+          <% end %>
+
         </div>
       </div>
     </div>
