@@ -1,59 +1,67 @@
 
-<hr>
-<div>
   
-<div class="row" style="background: #d4d7dd">
-  <div class="col-4">
-    <%= image_tag(@employee.profile_picture, {:style => "width:300px;"})%>
-  </div>
-  <div class="col-6">
-    <br/><br/>
-    <br/><br/>
+
+<div class="row">
+  <div class="col-3">
+    <%= image_tag(@employee.profile_picture, {:style => "width:100%; border: 3px solid black; border-radius: 50%; background: white"})%>
+    <div style="height: 20px"></div>
+
     <div class="card border-primary mb-3" style="max-width: 50rem;">
       <div class="card-header">BASIC INFORMATION</div>
       <div class="card-body">
-        <h5><span style="color: green">Name: </span><%= @employee.name %></h5>
-        <h5><span style="color: green">Email: </span><%= @employee.email %></h5>
-        <h5><span style="color: green">Role: </span><%= @employee.role %></h5>
+        <h6><span style="color: green">Name: </span><%= @employee.name %></h6>
+        <h6><span style="color: green">Email: </span><%= @employee.email %></h6>
+        <h6><span style="color: green">Role: </span><%= @employee.role %></h6>
         <% if current_employee.name == @employee.name %>
           <%#= link_to 'Change Password', edit_password_path(current_employee.id)%>
         <% end %>
       </div>
     </div>
   </div>
-</div>
 
-<hr>
-
-<div style="padding: 20px">
-  <h3>ASSIGNED EQUIPMENTS</h3>
-  <% @employee.material.each do|material| %>
-  <label style="font-size: 2rem"><span class="badge badge-info"><%= material.name %></span></label>
-  <% end%>
-</div>
-
-<hr>
-
-
-<div style="padding: 20px" >
-  <h3>QUESTIONS</h3>
-  
-  <div class="row">
-    <div id="questions-tbl" class="col-12">
-      <%= render 'homepage/question' %>
-    </div>
-    <div id="form-show">
-    </div>
-    
-  </div>
-  <div class="row">
-      <div class="col-6"></div>
-      <div class="col-6">
-        <button class="btn btn-danger btn-block" id="cancel-btn">Cancel</button>
+  <div class="col-9" style=" padding: 10px; background: white">
+    <div style="padding: 20px; border: 1px solid" >
+      <h3>QUESTIONS</h3>
+      
+      <div class="row">
+        <div id="questions-tbl" class="col-12">
+          <%= render 'homepage/question' %>
+        </div>
+        <div id="form-show">
+        </div>
+        
       </div>
+      <div class="row">
+          <div class="col-6"></div>
+          <div class="col-6">
+            <button class="btn btn-danger btn-block" id="cancel-btn">Cancel</button>
+          </div>
+        </div>
+    </div>
+    <div style="height: 20px"></div>
+
+    <div style="padding: 20px; border: 1px solid">
+      <h3>ASSIGNED EQUIPMENTS</h3>
+      <div class="row">
+        
+      <% @employee.material.each do|material| %>
+        <div class="col-3" style="border: 1px solid black; padding: 10px; margin: 10px">
+          <%= material.name %>
+        </div>
+      <% end%>
+      </div>
+
     </div>
 
+  </div>
+
 </div>
+
+
+
+
+
+
 
 
 <hr>

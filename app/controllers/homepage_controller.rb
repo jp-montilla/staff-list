@@ -45,8 +45,9 @@ class HomepageController < ApplicationController
         format.js {render 'add.js.erb'}
         format.html
       end
-
     end
+    flash[:success] = ""
+    flash[:errors] = ""
   end
 
   def edit
@@ -79,6 +80,8 @@ class HomepageController < ApplicationController
         format.html
       end
     end
+    flash[:success] = ""
+    flash[:errors] = ""
   end
 
   def destroy
@@ -91,6 +94,7 @@ class HomepageController < ApplicationController
       format.js {render 'fresh.js.erb'}
       format.html
     end
+    flash[:success] = ""
   end
 
 

@@ -32,24 +32,24 @@ By default, it renders:
   <%= render "icons" %>
 
   <div class="wrapper">
-        <div class="sidebar">
-          <h2>Staff List</h2>
-          <ul>
-              <li><%= link_to 'Home', root_path%></li>
-              <% if current_employee.role == 'Employee'%>
-                <li><%= link_to 'Profile', homepage_path(current_employee.id)%></li>
-              <% else%>
+      <div class="sidebar">
+        <h2>Staff List</h2>
+        <ul>
+            <li><%= link_to 'Home', root_path%></li>
+            <% if current_employee.role == 'Employee'%>
+              <li><%= link_to 'Profile', homepage_path(current_employee.id)%></li>
+            <% else%>
 
-                <li><%= link_to 'Employees', admin_employees_path%></li>
-                <li><%= link_to 'Materials', admin_materials_path%></li>
-                <li><%= link_to 'Questions', admin_questions_path%></li>
-                <li><%= link_to 'Choices', choice_index_path%></li>
-              <% end %>
-              <li><%= link_to "Logout", destroy_employee_session_path, method: :delete %></li>
-          </ul> 
-        </div>
-        
+              <li><%= link_to 'Employees', admin_employees_path%></li>
+              <li><%= link_to 'Materials', admin_materials_path%></li>
+              <li><%= link_to 'Questions', admin_questions_path%></li>
+              <li><%= link_to 'Choices', choice_index_path%></li>
+            <% end %>
+            <li><%= link_to "Logout", destroy_employee_session_path, method: :delete %></li>
+        </ul> 
       </div>
+      
+    </div>
 
   <div class="app-container">
     <%#= render "navigation" -%>
