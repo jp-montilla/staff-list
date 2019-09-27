@@ -7,11 +7,7 @@
         <th scope="col">Role</th>
         <% @questions.each do |question|%>
           <th scope="col">
-            <%# if @questions.count >= 3%>
-              <%#= truncate( question.question, :ommision => "... Read More", :length => 15) %>
-            <%# else %>
-              <%= question.question%>
-            <%# end %>
+              <%= truncate(question.question, :length => 25)%>
           </th>
 
         <% end %>
@@ -25,7 +21,7 @@
             <%= link_to image_tag(employee.profile_picture, {:style => "width:100px;"}), homepage_path(employee.id)%>
             </td>
             <td>
-              <%= link_to employee.name, homepage_path(employee.id) %>
+              <%= link_to truncate(employee.name, :length => 20), homepage_path(employee.id) %>
               <% if employee.name == current_employee.name %>
                 <br/>
                 <p style="color: green">CURRENT USER</p>

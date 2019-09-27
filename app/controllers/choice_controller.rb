@@ -45,6 +45,7 @@ class ChoiceController < ApplicationController
         format.html
       end
     end
+    flash[:success] = ""
   end
 
   def edit
@@ -68,6 +69,7 @@ class ChoiceController < ApplicationController
         format.js {render 'fresh.js.erb'}
         format.html
       end
+      binding.pry
     else
       flash[:errors] = @choice.errors.full_messages
       @question = @choice.question
@@ -78,6 +80,7 @@ class ChoiceController < ApplicationController
         format.html
       end
     end
+    flash[:success] = ""
   end
 
   def destroy
@@ -99,6 +102,7 @@ class ChoiceController < ApplicationController
         format.html
       end
     end
+    flash[:success] = ""
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

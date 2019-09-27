@@ -9,6 +9,7 @@ class AssignController < ApplicationController
   def index
     @materials = Material.where(employee_id: nil)
     @employees = Employee.where(role: 'Employee')
+    # @employees = Employee.where(role: 'Employee').order(name: :asc).page(params[:page]).per(3)
   end
 
   def show
@@ -51,6 +52,8 @@ class AssignController < ApplicationController
         format.html
       end
     end
+    flash[:success] = ""
+
   end
 
   def destroy
