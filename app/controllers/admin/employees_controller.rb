@@ -15,6 +15,10 @@ module Admin
     def create
       super
     end
+
+    def show
+      super
+    end
     
     def edit
       super

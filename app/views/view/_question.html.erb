@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-6" style="margin: 10px; border: 1px solid black; padding: 20px">
+    <h3 class="text-center">INCLUDED IN THE LIST</h3>
+    <% @questions.each do |question|%>
+      <% if question.view_to_list == 1%>
+        <div class="row">
+          <div class="col-10">
+            <p><%= question.question %> </p>
+          </div>
+          <div class="col-2">
+            <%= form_for(question, url: create_view_path(question.id),remote: true) do |f|%>
+              <%= f.hidden_field :view_to_list, :value => 0 %>
+              <%= f.submit 'Remove', :class => 'btn btn-danger btn-sm'%>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-5" style="margin: 10px; border: 1px solid black; padding: 20px">
+    <h3 class="text-center">NOT INCLUDED IN THE LIST</h3>
+    <% @questions.each do |question|%>
+      <% if question.view_to_list == 0%>
+        <div class="row">
+          <div class="col-10">
+            <p><%= question.question %> </p>
+          </div>
+          <div class="col-2">
+            <%= form_for(question, url: create_view_path(question.id),remote: true) do |f|%>
+              <%= f.hidden_field :view_to_list, :value => 1 %>
+              <%= f.submit 'Add', :class => 'btn btn-success btn-sm'%>
+            <% end %>
+            <%#= link_to 'Add', create_view_path(question.id), remote: true, :class => 'btn btn-success btn-sm' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

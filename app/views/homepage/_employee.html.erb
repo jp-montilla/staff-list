@@ -31,7 +31,7 @@
             <td> <%= employee.role %> </td>
 
 
-
+            <% if @questions%>
              <% @questions.each do |question|%>
 
               <% if question.answer != [] and question.answer.where(employee_id: employee.id).pluck(:answer) != []%>
@@ -39,6 +39,7 @@
               <% else %>
                 <td><span class="badge badge-danger">Unanswered</span></td>
               <% end %>
+            <% end %>
             <% end %>
 
 

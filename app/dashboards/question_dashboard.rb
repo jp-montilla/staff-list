@@ -13,7 +13,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     answer_type: Field::Select.with_options(
       collection: ['Text', 'Numerical', 'Choice']
     ),
-    view_to_list: Field::Boolean,
+    # view_to_list: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     choice: Field::HasMany
@@ -28,7 +28,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     :id,
     :question,
     :answer_type,
-    :view_to_list,
+    # :view_to_list,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,7 +37,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     :id,
     :question,
     :answer_type,
-    :view_to_list,
+    # :view_to_list,
     :created_at,
     :updated_at,
     :choice
@@ -49,7 +49,7 @@ class QuestionDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :question,
     :answer_type,
-    :view_to_list,
+    # :view_to_list,
   ].freeze
 
   # Overwrite this method to customize how questions are displayed

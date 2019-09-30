@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   get '/assign/show', to: 'assign#show', as: :assign_close
   patch '/assign/create/:id', to: 'assign#create', as: :create_assign
   patch '/assign/destroy/:id', to: 'assign#destroy', as: :destroy_assign
+
+  resources :view, :except => [:create,:destroy]
+  patch '/view/create/:id', to: 'view#create', as: :create_view
+  patch '/view/destroy/:id', to: 'view#destroy', as: :destroy_view
+
   
 
   devise_for :employees
