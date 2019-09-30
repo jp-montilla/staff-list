@@ -9,7 +9,7 @@ RSpec.describe "User and Roles" do
     click_button("Log in")
   end
 
-  let(:employee1) { create(:employee) }
+  let(:employee1) { create(:employee, name: 'something', email: 'something@email.com') }
   let(:employee2) { create(:employee, :admin) }
 
   it "allows a logged-in employee to view the index page" do 

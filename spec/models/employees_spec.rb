@@ -5,7 +5,6 @@ RSpec.describe Employee, type: :model do
   describe "validations" do
     it { is_expected.to validate_uniqueness_of :name }
     it { is_expected.to validate_presence_of :name }
-    it { is_expected.to validate_presence_of :profile_picture }
   end
 
   describe "associations" do
@@ -15,8 +14,8 @@ RSpec.describe Employee, type: :model do
   
   it "creates an employee record" do
     employee = create(:employee)
-    expect(employee.email).to eq("test@example.com")
-    expect(employee.name).to eq("username")
+    expect(employee.email).to eq("something@example.com")
+    expect(employee.name).to eq("something")
     expect(employee.password).to eq("password")
   end
 

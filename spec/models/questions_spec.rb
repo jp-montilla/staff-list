@@ -5,7 +5,6 @@ RSpec.describe Question, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of :question }
     it { is_expected.to validate_presence_of :answer_type }
-    it { is_expected.to validate_presence_of :view_to_list }
   end
 
   describe "associations" do
@@ -33,13 +32,9 @@ RSpec.describe Question, type: :model do
     expect(foo).to_not be_valid
   end
 
-  it "should not accept record without view to list" do
-    foo = build(:question, view_to_list: nil)
-    expect(foo).to_not be_valid
-  end
 
-  it "should not accept record without question, answer type and view to list" do
-    foo = build(:question, question: nil, answer_type: nil, view_to_list: nil)
+  it "should not accept record without question, answer type" do
+    foo = build(:question, question: nil, answer_type: nil)
     expect(foo).to_not be_valid
   end
 
