@@ -69,7 +69,6 @@ class ChoiceController < ApplicationController
         format.js {render 'fresh.js.erb'}
         format.html
       end
-      binding.pry
     else
       flash[:errors] = @choice.errors.full_messages
       @question = @choice.question

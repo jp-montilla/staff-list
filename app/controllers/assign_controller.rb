@@ -8,13 +8,13 @@ class AssignController < ApplicationController
 
   def index
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee')
+    @employees = Employee.where(role: 'Employee').order(name: :asc)
     # @employees = Employee.where(role: 'Employee').order(name: :asc).page(params[:page]).per(3)
   end
 
   def show
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee')
+    @employees = Employee.where(role: 'Employee').order(name: :asc)
     respond_to do |format|
         format.js {render 'reload.js.erb'}
         format.html
@@ -37,7 +37,7 @@ class AssignController < ApplicationController
     @employee = Employee.find(params[:employee])
     @employee_box = params[:employee]
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee')
+    @employees = Employee.where(role: 'Employee').order(name: :asc)
     if @material.update(update_params)
       @employee = Employee.find(params[:id])
       flash[:success] = "#{@material.name} assigned to #{@employee.email}!"
@@ -59,7 +59,7 @@ class AssignController < ApplicationController
   def destroy
     @material = Material.find(params[:id])
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee')
+    @employees = Employee.where(role: 'Employee').order(name: :asc)
     if @material.update(update_params)
       respond_to do |format|
         format.js {render 'reload.js.erb'}
