@@ -8,6 +8,8 @@ FactoryBot.define do
     role { "Employee" }
     
     trait :admin do
+      email { "something2@example.com" }
+      name { "something2" }
       role { "Admin" }
     end
   end
