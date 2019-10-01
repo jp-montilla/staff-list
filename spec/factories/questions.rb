@@ -6,6 +6,16 @@ FactoryBot.define do
 
     trait :view do
       view_to_list { 1 }
+    end 
+
+    trait :opt_numerical do
+      answer_type { "Numerical" }
+      view_to_list { 1 }
+    end 
+
+    trait :opt_choice do
+      answer_type { "Choice" }
+      view_to_list { 1 }
     end    
   end
 end
