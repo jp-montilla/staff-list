@@ -25,6 +25,7 @@ class HomepageController < ApplicationController
       format.js {render 'add.js.erb'}
       format.html
     end
+    flash[:success] = ""
   end
 
   def create
@@ -59,6 +60,7 @@ class HomepageController < ApplicationController
       format.js {render 'edit.js.erb'}
       format.html
     end
+    flash[:success] = ""
   end
 
   def update

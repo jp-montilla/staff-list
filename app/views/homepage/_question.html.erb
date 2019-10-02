@@ -1,5 +1,5 @@
 
-<% if flash[:success] %>
+<% if flash[:success] and flash[:success] != "" %>
     <p class="alert alert-success"><%= flash[:success] %></p>
 <% end %>
 
