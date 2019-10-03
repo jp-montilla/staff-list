@@ -37,6 +37,18 @@ module Admin
       end
     end
 
+    def destroy
+      @employee = Employee.find(params[:id])
+      @count = Employee.where(role: 'Admin').count
+      if @employee.role == 'Admin' and @count == 1
+        flash[:error] = 'Cannot delete last Admin'
+        redirect_to admin_employees_path
+      else
+        super
+      end
+
+    end
+
 
     private
       def employee_params
