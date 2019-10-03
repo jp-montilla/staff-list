@@ -38,7 +38,7 @@ module Admin
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.
     def records_per_page
-      params[:per_page] || 5
+      params[:per_page] || 10
     end
   end
 end
