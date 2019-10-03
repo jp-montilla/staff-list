@@ -20,7 +20,7 @@
               <% if current_employee.role == 'Employee'%>
                 <li><%= link_to 'Profile', homepage_path(current_employee.id)%></li>
               <% else%>
-
+                <li><%= link_to 'Profile', homepage_path(current_employee.id)%></li>
                 <li><%= link_to 'Employees', admin_employees_path%></li>
                 <li><%= link_to 'Materials', admin_materials_path%></li>
                 <li><%= link_to 'Questions', admin_questions_path%></li>

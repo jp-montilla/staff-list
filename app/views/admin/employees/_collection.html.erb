@@ -79,11 +79,7 @@ to display a collection of resources in an HTML table.
           ) if show_action? :edit, resource%></td>
         <% end %>
 
-        <%# if resource.role == 'Admin'%> 
-          <%# if resources.where(role: 'Admin').count == 1%>
-            <!-- <td></td> -->
-          <%# end %>
-        <%# else %>
+
           <% if valid_action? :destroy, collection_presenter.resource_name %>
             <td><%= link_to(
               t("administrate.actions.destroy"),
@@ -93,7 +89,6 @@ to display a collection of resources in an HTML table.
               data: { confirm: t("administrate.actions.confirm") }
             ) if show_action? :destroy, resource %></td>
           <% end %>
-        <%# end %>
       </tr>
     <% end %>
   </tbody>

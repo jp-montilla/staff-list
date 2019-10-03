@@ -12,18 +12,9 @@ module Admin
     # 
     # 
 
-    def create
-      super
-    end
-
-    def show
-      super
-    end
     
     def edit
       super
-      # @employee = Employee.find(params[:id])
-      # authorize(@employee)
     end
 
     def update
@@ -41,7 +32,7 @@ module Admin
       @employee = Employee.find(params[:id])
       @count = Employee.where(role: 'Admin').count
       if @employee.role == 'Admin' and @count == 1
-        flash[:error] = 'Cannot delete last Admin'
+        flash[:error] = 'Cannot delete last admin!'
         redirect_to admin_employees_path
       else
         super

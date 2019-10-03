@@ -1,7 +1,8 @@
 class HomepageController < ApplicationController
   before_action :authenticate_employee!
   def index
-    @employees = Employee.where(role: 'Employee').order(name: :asc).page(params[:page]).per(5)
+    @employees = Employee.order(name: :asc).page(params[:page]).per(5)
+    # @employees = Employee.where(role: 'Employee').order(name: :asc).page(params[:page]).per(5)
     @questions = Question.where(view_to_list: 1)
     @answers = Answer.all
     respond_to do |format|

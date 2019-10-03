@@ -9,7 +9,6 @@ class AssignController < ApplicationController
   def index
     @materials = Material.where(employee_id: nil)
     @employees = Employee.where(role: 'Employee').order(name: :asc)
-    # @employees = Employee.where(role: 'Employee').order(name: :asc).page(params[:page]).per(3)
   end
 
   def show
