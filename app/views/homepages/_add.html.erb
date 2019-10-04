@@ -22,7 +22,7 @@
         <%= form_for(@answer, url:answer_create_path, remote: true) do |f|%>
         <%= f.hidden_field :question_id, :value => @question.id %>
           <%= f.hidden_field :employee_id, :value => current_employee.id %>
-          <%= f.text_area :answer, rows: 7%>
+          <%= f.text_area :answer, rows: 7, maxlength: 255%>
           <br/>
           <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>

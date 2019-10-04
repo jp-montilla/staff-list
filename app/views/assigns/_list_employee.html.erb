@@ -1,5 +1,6 @@
-<div class="row">
-  <% @employees.each do |employee|%>
+
+<% @employees.each do |employee|%>
+  <div class="row">
     <div class="col-6" style="border: 1px solid black; padding: 15px; margin-bottom: 5px">
       <div class="row">
         <div class="col-5">
@@ -34,5 +35,6 @@
       </div>
     </div>
     <div class="form_show" id=<%= "form_for_#{employee.id}" %>></div>
-  <% end %>
-</div>
+  </div>
+<% end %>
+

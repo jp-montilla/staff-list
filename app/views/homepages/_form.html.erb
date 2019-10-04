@@ -16,7 +16,7 @@
         <% end %>
       <% elsif @answer_edit.question.answer_type == 'Text' %>
         <%= form_for(@answer_edit, url: answer_update_path(@answer_edit.id), remote: true) do |f|%>
-          <%= f.text_area :answer, rows: 7%>
+          <%= f.text_area :answer, rows: 7, maxlength: 255%>
           <%= f.submit 'Submit', :class => 'btn btn-primary btn-block'%>
         <% end %>
       <% else %>

@@ -1,5 +1,5 @@
-  
   <% @questions.each do |question|%>
+  <div class="row">
     
     <% @count += 1 %>
     <div class="card border-dark mb-3 col-6" style="max-width: 100rem;">
@@ -24,5 +24,6 @@
       </div>
     </div>
     <div class="add_form_choice" id=<%= "add#{question.id}"%> ></div>
+</div>
+    
   <% end %>
-

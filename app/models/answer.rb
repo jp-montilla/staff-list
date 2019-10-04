@@ -3,4 +3,6 @@ class Answer < ApplicationRecord
   belongs_to :employee
 
   validates :answer, presence: true
+  validates_length_of :answer, maximum: 255
+
 end
