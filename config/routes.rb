@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   
 
   devise_for :employees
+  # devise_for :employees, controllers: {
+  #       sessions: 'employees/sessions'
+  #     }
 
   scope '(:locale)' do
     resources :homepages, :except => [:new, :create,:destroy]
