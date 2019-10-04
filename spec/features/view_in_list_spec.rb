@@ -17,7 +17,7 @@ RSpec.describe "Assigning of Materials" do
   it "does not allow admin to remove questions from list" do 
     question1
     log_in_as(employee1)
-    visit(view_index_path)
+    visit(views_path)
     expect(page).to have_selector(:link_or_button, 'Add')
     expect(page).to_not have_selector(:link_or_button, 'Remove')
   end
@@ -25,14 +25,14 @@ RSpec.describe "Assigning of Materials" do
   it "does not allow admin to add questions from list" do 
     question2
     log_in_as(employee1)
-    visit(view_index_path)
+    visit(views_path)
     expect(page).to_not have_selector(:link_or_button, 'Add')
     expect(page).to have_selector(:link_or_button, 'Remove')
   end
 
   it "does not allow admin to add or remove questions from list" do 
     log_in_as(employee1)
-    visit(view_index_path)
+    visit(views_path)
     expect(page).to_not have_selector(:link_or_button, 'Add')
     expect(page).to_not have_selector(:link_or_button, 'Remove')
   end

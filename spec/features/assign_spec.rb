@@ -16,14 +16,14 @@ RSpec.describe "Assigning of Materials" do
 
   it "allows admin to view material assignment page" do 
     log_in_as(employee2)
-    visit(assign_index_path)
-    expect(current_path).to eq(assign_index_path)
+    visit(assigns_path)
+    expect(current_path).to eq(assigns_path)
   end
 
   it "displays employee without material assign to it" do 
     employee1
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     expect(page).to have_content("NONE")
   end
 
@@ -31,7 +31,7 @@ RSpec.describe "Assigning of Materials" do
     employee1
     material
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     click_link('Assign material')
     expect(page).to have_content("Random Item")
   end
@@ -40,7 +40,7 @@ RSpec.describe "Assigning of Materials" do
     employee1
     material2
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     expect(page).to_not have_selector(:link_or_button, 'Assign material')
   end
 
@@ -48,7 +48,7 @@ RSpec.describe "Assigning of Materials" do
     employee1
     material
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     expect(page).to have_selector(:link_or_button, 'Assign material')
   end
 
@@ -56,7 +56,7 @@ RSpec.describe "Assigning of Materials" do
     employee1
     material
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     click_link('Assign material')
     expect(page).to have_content("Random Item")
   end
@@ -65,7 +65,7 @@ RSpec.describe "Assigning of Materials" do
     employee1
     material2
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     expect(page).to have_selector(:link_or_button, 'Remove')
   end
 
@@ -73,7 +73,7 @@ RSpec.describe "Assigning of Materials" do
     employee1
     material
     log_in_as(employee2)
-    visit(assign_index_path)
+    visit(assigns_path)
     expect(page).to_not have_selector(:link_or_button, 'Remove')
   end
 

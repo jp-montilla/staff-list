@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Employee, type: :model do
 
   describe "validations" do
-    it { is_expected.to validate_uniqueness_of :name }
     it { is_expected.to validate_presence_of :name }
   end
 
@@ -25,11 +24,6 @@ RSpec.describe Employee, type: :model do
     expect(foo).to_not be_valid
   end
 
-  it "should have a unique username" do
-    create(:employee)
-    foo = build(:employee, email: 'emailChange@email.com')
-    expect(foo).to_not be_valid
-  end
 
   it "should have the same password and password confimation" do
     foo = build(:employee, password_confirmation: 'different')

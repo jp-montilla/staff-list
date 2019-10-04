@@ -4,7 +4,6 @@ class Employee < ApplicationRecord
 
   mount_uploader :profile_picture, ProfilePictureUploader
 
-  validates :name, uniqueness: true
   validates :name, presence: true
 
 
