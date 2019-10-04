@@ -9,11 +9,11 @@ Rails.application.routes.draw do
     root to: "employees#index"
   end
 
-  resources :choice, :except => [:new, :create,:destroy]
-  get '/choice/new/:id', to: 'choice#new', as: :new_choice
-  post '/choice/create', to: 'choice#create', as: :create_choice
-  patch '/choice/:id', to: 'choice#update', as: :update_choice
-  delete '/choice/:id/delete', to: 'choice#destroy', as: :delete_choice
+  resources :choices, :except => [:new, :create,:destroy]
+  get '/choice/new/:id', to: 'choices#new', as: :new_choice
+  post '/choice/create', to: 'choices#create', as: :create_choice
+  patch '/choice/:id', to: 'choices#update', as: :update_choice
+  delete '/choice/:id/delete', to: 'choices#destroy', as: :delete_choice
 
 
   resources :assigns, :except => [:new, :create,:destroy, :show]
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get 'profile/edit/:id' => 'profile#edit', as: :edit_password
     patch 'profile/:id' => 'profile#update', as: :update_password
 
-    get 'material/charts' => 'chart#index', as: :chart_show
+    get 'material/charts' => 'charts#index', as: :chart_show
 
     root 'homepages#index'
 

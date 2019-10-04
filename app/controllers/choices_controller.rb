@@ -1,4 +1,4 @@
-class ChoiceController < ApplicationController
+class ChoicesController < ApplicationController
   before_action :admin
 
   def admin
