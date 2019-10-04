@@ -1,4 +1,4 @@
-class HomepageController < ApplicationController
+class HomepagesController < ApplicationController
   before_action :authenticate_employee!
   def index
     @employees = Employee.order(name: :asc).page(params[:page]).per(5)

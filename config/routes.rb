@@ -16,11 +16,11 @@ Rails.application.routes.draw do
   delete '/choice/:id/delete', to: 'choice#destroy', as: :delete_choice
 
 
-  resources :assign, :except => [:new, :create,:destroy, :show]
-  get '/assign/new/:id', to: 'assign#new', as: :new_assign
-  get '/assign/show', to: 'assign#show', as: :assign_close
-  patch '/assign/create/:id', to: 'assign#create', as: :create_assign
-  patch '/assign/destroy/:id', to: 'assign#destroy', as: :destroy_assign
+  resources :assigns, :except => [:new, :create,:destroy, :show]
+  get '/assign/new/:id', to: 'assigns#new', as: :new_assign
+  get '/assign/show', to: 'assigns#show', as: :assign_close
+  patch '/assign/create/:id', to: 'assigns#create', as: :create_assign
+  patch '/assign/destroy/:id', to: 'assigns#destroy', as: :destroy_assign
 
   resources :view, :except => [:create,:destroy]
   patch '/view/create/:id', to: 'view#create', as: :create_view
@@ -31,11 +31,11 @@ Rails.application.routes.draw do
   devise_for :employees
 
   scope '(:locale)' do
-    resources :homepage, :except => [:new, :create,:destroy]
-    get 'homepage/new/:id', to: 'homepage#new', as: :answer_new
-    post '/homepage/create', to: 'homepage#create', as: :answer_create
-    patch '/homepage/:id', to: 'homepage#update', as: :answer_update
-    delete 'homepage/:id/delete', to: 'homepage#destroy', as: :answer_delete
+    resources :homepages, :except => [:new, :create,:destroy]
+    get 'homepage/new/:id', to: 'homepages#new', as: :answer_new
+    post '/homepage/create', to: 'homepages#create', as: :answer_create
+    patch '/homepage/:id', to: 'homepages#update', as: :answer_update
+    delete 'homepage/:id/delete', to: 'homepages#destroy', as: :answer_delete
 
 
     get 'profile/edit/:id' => 'profile#edit', as: :edit_password
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
     get 'material/charts' => 'chart#index', as: :chart_show
 
-    root 'homepage#index'
+    root 'homepages#index'
 
   end
 
