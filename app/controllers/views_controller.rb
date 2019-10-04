@@ -1,4 +1,4 @@
-class ViewController < ApplicationController
+class ViewsController < ApplicationController
   before_action :admin
 
   def admin

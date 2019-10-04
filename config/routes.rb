@@ -22,9 +22,9 @@ Rails.application.routes.draw do
   patch '/assign/create/:id', to: 'assigns#create', as: :create_assign
   patch '/assign/destroy/:id', to: 'assigns#destroy', as: :destroy_assign
 
-  resources :view, :except => [:create,:destroy]
-  patch '/view/create/:id', to: 'view#create', as: :create_view
-  patch '/view/destroy/:id', to: 'view#destroy', as: :destroy_view
+  resources :views, :except => [:create,:destroy]
+  patch '/view/create/:id', to: 'views#create', as: :create_view
+  patch '/view/destroy/:id', to: 'views#destroy', as: :destroy_view
 
   
 
@@ -36,10 +36,6 @@ Rails.application.routes.draw do
     post '/homepage/create', to: 'homepages#create', as: :answer_create
     patch '/homepage/:id', to: 'homepages#update', as: :answer_update
     delete 'homepage/:id/delete', to: 'homepages#destroy', as: :answer_delete
-
-
-    get 'profile/edit/:id' => 'profile#edit', as: :edit_password
-    patch 'profile/:id' => 'profile#update', as: :update_password
 
     get 'material/charts' => 'charts#index', as: :chart_show
 
