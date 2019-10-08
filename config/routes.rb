@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     root to: "employees#index"
   end
 
+  post '/admin/questions/create_choice', to: 'admin/questions#create_choice', as: :admin_create_choice
+
   resources :choices, :except => [:new, :create,:destroy]
   get '/choice/new/:id', to: 'choices#new', as: :new_choice
   post '/choice/create', to: 'choices#create', as: :create_choice

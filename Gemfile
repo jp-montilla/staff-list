@@ -34,6 +34,7 @@ gem 'administrate-field-carrierwave', '~> 0.5.0'
 gem 'administrate-field-hidden', '~> 0.0.3'
 gem 'carrierwave', '~> 2.0', '>= 2.0.1'
 gem "pundit"
+gem 'webpacker', '~> 3.0'
 
 
 

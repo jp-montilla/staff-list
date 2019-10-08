@@ -21,6 +21,7 @@
 //= require chartkick
 //= require Chart.bundle
 
+
 $(document).ready(function(){
   $("#cancel-btn").hide()
 	$('#view_type_report').click(function(){
@@ -91,9 +92,6 @@ $(document).ready(function(){
     $("#form-show").removeClass("col-6");
     $("#form-show").hide()
   });
-
-  
-
   
 
 });

@@ -1,0 +1,23 @@
+<div style="height: 50px"></div>
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="card border-primary mb-3 text-center" style="max-width: 100rem;">
+      <div class="card-header">Add Choice for <%=%></div>
+      <div class="card-body">
+        <label style="font-size: 40px">CHOICES</label>
+        <hr>
+        <%= form_with( url: admin_create_choice_path(:q_question => @question.question, :q_id => @question.id),model: Choice.new) do %>
+          <%= text_field_tag(:choice) %><br/>
+          <%= submit_tag("Add Choice", :class => 'btn btn-block')%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-3"></div>
+</div>
+
+
+
+
+
