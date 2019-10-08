@@ -12,7 +12,9 @@
         <% @question.choice.each do |choice| %>
           <div class="row" style="padding-bottom: 5px">
             <div class="col-10"><%= choice.choice %></div>
-            <div class="col-2"><%= link_to 'Remove', root_path, :class => 'btn btn-sm btn-danger' %></div>
+            <div class="col-2">
+              <%= link_to 'Remove', admin_delete_choice_path(id: choice.id, q_id: choice.question.id),data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true, :class => 'btn btn-sm btn-danger' %>
+            </div>
           </div>
         <% end %>
         <hr>
@@ -20,6 +22,16 @@
           <%= text_field_tag(:choice) %><br/>
           <%= submit_tag("Add Choice", :class => 'btn btn-block', :id => "btn_submit_choice")%>
         <% end %>
+        <div style="height: 20px"></div>
+        <div class="row">
+          <div class="col-6" style="padding-right: 1px">
+            <div id="create_question_btn"></div>
+            <%= link_to 'Create Question', check_question_path(:question => @question.question), remote: true, :class => 'btn btn-block btn-success' %>
+          </div>
+          <div class="col-6" style="padding-left: 1px">
+            <%= link_to 'Delete Question', root_path, :class => 'btn btn-block btn-danger' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

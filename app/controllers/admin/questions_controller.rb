@@ -23,7 +23,6 @@ module Admin
         end
       else 
         flash[:error] = 'Question already existed!'
-        binding.pry
         respond_to do |format|
           format.js {render 'fresh.js.erb'}
           format.html
@@ -61,6 +60,37 @@ module Admin
         format.html
       end
     end
+
+    def remove_choice
+      @choice = Choice.find(params[:id])
+      @choices = Choice.where(question: params[:q_id]).count
+      if @choices > 1 
+        @choice.destroy
+      else
+        flash[:error] = 'Cannot delete last choice!'
+      end
+      @question = Question.find(params[:q_id])
+        respond_to do |format|
+          format.js {render 'add.js.erb'}
+          format.html
+        end
+    end
+
+    def check_question
+      @question = Question.where(question: params[:question])
+      if @question == []
+        flash[:error] = 'Question must have at least 1 choice'
+        @question = Question.new(question: params[:question], answer_type: 'Choice')
+        respond_to do |format|
+          format.js {render 'add.js.erb'}
+          format.html
+        end
+      else
+        flash[:notice] = 'Question created successfully'
+        render js: "window.location='#{admin_questions_path}'"
+      end
+    end
+
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)

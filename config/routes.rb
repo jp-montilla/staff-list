@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   post '/admin/questions/create_choice', to: 'admin/questions#create_choice', as: :admin_create_choice
+  delete 'admin/questions/:id/delete', to: 'admin/questions#remove_choice', as: :admin_delete_choice
+  get 'admin/questions/:question/check_question', to: 'admin/questions#check_question', as: :check_question
+
 
   resources :choices, :except => [:new, :create,:destroy]
   get '/choice/new/:id', to: 'choices#new', as: :new_choice
