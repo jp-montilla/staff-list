@@ -5,6 +5,6 @@ class Question < ApplicationRecord
   attribute :view_to_list, :integer, default: 0
 
   validates :question, presence: true
-  # validates :question, uniqueness: true
+  validates :question, uniqueness: true
   validates :answer_type, presence: true
 end
