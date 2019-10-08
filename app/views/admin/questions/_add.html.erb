@@ -28,9 +28,15 @@
             <div id="create_question_btn"></div>
             <%= link_to 'Create Question', check_question_path(:question => @question.question), remote: true, :class => 'btn btn-block btn-success' %>
           </div>
+          
           <div class="col-6" style="padding-left: 1px">
-            <%= link_to 'Delete Question', root_path, :class => 'btn btn-block btn-danger' %>
+            <% if @question.id != nil%>
+              <%= link_to 'Delete Question', admin_delete_question_path(@question.id),data: {:confirm => 'Are you sure?'}, :method => :delete, :class => 'btn btn-block btn-danger' %>
+            <% else %>
+              <%= link_to 'Cancel', admin_questions_path, :class => 'btn btn-block btn-danger'%>
+            <% end %>
           </div>
+          
         </div>
       </div>
     </div>

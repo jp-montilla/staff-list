@@ -91,6 +91,14 @@ module Admin
       end
     end
 
+    def delete_question
+      @question = Question.find(params[:id])
+      if @question.destroy
+        flash[:notice] = 'Question creation cancelled'
+        redirect_to admin_questions_path
+      end
+    end
+
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
