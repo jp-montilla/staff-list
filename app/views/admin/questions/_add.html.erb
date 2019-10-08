@@ -31,7 +31,7 @@
           
           <div class="col-6" style="padding-left: 1px">
             <% if @question.id != nil%>
-              <%= link_to 'Delete Question', admin_delete_question_path(@question.id),data: {:confirm => 'Are you sure?'}, :method => :delete, :class => 'btn btn-block btn-danger' %>
+              <%= link_to 'Cancel', admin_delete_question_path(@question.id),data: {:confirm => 'Are you sure?'}, :method => :delete, :class => 'btn btn-block btn-danger' %>
             <% else %>
               <%= link_to 'Cancel', admin_questions_path, :class => 'btn btn-block btn-danger'%>
             <% end %>
