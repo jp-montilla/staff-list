@@ -33,16 +33,24 @@ module Admin
     end
 
     def create_choice
-      binding.pry
       if Question.where(id: params[:q_id]) == []
         @question = Question.create(question: params[:q_question], answer_type: 'Choice')
         @choice = Choice.create(choice: params[:choice], question_id: @question.id)
-        respond_to do |format|
-          format.js {render 'add.js.erb'}
-          format.html
+      else
+        flash[:error] = nil
+        @is_exist = Choice.where(question_id: params[:q_id], choice: params[:choice])
+        if @is_exist == []
+          @question = Question.find(params[:q_id])
+          @choice = Choice.create(choice: params[:choice], question_id: params[:q_id])
+        else
+          @question = Question.find(params[:q_id])
+          flash[:error] = 'Choice already exist'
         end
       end
-      # @hey = Question.create(question: 'Tester for Question?', answer_type: 'Choice')
+      respond_to do |format|
+        format.js {render 'add.js.erb'}
+        format.html
+      end
     end
 
     # Define a custom finder by overriding the `find_resource` method:

@@ -2,12 +2,21 @@
 <div class="row">
   <div class="col-3"></div>
   <div class="col-6">
-    <div class="card border-primary mb-3 text-center" style="max-width: 100rem;">
-      <div class="card-header">Add Choice for <%=%></div>
+    <div class="card border-primary mb-3" style="max-width: 100rem;">
+      <div class="card-header">Add Choice for <%= @question.question %></div>
       <div class="card-body">
         <label style="font-size: 40px">CHOICES</label>
+        <% if flash[:error] %>
+        <p class="alert alert-danger"><%= flash[:error]%></p>
+        <% end %>
+        <% @question.choice.each do |choice| %>
+          <div class="row">
+            <div class="col-10"><%= choice.choice %></div>
+            <div class="col-2"> <a href="#">Delete</a> </div>
+          </div>
+        <% end %>
         <hr>
-        <%= form_with( url: admin_create_choice_path(:q_question => @question.question, :q_id => @question.id),model: Choice.new) do %>
+        <%= form_with( url: admin_create_choice_path(:q_question => @question.question, :q_id => @question.id)) do %>
           <%= text_field_tag(:choice) %><br/>
           <%= submit_tag("Add Choice", :class => 'btn btn-block')%>
         <% end %>
