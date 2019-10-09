@@ -19,7 +19,17 @@ module Admin
             format.html
           end
         else
-          redirect_to new_admin_question_path
+          resource = resource_class.new(resource_params)
+          authorize_resource(resource)
+
+          if resource.save
+            flash[:notice] = 'Question created successfully'
+            render js: "window.location='#{admin_questions_path}'"
+          else
+            render :new, locals: {
+              page: Administrate::Page::Form.new(dashboard, resource),
+            }
+          end
         end
       else 
         flash[:error] = 'Question already existed!'
