@@ -8,6 +8,9 @@
         <p class="alert alert-danger"><%= e %></p>
       <% end %>
     <% end %>
+    <% if flash[:error] and flash[:error] != ""%>
+      <p class="alert alert-danger"><%= flash[:error] %></p>
+    <% end %>
     <p class="card-text">
       <%= form_for(@choice, url:create_choice_path, remote: true) do |f|%>
         <%= f.hidden_field :question_id, :value => @question.id %>

@@ -16,6 +16,7 @@ class ChoicesController < ApplicationController
 
   def new
     flash[:errors] = ""
+    flash[:error] = ""
     @choice = Choice.new
     @question = Question.find(params[:id])
     @question_box = params[:id]
@@ -27,16 +28,28 @@ class ChoicesController < ApplicationController
 
   def create
     @choice = Choice.new(set_params)
-    if @choice.save
-      @questions = Question.where(answer_type: 'Choice')
-      @count = 0
-      flash[:success] = "Choice Saved"
-      respond_to do |format|
-        format.js {render 'fresh.js.erb'}
-        format.html
+    @is_choice_exist = Choice.where(question_id: @choice.question_id ,choice: @choice.choice) 
+    if @is_choice_exist == []
+      if @choice.save
+        @questions = Question.where(answer_type: 'Choice')
+        @count = 0
+        flash[:success] = "Choice Saved"
+        respond_to do |format|
+          format.js {render 'fresh.js.erb'}
+          format.html
+        end
+      else
+        flash[:errors] = @choice.errors.full_messages
+        @question = @choice.question
+        @count = 0
+        @question_box = @question.id.to_s
+        respond_to do |format|
+          format.js {render 'add.js.erb'}
+          format.html
+        end
       end
     else
-      flash[:errors] = @choice.errors.full_messages
+      flash[:error] = "#{@choice.choice} already exist."
       @question = @choice.question
       @count = 0
       @question_box = @question.id.to_s
@@ -44,7 +57,7 @@ class ChoicesController < ApplicationController
         format.js {render 'add.js.erb'}
         format.html
       end
-    end
+    end   
     flash[:success] = ""
   end
 
