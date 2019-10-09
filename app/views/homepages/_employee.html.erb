@@ -2,8 +2,8 @@
     <thead>
       <tr>
         <th scope="col">Profile Picture</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
+        <th scope="col"><%= sort_link(@q, :name, {}, { :remote => true} ) %></th>
+        <th scope="col"><%= sort_link(@q, :email, {}, { :remote => true} ) %></th>
         <th scope="col">Role</th>
         <% @questions.each do |question|%>
           <th scope="col">

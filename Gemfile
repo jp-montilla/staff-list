@@ -36,9 +36,7 @@ gem 'carrierwave', '~> 2.0', '>= 2.0.1'
 gem 'file_validators'
 gem "pundit"
 gem 'webpacker', '~> 3.0'
-
-#UPGRADE
-# gem "rubyzip", ">= 1.3.0"
+gem 'ransack'
 
 
 
