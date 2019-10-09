@@ -33,10 +33,7 @@ module Admin
         end
       else 
         flash[:error] = 'Question already existed!'
-        respond_to do |format|
-          format.js {render 'fresh.js.erb'}
-          format.html
-        end
+        render js: "window.location='#{new_admin_question_path}'"
       end
     end
 
