@@ -22,6 +22,7 @@ gem 'jquery-rails'
 gem 'hirb', '~> 0.7.3'
 gem 'better_errors', '~> 2.5', '>= 2.5.1'
 gem 'devise', '~> 4.7', '>= 4.7.1'
+gem 'devise-security'
 gem 'administrate', '~> 0.11.0'
 gem "chartkick"
 gem 'kaminari'

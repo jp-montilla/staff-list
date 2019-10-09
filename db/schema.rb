@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190911043742) do
+ActiveRecord::Schema.define(version: 20191009022005) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "answer"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20190911043742) do
     t.string "name"
     t.string "profile_picture"
     t.string "role"
+    t.string "unique_session_id", limit: 20
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
