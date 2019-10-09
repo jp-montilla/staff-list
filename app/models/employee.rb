@@ -4,6 +4,7 @@ class Employee < ApplicationRecord
   has_many :material, dependent: :nullify
 
   mount_uploader :profile_picture, ProfilePictureUploader
+  validates :profile_picture, file_size: { less_than: 1.megabytes }
 
   validates :name, presence: true
 

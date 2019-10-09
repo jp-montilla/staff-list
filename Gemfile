@@ -16,7 +16,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'jquery-rails'
 
 
 gem 'hirb', '~> 0.7.3'
@@ -34,8 +33,12 @@ gem 'pry', '~> 0.12.2'
 gem 'administrate-field-carrierwave', '~> 0.5.0'
 gem 'administrate-field-hidden', '~> 0.0.3'
 gem 'carrierwave', '~> 2.0', '>= 2.0.1'
+gem 'file_validators'
 gem "pundit"
 gem 'webpacker', '~> 3.0'
+
+#UPGRADE
+# gem "rubyzip", ">= 1.3.0"
 
 
 
