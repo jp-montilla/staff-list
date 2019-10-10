@@ -120,6 +120,29 @@ body{
         font-size: 2rem;
     }
 
+
+    .profile_section{
+      text-align: center;
+      background-color: #594f8d;
+      margin-bottom: 20px;
+      img{
+        width: 90%;  
+        padding: 10px;
+      }
+      a{
+        font-size: 1.3rem;
+        padding: 5px;
+        display: block;
+        color: #bdb8d7;
+
+      }
+      a:hover{
+        text-decoration: none;
+        background-color: black;
+        color: white;
+      }
+    }
+
     ul{
       li{
         border-bottom: 1px solid #bdb8d7;
