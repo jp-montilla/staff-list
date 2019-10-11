@@ -1,25 +1,59 @@
 
   
 
-<div class="row">
-  <div class="col-3">
-    <%= image_tag(@employee.profile_picture, {:style => "width:100%; border: 3px solid black; border-radius: 50%; background: white"})%>
-    <div style="height: 20px"></div>
 
-    <div class="card border-primary mb-3" style="max-width: 50rem;">
-      <div class="card-header">BASIC INFORMATION</div>
-      <div class="card-body">
-        <h6><span style="color: green">Name: </span><%= @employee.name %></h6>
-        <h6><span style="color: green">Email: </span><%= @employee.email %></h6>
-        <h6><span style="color: green">Role: </span><%= @employee.role %></h6>
-        <% if current_employee.name == @employee.name %>
-          <%#= link_to 'Change Password', edit_password_path(current_employee.id)%>
-        <% end %>
+
+
+<div class="container-fluid" id="profile">
+  <div class="row">
+    <div class="col-4">
+      <%= image_tag(@employee.profile_picture)%>
+      <div id="profile_information">
+          <div class="row">
+            <div class="col-3"><span>Name: </span></div>
+            <div class="col-9"><span><%= @employee.name %></span></div>
+          </div>
+
+          <div class="row">
+            <div class="col-3"><span>Email: </span></div>
+            <div class="col-9"><span><%= @employee.email %></span></div>
+          </div>
+
+          <div class="row">
+            <div class="col-3"><span>Role: </span></div>
+            <div class="col-9"><span><%= @employee.role %></span></div>
+          </div>
+      </div>
+
+    </div>
+      <div class="col-8">
+        <h1 class="display-4">Materials Assigned</h1>
+          <div class="row">
+            <% @employee.material.each do|material| %>
+
+              <div class="col-3" >
+                <div class="row">
+                  <div class="col-4">Name: </div>
+                  <div class="col"><%= material.name%></div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Type: </div>
+                  <div class="col"><%= material.material_type%></div>
+                </div>
+                <div class="row">
+                  <div class="col-4">Status: </div>
+                  <div class="col"><%= material.status%></div>
+                </div>
+              </div>
+
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+</div>
 
-  <div class="col-9" style=" padding: 10px; background: white">
+
+  <div style=" padding: 10px; background: white">
     <div style="padding: 20px; border: 1px solid" >
       <h3>QUESTIONS</h3>
       
@@ -40,23 +74,9 @@
     </div>
     <div style="height: 20px"></div>
 
-    <% if @employee.material != []%>
-      <div style="padding: 20px; border: 1px solid">
-        <h3>ASSIGNED EQUIPMENTS</h3>
-        <div class="row">
-          
-        <% @employee.material.each do|material| %>
-          <div class="col-2 text-center" style="border: 2px solid black; padding: 10px; margin: 10px">
-            <%= material.name %>
-          </div>
-        <% end%>
-        </div>
 
-      </div>
-    <% end %>
   </div>
 
-</div>
 
 <hr>
 

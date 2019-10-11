@@ -169,50 +169,85 @@ body{
       }
     }
   }
-  .main_content{
-    width: 100%;
-    margin-left: 200px;
+  // .main_content{
+  //   width: 100%;
+  //   margin-left: 200px;
 
-    .header{
-      padding: 20px;
-      background: #fff;
-      color: #717171;
-      border-bottom: 1px solid #e0e4e8;
-    }
+  //   .header{
+  //     padding: 20px;
+  //     background: #fff;
+  //     color: #717171;
+  //     border-bottom: 1px solid #e0e4e8;
+  //   }
 
-    .info{
-      margin: 20px;
-      color: #717171;
-      line-height: 25px;
-      div{
-        margin-bottom: 20px;
-      }
-    }
-  }
+  //   .info{
+  //     margin: 20px;
+  //     color: #717171;
+  //     line-height: 25px;
+  //     div{
+  //       margin-bottom: 20px;
+  //     }
+  //   }
+  // }
 }
  
 
-// .wrapper .main_content{
-//   width: 100%;
-//   margin-left: 200px;
-// }
 
-// .wrapper .main_content .header{
-//   padding: 20px;
-//   background: #fff;
-//   color: #717171;
-//   border-bottom: 1px solid #e0e4e8;
-// }
+#profile{
+  background: white;
+  padding: 30px;
+  .row{
+    .col-4{
+      img{
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 50px;
+      }
+      #profile_information{
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        background: black;
+        color: white;
+        text-align: center;
+        .row{
+          padding: 15px 5px 10px 5px;
+          .col-3{
+            background:red;
+            text-align: right;
+          }
+          .col-9{
+            text-align: left;
+          }
+        }
+        span{
+          font-size: 20px;
+        }
+      }
+    }
+    .col-8{
+      padding-left: 50px;
+      background: black;
+      padding: 20px;
+      color: white;
+      .col-3{
+          border-radius: 5px;
+          padding: 15px; 
+          margin-left: 10px;
+          margin-bottom: 10px; 
+          background: green;
+          color: white;
+          .row{
+            .col-4{
+              color: yellow
+            }
+          }
+        }
+    }
+  }
+}
 
-// .wrapper .main_content .info{
-//   margin: 20px;
-//   color: #717171;
-//   line-height: 25px;
-// }
 
-// .wrapper .main_content .info div{
-//   margin-bottom: 20px;
-// }
 
 
 
