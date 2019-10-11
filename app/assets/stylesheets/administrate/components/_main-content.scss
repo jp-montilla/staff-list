@@ -27,3 +27,78 @@
   font-size: 1.6em;
   margin-right: auto;
 }
+
+.container{
+  padding: 50px;
+  .row{
+    .col-8{
+      .row{
+        .col-3{
+          padding: 20px; 
+          margin: 5px; background: green;
+          color: white;
+          .row{
+            .col-4{
+              color: yellow
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#profile{
+  padding: 0;
+  .row{
+    .col-4{
+      img{
+        width: 100%;
+        padding-bottom: 50px;
+      }
+      #profile_information{
+        background: black;
+        color: white;
+        text-align: center;
+        .row{
+          padding: 20px 5px 10px 5px;
+          .col-3{
+            background:red;
+            text-align: right;
+          }
+          .col-9{
+            text-align: left;
+          }
+        }
+        span{
+          font-size: 20px;
+        }
+      }
+    }
+    .col-8{
+      padding-left: 50px;
+      background: black;
+      padding: 20px;
+      color: white;
+      .col-3{
+          padding: 15px; 
+          margin-left: 10px;
+          margin-bottom: 10px; 
+          background: green;
+          color: white;
+          .row{
+            .col-4{
+              color: yellow
+            }
+          }
+        }
+    }
+  }
+}
+
+
+
+
+
+
+
+
