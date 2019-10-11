@@ -15,7 +15,7 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Form
 %>
 
-<% content_for(:title) {truncate( t("administrate.actions.show_resource", name: page.page_title), :length => 30)} %>
+<% content_for(:title) {truncate( t("administrate.actions.edit_resource", name: page.page_title), :length => 30)} %>
 
 
 <header class="main-content__header" role="banner">
@@ -25,7 +25,7 @@ It displays a header, and renders the `_form` partial to do the heavy lifting.
 
   <div>
     <%= link_to(
-      truncate( t("administrate.actions.edit_resource", name: page.page_title), :length => 20),
+      truncate( t("administrate.actions.show_resource", name: page.page_title), :length => 20),
       [namespace, page.resource],
       class: "button",
     ) if valid_action?(:show) && show_action?(:show, page.resource) %>
