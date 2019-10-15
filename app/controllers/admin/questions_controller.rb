@@ -21,14 +21,12 @@ module Admin
         else
           resource = resource_class.new(resource_params)
           authorize_resource(resource)
-
           if resource.save
             flash[:notice] = 'Question created successfully'
             render js: "window.location='#{admin_questions_path}'"
           else
-            render :new, locals: {
-              page: Administrate::Page::Form.new(dashboard, resource),
-            }
+            flash[:error] = 'Question cannot be blank!'
+            render js: "window.location='#{new_admin_question_path}'"
           end
         end
       else 
