@@ -9,7 +9,9 @@
         <div class="col-2">
             <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
             <% else %>
-            <button class="btn btn-sm btn-warning">Answer Question</button>
+            <% if current_employee.id == @employee.id%>
+              <button class="btn btn-sm btn-warning">Answer Question</button>
+            <% end%>
           <% end%>
         </div>
       </div>
@@ -24,8 +26,10 @@
             <label><span>ANSWER: </span><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></label>
           </div>
           <div class="col-2">
-            <button class="btn btn-sm btn-success">Edit</button>
-            <button class="btn btn-sm btn-danger">Delete</button>
+            <% if current_employee.id == @employee.id%>
+              <button class="btn btn-sm btn-success">Edit</button>
+              <button class="btn btn-sm btn-danger">Delete</button>
+            <% end %>
           </div>
         </div>
       </div>
