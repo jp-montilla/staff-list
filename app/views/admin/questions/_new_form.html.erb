@@ -1,5 +1,5 @@
 <%= form_for([namespace, page.resource], html: { class: "form" }, remote: true) do |f| %>
-  <%= f.text_field :question %>
+  <%= f.text_field :question , :maxlength=> 100%>
   <%= f.select :answer_type, ['Text', 'Numerical', 'Choice'], include_blank: false %>
  <%= f.submit :id => "btn_submit_question"%>
 <% end %>
