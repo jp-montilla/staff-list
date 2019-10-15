@@ -6,7 +6,7 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col"></th>
+        <th scope="col">Question</th>
         <th scope="col">Answer</th>
         <% if current_employee.id == @employee.id%>
           <th scope="col">Action</th>
@@ -27,10 +27,10 @@
           <% if current_employee.id == @employee.id%>
             <td>
               <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
-                <%= link_to 'Edit Answer', edit_homepage_path(question.answer.where(employee_id: @employee.id).pluck(:id)), remote: true, :class => 'btn btn-success btn-sm'%>
-                <%= link_to 'Delete Answer', answer_delete_path(question.answer.where(employee_id: @employee.id).pluck(:id)), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true, :class => 'btn btn-danger btn-sm'%>
+                <%= link_to 'Edit', edit_homepage_path(question.answer.where(employee_id: @employee.id).pluck(:id)), remote: true, :class => 'btn btn-success btn-sm'%>
+                <%= link_to 'Delete', answer_delete_path(question.answer.where(employee_id: @employee.id).pluck(:id)), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true, :class => 'btn btn-danger btn-sm'%>
               <% else%>
-                <%= link_to 'Answer Question', answer_new_path(question.id), remote: true, :class => 'btn btn-primary btn-sm'%>
+                <%= link_to 'Answer', answer_new_path(question.id), remote: true, :class => 'btn btn-primary btn-sm'%>
               <% end %>
             </td>
           <% end %> 

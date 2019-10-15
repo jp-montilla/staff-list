@@ -55,30 +55,18 @@
     </div>
 </div>
 
-  <%= render 'homepages/questions'%>
-
-  <div style=" padding: 10px; background: white">
-    <div style="padding: 20px; border: 1px solid" >
-      <h3>QUESTIONS</h3>
-      
-      <div class="row">
-        <div id="questions-tbl" class="col-12">
-          <%= render 'homepages/question' %>
-        </div>
-        <div id="form-show">
-        </div>
-        
-      </div>
-      <div class="row">
-          <div class="col-6"></div>
-          <div class="col-6">
-            <button class="btn btn-danger btn-block" id="cancel-btn">Cancel</button>
-          </div>
-        </div>
-    </div>
-    <div style="height: 20px"></div>
-
+<div  id="form-area" class="row" style="padding: 10px">
+  <div id="questions-tbl" class="col-12">
+    <%= render 'homepages/question' %>
   </div>
+  <div class="col-4">
+    <div id="form-area">
+      <div id="form-show"></div>
+      <button class="btn btn-danger btn-block" id="cancel-btn" style="margin: 10px 20px 0 20px;width: 90%;">Cancel</button>
+    </div>
+  </div>
+</div>
+  
 
 
 

@@ -35,7 +35,7 @@
              <% @questions.each do |question|%>
 
               <% if question.answer != [] and question.answer.where(employee_id: employee.id).pluck(:answer) != []%>
-                <td><%= question.answer.where(employee_id: employee.id).pluck(:answer).first%></td>
+                <td><p class="q_answer"><%= question.answer.where(employee_id: employee.id).pluck(:answer).first%></p></td>
               <% else %>
                 <td><span class="badge badge-danger">Unanswered</span></td>
               <% end %>

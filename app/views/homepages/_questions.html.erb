@@ -1,16 +1,21 @@
-<div class="container-fluid" id="wew">
+<div class="container-fluid" id="question_area">
+  <div class="material_header">
+    <label class="text-center">Questions</label>
+  </div>  
+
   <% @questions.each do |question|%>
 
-    <div id="hello">
+    <div id="question">
       <div class="row">
-        <div class="col-10">
-          <label><span>QUESTION: </span><%= question.question %></label>
+        <div class="col-2">QUESTION:</div>
+        <div class="col-8">
+          <label><%= question.question %></label>
         </div>
         <div class="col-2">
             <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
             <% else %>
             <% if current_employee.id == @employee.id%>
-              <button class="btn btn-sm btn-warning">Answer Question</button>
+              <%= link_to 'Answer', answer_new_path(question.id), remote: true, :class => 'btn btn-warning btn-block'%>
             <% end%>
           <% end%>
         </div>
@@ -20,15 +25,16 @@
 
     </div>
     <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
-      <div id="world">
+      <div id="answer">
         <div class="row">
-          <div class="col-10">
-            <label><span>ANSWER: </span><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></label>
+          <div class="col-2">ANSWER:</div>
+          <div class="col-8">
+            <label><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></label>
           </div>
           <div class="col-2">
             <% if current_employee.id == @employee.id%>
-              <button class="btn btn-sm btn-success">Edit</button>
-              <button class="btn btn-sm btn-danger">Delete</button>
+              <%= link_to 'Edit', edit_homepage_path(question.answer.where(employee_id: @employee.id).pluck(:id)), remote: true, :class => 'btn btn-success btn-sm'%>
+              <%= link_to 'Delete', answer_delete_path(question.answer.where(employee_id: @employee.id).pluck(:id)), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true, :class => 'btn btn-danger btn-sm'%>
             <% end %>
           </div>
         </div>
