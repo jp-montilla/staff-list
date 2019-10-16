@@ -1,7 +1,7 @@
 
 
 <div class="container-fluid" id="profile">
-  <div class="row">
+  <div class="row"  id="column_materials">
     <div class="col-4">
       <%= image_tag(@employee.profile_picture)%>
       <div id="profile_information">
@@ -23,34 +23,28 @@
 
     </div>
       <div class="col-8">
-        <div class="material_header">
+        <div class="material_header text-center">
           <label> Materials Assigned</label>
         </div>
-        <div class="row">
-          <% if @employee.material == [] %>
-            <div class="col-3" id="">
-              <label>No materials assigned.</label>
-            </div>
-          <% else %>
-          <% @employee.material.each do|material| %>
-            <div class="col-3" >
-              <div class="row">
-                <div class="col-4">Name: </div>
-                <div class="col"><%= material.name%></div>
+        <% if @employee.material != [] %>
+          <div class="row">
+            <% @employee.material.each do|material| %>
+              <div class="col-3" >
+                <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
+                  <div class="card-header"><%= material.material_type%></div>
+                  <div class="card-body">
+                    <h5 class="card-title text-dark"><%= material.name%></h5>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-light"><%= material.status%></small>
+                  </div>
+                </div>
               </div>
-              <div class="row">
-                <div class="col-4">Type: </div>
-                <div class="col"><%= material.material_type%></div>
-              </div>
-              <div class="row">
-                <div class="col-4">Status: </div>
-                <div class="col"><%= material.status%></div>
-              </div>
-            </div>
-
-           <% end %>
-          <% end %>
-        </div>
+             <% end %>
+          </div>
+        <% else %>
+          <h3 class="text-center" style="color: red; padding-top: 50px;">No assigned materials.</h3>
+        <% end %>
       </div>
     </div>
 </div>
@@ -62,7 +56,7 @@
   <div class="col-4">
     <div id="form-area">
       <div id="form-show"></div>
-      <button class="btn btn-danger btn-block" id="cancel-btn" style="margin: 10px 20px 0 20px;width: 90%;">Cancel</button>
+      <button class="btn btn-danger btn-block" id="cancel-btn" style="margin: 40px 20px 0 20px;width: 90%;">Cancel</button>
     </div>
   </div>
 </div>
