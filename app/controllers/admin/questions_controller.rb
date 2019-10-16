@@ -12,25 +12,30 @@ module Admin
 
     def create
       @question = Question.new(set_params)
-      if Question.where(question: @question.question) == []
-        if @question.answer_type == 'Choice'
-          respond_to do |format|
-            format.js {render 'add.js.erb'}
-            format.html
-          end
-        else
-          resource = resource_class.new(resource_params)
-          authorize_resource(resource)
-          if resource.save
-            flash[:notice] = 'Question created successfully'
-            render js: "window.location='#{admin_questions_path}'"
+      if @question.question != ""
+        if Question.where(question: @question.question) == []
+          if @question.answer_type == 'Choice'
+            respond_to do |format|
+              format.js {render 'add.js.erb'}
+              format.html
+            end
           else
-            flash[:error] = 'Question cannot be blank!'
-            render js: "window.location='#{new_admin_question_path}'"
+            resource = resource_class.new(resource_params)
+            authorize_resource(resource)
+            if resource.save
+              flash[:notice] = 'Question created successfully'
+              render js: "window.location='#{admin_questions_path}'"
+            # else
+            #   flash[:error] = 'Question cannot be blank!'
+            #   render js: "window.location='#{new_admin_question_path}'"
+            end
           end
+        else 
+          flash[:error] = 'Question already existed!'
+          render js: "window.location='#{new_admin_question_path}'"
         end
-      else 
-        flash[:error] = 'Question already existed!'
+      else
+        flash[:error] = 'Question cannot be blank!'
         render js: "window.location='#{new_admin_question_path}'"
       end
     end
