@@ -31,13 +31,11 @@
             <% @employee.material.each do|material| %>
               <div class="col-3" >
                 <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
-                  <div class="card-header"><%= material.material_type%></div>
+                  <div class="card-header"><%= material.material_type%> - <small class="text-light"><%= material.status%></small></div>
                   <div class="card-body">
                     <h5 class="card-title text-dark"><%= material.name%></h5>
                   </div>
-                  <div class="card-footer">
-                    <small class="text-light"><%= material.status%></small>
-                  </div>
+                  
                 </div>
               </div>
              <% end %>
