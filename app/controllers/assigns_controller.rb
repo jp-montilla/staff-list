@@ -8,12 +8,12 @@ class AssignsController < ApplicationController
 
   def index
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee').order(name: :asc)
+    @employees = Employee.all.order(name: :asc)
   end
 
   def show
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee').order(name: :asc)
+    @employees = Employee.all.order(name: :asc)
     respond_to do |format|
         format.js {render 'reload.js.erb'}
         format.html
@@ -36,7 +36,7 @@ class AssignsController < ApplicationController
     @employee = Employee.find(params[:employee])
     @employee_box = params[:employee]
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee').order(name: :asc)
+    @employees = Employee.all.order(name: :asc)
     if @material.update(update_params)
       @employee = Employee.find(params[:id])
       flash[:success] = "#{@material.name} assigned to #{@employee.email}!"
@@ -58,7 +58,7 @@ class AssignsController < ApplicationController
   def destroy
     @material = Material.find(params[:id])
     @materials = Material.where(employee_id: nil)
-    @employees = Employee.where(role: 'Employee').order(name: :asc)
+    @employees = Employee.all.order(name: :asc)
     if @material.update(update_params)
       respond_to do |format|
         format.js {render 'reload.js.erb'}

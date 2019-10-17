@@ -2,7 +2,7 @@
 <%# if flash[:success] and flash[:success] != "" %>
     <!-- <p class="alert alert-success"><%# flash[:success] %></p> -->
 <%# end %>
-
+<% if @questions != [] %>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -39,3 +39,7 @@
 
     </tbody>
   </table>
+<% else %>
+  <h3 class="text-center text-muted" style="padding-top: 50px;">No questions.</h3>
+<% end %>
+
