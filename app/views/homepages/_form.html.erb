@@ -2,7 +2,7 @@
   
   <div class="card-header">Edit Answer</div>
   <div class="card-body">
-    <h5 class="card-title"><%= @answer_edit.question.question%></h5>
+    <h6 class="card-title"><%= @answer_edit.question.question%></h6>
     <% if flash[:errors] and flash[:errors] != ""  %>
       <% flash[:errors].each do |e|%>
         <p class="alert alert-danger"><%= e %></p>

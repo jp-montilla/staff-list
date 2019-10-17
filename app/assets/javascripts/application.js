@@ -23,6 +23,7 @@
 
 
 $(document).ready(function(){
+  $(".material_profile").hide();
   $("#cancel-btn").hide()
 	$('#view_type_report').click(function(){
 		$('#type_report').show()
@@ -87,10 +88,37 @@ $(document).ready(function(){
 
   $("#cancel-btn").click(function(){
     $("#cancel-btn").hide()
-    $("#questions-tbl").removeClass("col-6");
+    $("#questions-tbl").removeClass("col-8");
     $("#questions-tbl").addClass("col-12");
-    $("#form-show").removeClass("col-6");
+    $("#form-show").removeClass("col-4");
     $("#form-show").hide()
+  });
+
+  $("#button_question").click(function(){
+    $("#button_material").removeClass("active_button");
+    $("#button_question").addClass("active_button");
+    $(".question_profile").show();
+    $(".material_profile").hide();
+
+    $("#questions-tbl").removeClass("col-8");
+    $("#questions-tbl").addClass("col-12");
+    $("#form-show").removeClass("col-4");
+    $("#form-show").hide()
+    $("#cancel-btn").hide()
+
+  });
+  $("#button_material").click(function(){
+    $("#button_question").removeClass("active_button");
+    $("#button_material").addClass("active_button");
+    $(".material_profile").show();
+    $(".question_profile").hide();
+
+    $("#questions-tbl").removeClass("col-8");
+    $("#questions-tbl").addClass("col-12");
+    $("#form-show").removeClass("col-4");
+    $("#form-show").hide()
+    $("#cancel-btn").hide()
+
   });
   
 

@@ -18,6 +18,8 @@ class HomepagesController < ApplicationController
     @employee = Employee.find(params[:id])
     @answers = Answer.where(employee_id: params[:id])
     @questions = Question.all
+    @answered = @answers.count
+    @unanswered = @questions.count - @answered
   end
 
   def new

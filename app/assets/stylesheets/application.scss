@@ -49,18 +49,18 @@
 }
 
 textarea{
-  font-size: 20px;
+  font-size: 1rem;
   width: 100%;
 }
 .num-input{
   width: 100%;
   // font-size: 30px;
-  padding: 20px;
+  padding: 1rem;
   margin-bottom: 10px;
 }
 
 .radio-btn{
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 #choices-tbl{
@@ -94,7 +94,7 @@ textarea{
 }
 
 body{
-   background-color: #f3f5f9;
+   background-color: #f6f8fa;
 }
 
 .wrapper {
@@ -172,7 +172,7 @@ body{
   display: block;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
   th{
-    background: #3779e2;
+    background: #3570ce;
     color: white;
     a{
       color: yellow;
@@ -246,37 +246,150 @@ body{
   }
 }
 
-
-#questions-tbl{
-  padding: 20px;
-  background: white;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-#form-area{
-  position: -webkit-sticky;
-  position: sticky;
-  top: 20px;
-  .card{
-    padding: 10px;
-    background: white;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
-
-    padding: 20px; 
-    .card-header{
-      text-align: center;
-    }
-  }
-}
 .q_answer{
   max-width: 230px;
   overflow-y: auto;
   width: 100%;
 }
 #list_title{
-    background: #5949a5;
+    background: #493d82;
     color: white;
     padding: 20px;
 }
+
+
+#questions-tbl{
+  background: white;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+  table{
+    th{
+      font-size: 15px;
+    }
+  }
+}
+
+
+
+#profile_area{
+  padding: 30px 200px 10px 200px;
+  .row{
+    padding-bottom: 30px;
+  }
+  img{
+    background: white;
+    border-radius: 50%;
+    width: 100%;
+  }
+  .col-8{
+    padding-top: 30px;
+    div{
+      padding: 5px;
+      span{
+        margin-left: 100px;
+        font-weight: bolder;
+        font-size: 15px;
+      }
+    }
+    .profile_name{
+      font-size: 25px;
+      font-weight: bold;
+    }
+    hr{
+      margin: 0;
+      padding: 0;
+    }
+    label{
+      span{
+        font-size: 0.9rem;
+        margin-left: 55px;
+      }
+    }
+  }
+}
+
+
+
+#question_area{
+  padding: 20px 175px 20px 175px;
+  td{
+    width: 60%;
+  }
+  #form-area{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+    .card{
+      font-size: 0.9rem;
+      background: white;
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+      .card-header{
+        text-align: center;
+      }
+    }
+  }
+}
+
+#question_profile{
+  padding: 0px;
+}
+
+#button_profile{
+  padding: 0 200px 0 200px;
+  hr{
+    margin-bottom: 0;
+  }
+  label{
+    font-size: 1.3rem;
+  }
+  .active_button{
+    padding-top: 10px;
+    border-top: 2px solid black;
+  }
+
+  #button_question{
+    margin-right: 30px;
+  }
+  #button_material{
+    margin-left: 30px;
+  }
+  a, a:hover{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.material_profile{
+  padding: 20px 175px 20px 175px;
+  .col-3{
+    margin-bottom: 20px;
+    .content{
+      background: white;
+      // padding: 30px;
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+      hr{
+        margin: 0;
+        padding: 0;
+      }
+      .material_name{
+        font-size: 1rem;
+        background: #3570ce;
+        color: white;
+      }
+      .material_details{
+        font-size: 0.8rem;
+        span{
+          font-size: 0.9rem;
+        }
+      }
+      .material_details, .material_name{
+        padding: 10px;
+      }
+    }
+  }
+}
+
 
 
 

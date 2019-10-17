@@ -1,4 +1,4 @@
-
+<!-- 
 
 <div class="container-fluid" id="profile">
   <div class="row"  id="column_materials">
@@ -45,18 +45,66 @@
         <% end %>
       </div>
     </div>
-</div>
-
-<div  id="form-area" class="row" style="padding: 10px">
-  <div id="questions-tbl" class="col-12">
-    <%= render 'homepages/question' %>
-  </div>
-  <div class="col-4">
-    <div id="form-area">
-      <div id="form-show"></div>
-      <button class="btn btn-danger btn-block" id="cancel-btn" style="margin: 40px 20px 0 20px;width: 90%;">Cancel</button>
+</div> -->
+<div class="container" id="profile_area">
+  <div class="row">
+    <div class="col-3"><%= image_tag(@employee.profile_picture)%></div>
+    <div class="col-1"></div>
+    <div class="col-8">
+      <div class="profile_name"><%= @employee.name %><span class="badge badge-secondary"><%= @employee.role %></span></div>
+      <div><%= @employee.email %></div>
+      <div></div>
+      <hr/>
+      <label class="text-muted"><span><%= @unanswered%> Unanswered Question</span><span><%= @employee.material.count%> Materials</span></label>
     </div>
   </div>
+</div>
+
+<div class="container text-center" id="button_profile">
+  <hr>
+  <label class="active_button" id="button_question"><a href="#question">Question</a></label>
+  <label id="button_material"><a href="#material">Material</a></label>
+</div>
+
+<%if current_employee.id == @employee.id%>
+  <div class="container-fluid question_profile" id="question_profile">
+<% else %>
+  <div class="container question_profile">
+<% end %>
+  <div  id="question_area" class="row">
+    <div id="questions-tbl" class="col-12">
+      <%= render 'homepages/question' %>
+    </div>
+    <div class="col-4">
+      <div id="form-area">
+        <div id="form-show"></div>
+        <button class="btn btn-danger btn-block" id="cancel-btn" style="margin: 40px 20px 0 20px;width: 90%;">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container material_profile">
+  <% if @employee.material != [] %>
+    <div class="row">
+      <% @employee.material.each do|material| %>
+        <div class="col-3" >
+          <div class="content text-center">
+            <div class="material_name">
+              <%= material.name%>
+            </div>
+            <hr/>
+            <div class="material_details">
+              <div>Type: <span><%= material.material_type%></span></div>
+              <div>Status: <span><%= material.status%></span></div>
+            </div>
+          </div>
+        </div>
+       <% end %>
+    </div>
+  <% else %>
+    <h3 class="text-center text-muted" style="padding-top: 50px;">No assigned materials.</h3>
+  <% end %>
 </div>
   
 
