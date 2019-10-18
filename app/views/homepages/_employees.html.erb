@@ -1,0 +1,27 @@
+  
+<% if @employees %>
+  <div class="row">
+    <% @employees.each do |employee|%>
+      <div class="col-4" style="padding: 5px;">
+        <div class="row" id="home_item">
+          <div class="col-4"><%= image_tag(employee.profile_picture, {:style => "width:100%;"})%></div>
+          <div class="col-8" style="margin-bottom: 5px;">
+              <div><%= link_to employee.name, homepage_path(employee.id) %></div>
+              <div id="email_homepage" class="text-muted"><%= employee.email%></div>
+              <div>
+                <% if employee.role == 'Admin'%>
+                  <span class="badge badge-primary"><%= employee.role%></span>
+                <% else %>
+                  <span class="badge badge-secondary"><%= employee.role%></span>
+                <% end %>
+              </div>
+          </div>
+          <div class="col-12 text-right" style="border-top: 1px solid silver">
+            <%=link_to 'View answers', view_answer_path(employee.id), remote: true%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

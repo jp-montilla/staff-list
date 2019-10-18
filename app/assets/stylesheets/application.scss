@@ -183,68 +183,68 @@ body{
   }
 }
 
-#profile{
-  background: white;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  #column_materials{
-    padding: 20px;
-    .col-4{
+// #profile{
+//   background: white;
+//   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+//   padding: 20px;
+//   #column_materials{
+//     padding: 20px;
+//     .col-4{
 
-      img{
-        width: 100%;
-        padding-top: 20px;
-        padding-bottom: 50px;
-      }
-      #profile_information{
-        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
-        padding-bottom: 5px;
-        background: #e9ebee;
-        border: 1px silver solid;
-        text-align: center;
-        .row{
-          padding: 15px 5px 10px 5px;
-          .col-3{
-            color: white;
-            background:red;
-            text-align: right;
-            box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+//       img{
+//         width: 100%;
+//         padding-top: 20px;
+//         padding-bottom: 50px;
+//       }
+//       #profile_information{
+//         box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+//         padding-bottom: 5px;
+//         background: #e9ebee;
+//         border: 1px silver solid;
+//         text-align: center;
+//         .row{
+//           padding: 15px 5px 10px 5px;
+//           .col-3{
+//             color: white;
+//             background:red;
+//             text-align: right;
+//             box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
 
-          }
-          .col-9{
-            text-align: left;
-          }
-        }
-        span{
-          font-size: 13px;
-        }
-      }
-    }
-    .col-8{
-       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
-      // box-shadow: 2px 25px 24px -5px rgba(0,0,0,0.75);
-      padding: 20px;
-      background: #f3f2f2;
-      border: 0.1px solid silver;
+//           }
+//           .col-9{
+//             text-align: left;
+//           }
+//         }
+//         span{
+//           font-size: 13px;
+//         }
+//       }
+//     }
+//     .col-8{
+//        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+//       // box-shadow: 2px 25px 24px -5px rgba(0,0,0,0.75);
+//       padding: 20px;
+//       background: #f3f2f2;
+//       border: 0.1px solid silver;
 
-      color: white;
-      .material_header{
-        label{
-          width: 100%;
-          font-size: 2.4em;
-          background: black;
-        }
+//       color: white;
+//       .material_header{
+//         label{
+//           width: 100%;
+//           font-size: 2.4em;
+//           background: black;
+//         }
         
-      }
-      .col-3{
-        left: 85px; 
-        padding: 0px;
-        margin-left: 10px;
-        color: #1d2129;
-      }
-    }
-  }
-}
+//       }
+//       .col-3{
+//         left: 85px; 
+//         padding: 0px;
+//         margin-left: 10px;
+//         color: #1d2129;
+//       }
+//     }
+//   }
+// }
 
 .q_answer{
   max-width: 230px;
@@ -388,6 +388,63 @@ body{
       }
     }
   }
+}
+
+#list_employee{
+  padding: 0;
+  margin: 0;
+  .row{
+    padding: 5px;
+    margin: 0;
+  }
+  #left_content{
+    padding: 0 10px 0 0;
+    #home_item{
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2); 
+      background: white; 
+      min-height: 100px;
+      img{
+        border-radius: 50%;
+      }
+      .col-8{
+        padding-left: 0;
+      }
+    }
+    #email_homepage{
+      font-size: 0.9rem;
+    }
+  }
+
+  .col-3{
+    #side_notif{
+      position: -webkit-sticky;
+      position: sticky;
+      top: 20px;
+    }
+    .row{
+      padding-bottom: 20px;
+    }
+    .col-8{
+      padding-top: 10px;
+    }
+    padding: 0;
+    div{
+      img{
+        border-radius: 50%;
+        width: 100%;
+      }
+    }
+    #homepage_question{
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
+      min-height: 300px;
+      background: white;
+      padding: 20px;
+      max-height: 80vh;
+      overflow-y: auto;
+      display: block;
+    }
+  }
+
 }
 
 

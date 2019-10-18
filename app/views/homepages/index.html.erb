@@ -5,17 +5,35 @@
     <%#= content_tag :div, value, :class => "alert alert-danger #{key}" unless value.blank? %>
   <%# end %>
 <%# end %>
+<!-- 
 <div class="container-fluid" style="padding: 0; margin: 0">
   <div id="list_title" class="text-center">
     <h1>LIST OF EMPLOYEES</h1>
   </div>
+  <div style="height: 20px;"></div>
   <div id="pages-employees">
-    <%= render 'homepages/employee' %>
+    <%#= render 'homepages/employee' %>
   </div>
   <div id="paginator">
-    <%= paginate @employees, remote: true %>
+    <%#= paginate @employees, remote: true %>
+  </div>
+</div> -->
+
+<div class="container-fluid" id="list_employee">
+  <div class="row" id="outer_row">
+    <div class="col-9" id="left_content">
+      <%= render 'homepages/employees' %>
+    </div>
+    <div class="col-3" >
+      <div id="side_notif">
+        <div class="row">
+          <div class="col-4"><%= image_tag(current_employee.profile_picture)%></div>
+          <div class="col-8"><%= current_employee.name%><br/><span class="text-muted"><%= current_employee.email%></span></div>
+        </div>
+        <div id="homepage_question"></div>
+      </div>
+    </div>
   </div>
 </div>
-
 
 

@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     post '/homepage/create', to: 'homepages#create', as: :answer_create
     patch '/homepage/:id', to: 'homepages#update', as: :answer_update
     delete 'homepage/:id/delete', to: 'homepages#destroy', as: :answer_delete
+    
+    get '/homepage/answer/:id', to: 'homepages#answer', as: :view_answer
 
     get 'material/charts' => 'charts#index', as: :chart_show
 

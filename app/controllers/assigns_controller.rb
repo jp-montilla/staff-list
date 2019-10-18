@@ -1,4 +1,5 @@
 class AssignsController < ApplicationController
+  # before_action :
   before_action :admin
 
   def admin

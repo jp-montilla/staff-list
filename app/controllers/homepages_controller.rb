@@ -1,10 +1,8 @@
 class HomepagesController < ApplicationController
   before_action :authenticate_employee!
   def index
-
     @q = Employee.ransack(params[:q])
-    @employees = @q.result.page(params[:page]).per(5)
-
+    @employees = @q.result.page(params[:page]).per(10)
     # @employees = Employee.order(name: :asc).page(params[:page]).per(5)
     @questions = Question.where(view_to_list: 1)
     @answers = Answer.all
@@ -103,6 +101,16 @@ class HomepagesController < ApplicationController
       format.html
     end
     flash[:success] = ""
+  end
+
+  def answer
+    @employee = Employee.find(params[:id])
+    @questions = Question.where(view_to_list: 1)
+    @answers = Answer.all
+    respond_to do |format|
+      format.js {render 'answer.js.erb'}
+      format.html
+    end
   end
 
 
