@@ -1,13 +1,21 @@
-<h5 style="border-bottom: 1px solid black; margin-bottom: 30px;"><%= @employee.name%></h5>
+<h5><%= @employee.name%></h5>
 
 <% @questions.each do |question|%>
-    <label style="font-size: 0.9rem; border-bottom: 2px dotted #007bff;"><%= question.question%></label>
-    <div style="width: 100%; border-bottom: 1px solid silver; margin-bottom: 10px">
+    <label><%= question.question%></label>
+
+    <div>
+
       <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
-        <p style="font-size: 0.9rem;" ><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></p>
+
+        <p class="answer"><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></p>
+
       <% else %>
-        <p  style="font-size: 0.5rem;" class="badge badge-danger">Unanswered</p>
+
+        <p class="unanswered badge badge-danger">Unanswered</p>
+
       <% end %>
+
     </div>
+
   <br/>
 <% end %>

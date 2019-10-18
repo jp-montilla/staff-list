@@ -19,7 +19,9 @@
           <td><%= question.question %></td>
           <td>
             <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
-              <p><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></p>
+              <div class="answer">
+                <p><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></p>
+              </div>
             <% else %>
               <span class="badge badge-danger">Unanswered</span>
             <% end %>

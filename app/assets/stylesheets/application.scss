@@ -266,6 +266,12 @@ body{
       font-size: 15px;
     }
   }
+  .answer{
+    padding-bottom: 20px;
+    max-width: 450px;
+    overflow-x: auto;
+    display: block;
+  }
 }
 
 
@@ -442,6 +448,27 @@ body{
       max-height: 80vh;
       overflow-y: auto;
       display: block;
+
+      h5{
+        border-bottom: 1px solid black; margin-bottom: 30px;
+      }
+      label{
+        font-size: 0.9rem; border-bottom: 2px dotted #007bff;
+      }
+      div{
+        width: 100%; border-bottom: 1px solid silver; margin-bottom: 10px
+      }
+      .unanswered{
+        font-size: 0.5rem;
+      }
+      .answer{
+        font-size: 0.9rem;
+        padding-bottom: 20px;
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
+      }
+
     }
   }
 
