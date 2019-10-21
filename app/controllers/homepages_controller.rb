@@ -3,7 +3,6 @@ class HomepagesController < ApplicationController
   def index
     @q = Employee.ransack(params[:q])
     @employees = @q.result.order(name: :asc).page(params[:page]).per(15)
-    # @employees = Employee.order(name: :asc).page(params[:page]).per(5)
     @questions = Question.where(view_to_list: 1)
     @answers = Answer.all
     respond_to do |format|
@@ -109,6 +108,23 @@ class HomepagesController < ApplicationController
     @answers = Answer.all
     respond_to do |format|
       format.js {render 'answer.js.erb'}
+      format.html
+    end
+  end
+
+  def view_question_in_list
+    @question = Question.find(params[:id])
+    @answers = Answer.where(question_id: @question.id)
+    respond_to do |format|
+      format.js {render 'question.js.erb'}
+      format.html
+    end
+  end
+
+  def close
+    @questions = Question.where(view_to_list: 1)
+    respond_to do |format|
+      format.js {render 'close.js.erb'}
       format.html
     end
   end

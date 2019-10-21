@@ -49,6 +49,10 @@ Rails.application.routes.draw do
     
     get '/homepage/answer/:id', to: 'homepages#answer', as: :view_answer
 
+    get '/homepage/view_question_in_list/:id', to: 'homepages#view_question_in_list', as: :view_question_in_list
+
+    get '/homepage/close', to: 'homepages#close', as: :close_btn
+
     get 'material/charts' => 'charts#index', as: :chart_show
 
     root 'homepages#index'

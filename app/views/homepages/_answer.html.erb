@@ -1,21 +1,14 @@
+<h6 class="text-right" style="width: 100%;margin-bottom: 0;"><%= link_to '&#10005;'.html_safe, close_btn_path, remote: true%></h6>
 <h5><%= @employee.name%></h5>
 
 <% @questions.each do |question|%>
     <label><%= question.question%></label>
-
     <div>
-
       <% if question.answer != [] and question.answer.where(employee_id: @employee.id).pluck(:answer) != []%>
-
         <p class="answer"><%= question.answer.where(employee_id: @employee.id).pluck(:answer).first%></p>
-
       <% else %>
-
         <p class="unanswered badge badge-danger">Unanswered</p>
-
       <% end %>
-
     </div>
-
   <br/>
 <% end %>

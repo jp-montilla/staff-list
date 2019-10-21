@@ -21,8 +21,13 @@
 
 <div class="container-fluid" id="list_employee">
   <div class="row" id="outer_row">
-    <div class="col-9" id="left_content">
-      <%= render 'homepages/employees' %>
+    <div class="col-9" >
+      <div id="left_content">
+        <%= render 'homepages/employees' %>
+      </div>
+      <div id="paginator">
+        <%= paginate @employees, remote: true %>
+      </div>
     </div>
     <div class="col-3" >
       <div id="side_notif">
@@ -30,7 +35,9 @@
           <div class="col-4"><%= image_tag(current_employee.profile_picture)%></div>
           <div class="col-8"><%= current_employee.name%><br/><span class="text-muted"><%= current_employee.email%></span></div>
         </div>
-        <div id="homepage_question"></div>
+        <div id="homepage_question">
+          <%= render 'homepages/question_in_list' %>
+        </div>
       </div>
     </div>
   </div>

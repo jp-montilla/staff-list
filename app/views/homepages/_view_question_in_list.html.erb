@@ -1,0 +1,14 @@
+<h6 class="text-right" style="width: 100%;margin-bottom: 0;"><%= link_to '&#10005;'.html_safe, close_btn_path, remote: true%></h6>
+
+<h5><%= @question.question %></h5>
+
+<% if @answers != []%>
+  <% @answers.each do |answer|%>
+    <label class="employee_name"><%= answer.employee.name%></label>
+    <div>
+      <p class="answer">"<%= answer.answer%>"</p>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-muted">No one answered this question yet.</p>
+<% end %>

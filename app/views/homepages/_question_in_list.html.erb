@@ -1,0 +1,4 @@
+<h5>Questions in list</h5>
+<% @questions.each do |question| %>
+  <p class="question"><%= link_to question.question, view_question_in_list_path(question.id), remote: true%></p>
+<% end %>
