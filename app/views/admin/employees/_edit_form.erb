@@ -1,6 +1,6 @@
-<% if flash[:error]%>
-  <p class="alert alert-danger"><%= flash[:error]%></p>
-<% end %>
+<!-- <% if flash[:error]%> -->
+  <!-- <p class="alert alert-danger"><%= flash[:error]%></p> -->
+<!-- <% end %> -->
 <%= form_for([namespace, page.resource], html: { class: "form" }) do |f| %>
   Name : <%= f.text_field :name %><br />
   Email : <%= f.email_field :email %><br />

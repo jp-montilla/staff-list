@@ -1,32 +1,34 @@
 default: &default
-  adapter: sqlite3
+  adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  # encoding: utf8mb4
+  encoding: utf8mb4
 
 development:
-  # <<: *default 
-  adapter: mysql2
-  pool: 5
-  timeout: 5000
+  <<: *default
+  # adapter: mysql2
+  # pool: 5
+  # timeout: 5000
   database: stafflist_development
   username: root
   password:
   socket: /tmp/mysql.sock
 
 test:
-  adapter: mysql2
-  pool: 5
-  timeout: 5000
+  <<: *default
+  # adapter: mysql2
+  # pool: 5
+  # timeout: 5000
   database: stafflist_test
   username: root
   password:
   socket: /tmp/mysql.sock
 
 production:
-  adapter: mysql2
-  pool: 5
-  timeout: 5000
+  <<: *default
+  # adapter: mysql2
+  # pool: 5
+  # timeout: 5000
   database: stafflist_production
   username: root
   password:
