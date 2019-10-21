@@ -19,9 +19,11 @@
                 <% end %>
               </div>
           </div>
-          <div class="col-12 text-right" style="border-top: 1px solid silver">
-            <%=link_to 'View answers', view_answer_path(employee.id), remote: true%>
-          </div>
+          <% if @questions != []%>
+            <div class="col-12 text-right" style="border-top: 1px solid silver">
+              <%=link_to 'View answers', view_answer_path(employee.id), remote: true%>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>

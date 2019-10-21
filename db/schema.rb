@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20191009022005) do
 
-  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "answer"
     t.bigint "question_id"
     t.bigint "employee_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20191009022005) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
-  create_table "choices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "choices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "choice"
     t.bigint "question_id"
     t.datetime "created_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20191009022005) do
     t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
-  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20191009022005) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
-  create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "materials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "name"
     t.string "material_type"
     t.string "status"
@@ -56,12 +56,13 @@ ActiveRecord::Schema.define(version: 20191009022005) do
     t.index ["employee_id"], name: "index_materials_on_employee_id"
   end
 
-  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "question"
     t.string "answer_type"
-    t.integer "view_to_list"
+    t.integer "show"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "view_to_list"
   end
 
   add_foreign_key "answers", "employees"

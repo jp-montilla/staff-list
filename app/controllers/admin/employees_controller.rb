@@ -23,9 +23,7 @@ module Admin
         flash[:success] = "Employee updated successfully!"
         redirect_to admin_employee_path
       else
-        # flash[:error] = 'All fields are required!'
         flash[:error] = @employee.errors.full_messages.join('<br/>')
-        # binding.pry
         redirect_to edit_admin_employee_path
       end
     end
