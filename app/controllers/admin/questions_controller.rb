@@ -12,7 +12,8 @@ module Admin
 
     def create
       @question = Question.new(set_params)
-      if @question.question != ""
+      @valid = @question.question.match? /[a-z]/
+      if @question.question != "" and @valid == true
         if Question.where(question: @question.question) == []
           if @question.answer_type == 'Choice'
             respond_to do |format|
