@@ -8,8 +8,7 @@ class ChoiceDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    # question: Field::BelongsTo,
-    question: BelongsToCustomField,
+    question: Field::BelongsTo,
     id: Field::Number,
     choice: Field::String,
     created_at: Field::DateTime,
@@ -49,7 +48,7 @@ class ChoiceDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how choices are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(choice)
-    "#{choice.choice}"
-  end
+  # def display_resource(choice)
+  #   "Choice ##{choice.id}"
+  # end
 end
