@@ -20,7 +20,7 @@ class ViewsController < ApplicationController
         format.html
       end
     else
-      flash[:errors] = @question.errors.full_messages
+      flash.now[:errors] = @question.errors.full_messages
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
         format.html
@@ -37,7 +37,7 @@ class ViewsController < ApplicationController
   private
 
     def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
+      flash.now[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referrer || root_path)
     end
 

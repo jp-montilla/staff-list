@@ -36,13 +36,13 @@ class HomepagesController < ApplicationController
     if @answer.save
       @employee = Employee.find(current_employee.id)
       @questions = Question.all
-      flash[:success] = "Answer Saved"
+      flash.now[:success] = "Answer Saved"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
         format.html
       end
     else
-      flash[:errors] = @answer.errors.full_messages
+      flash.now[:errors] = @answer.errors.full_messages
       @employee = Employee.find(current_employee.id)
       @question = @answer.question
       respond_to do |format|
@@ -69,7 +69,7 @@ class HomepagesController < ApplicationController
   def update
     @answer = Answer.find(params[:id])
     if @answer.update(update_params)
-      flash[:success] = 'Answer updated successfully.'
+      flash.now[:success] = 'Answer updated successfully.'
       @employee = Employee.find(current_employee.id)
       @questions = Question.all
       respond_to do |format|
@@ -77,7 +77,7 @@ class HomepagesController < ApplicationController
         format.html
       end
     else
-      flash[:errors] = @answer.errors.full_messages
+      flash.now[:errors] = @answer.errors.full_messages
       @employee = Employee.find(current_employee.id)
       @answer_edit = @answer
       respond_to do |format|
@@ -92,7 +92,7 @@ class HomepagesController < ApplicationController
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
-    flash[:success] = 'Answer deleted successfully.'
+    flash.now[:success] = 'Answer deleted successfully.'
     @employee = Employee.find(current_employee.id)
     @questions = Question.all
     respond_to do |format|

@@ -33,13 +33,13 @@ class ChoicesController < ApplicationController
       if @choice.save
         @questions = Question.where(answer_type: 'Choice')
         @count = 0
-        flash[:success] = "Choice Saved"
+        flash.now[:success] = "Choice Saved"
         respond_to do |format|
           format.js {render 'fresh.js.erb'}
           format.html
         end
       else
-        flash[:errors] = @choice.errors.full_messages
+        flash.now[:errors] = @choice.errors.full_messages
         @question = @choice.question
         @count = 0
         @question_box = @question.id.to_s
@@ -49,7 +49,7 @@ class ChoicesController < ApplicationController
         end
       end
     else
-      flash[:error] = "#{@choice.choice} already exist."
+      flash.now[:error] = "#{@choice.choice} already exist."
       @question = @choice.question
       @count = 0
       @question_box = @question.id.to_s
@@ -77,13 +77,13 @@ class ChoicesController < ApplicationController
     if @choice.update(update_params)
       @questions = Question.where(answer_type: 'Choice')
       @count = 0
-      flash[:success] = "Choice Updated"
+      flash.now[:success] = "Choice Updated"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
         format.html
       end
     else
-      flash[:errors] = @choice.errors.full_messages
+      flash.now[:errors] = @choice.errors.full_messages
       @question = @choice.question
       @question_box = @question.id.to_s
       @count = 0
@@ -100,13 +100,13 @@ class ChoicesController < ApplicationController
     if @choice.destroy
       @questions = Question.where(answer_type: 'Choice')
       @count = 0
-      flash[:success] = "Choice Deleted"
+      flash.now[:success] = "Choice Deleted"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
         format.html
       end
     else
-      flash[:errors] = @choice.errors.full_messages
+      flash.now[:errors] = @choice.errors.full_messages
       @questions = Question.where(answer_type: 'Choice')
       @count = 0
       respond_to do |format|
@@ -122,7 +122,7 @@ class ChoicesController < ApplicationController
     private
 
     def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
+      flash.now[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referrer || root_path)
     end
 

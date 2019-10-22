@@ -1,10 +1,10 @@
-<%# flash.each do |key, value| %>
-  <%# if key == 'notice'%>
-    <%#= content_tag :div, value, :class => "alert alert-success #{key}" unless value.blank? %>
-  <%# else %>
-    <%#= content_tag :div, value, :class => "alert alert-danger #{key}" unless value.blank? %>
-  <%# end %>
-<%# end %>
+<% flash.each do |key, value| %>
+  <% if key == 'notice'%>
+    <%= content_tag :div, value, :class => "alert alert-success #{key}" unless value.blank? %>
+  <% else %>
+    <%= content_tag :div, value, :class => "alert alert-danger #{key}" unless value.blank? %>
+  <% end %>
+<% end %>
 <!-- 
 <div class="container-fluid" style="padding: 0; margin: 0">
   <div id="list_title" class="text-center">

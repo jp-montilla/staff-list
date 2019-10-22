@@ -20,10 +20,10 @@ module Admin
     def update
       @employee = Employee.find(params[:id])
       if @employee.update(employee_params)
-        flash[:success] = "Employee updated successfully!"
+        flash.now[:success] = "Employee updated successfully!"
         redirect_to admin_employee_path
       else
-        flash[:error] = @employee.errors.full_messages.join('<br/>')
+        flash.now[:error] = @employee.errors.full_messages.join('<br/>')
         redirect_to edit_admin_employee_path
       end
     end
@@ -32,7 +32,7 @@ module Admin
       @employee = Employee.find(params[:id])
       @count = Employee.where(role: 'Admin').count
       if @employee.role == 'Admin' and @count == 1
-        flash[:error] = 'Cannot delete last admin!'
+        flash.now[:error] = 'Cannot delete last admin!'
         redirect_to admin_employees_path
       else
         super
