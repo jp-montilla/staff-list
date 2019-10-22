@@ -1,6 +1,4 @@
-<!-- <% if flash[:error]%> -->
-  <!-- <p class="alert alert-danger"><%= flash[:error]%></p> -->
-<!-- <% end %> -->
+<div class="container" style="padding-top: 0; width: 70%;">
 <%= form_for([namespace, page.resource], html: { class: "form" }) do |f| %>
   Name : <%= f.text_field :name %><br />
   Email : <%= f.email_field :email %><br />
@@ -10,7 +8,7 @@
   <%= f.submit %>
 
 <% end %>
-
+</div>
 
 
 

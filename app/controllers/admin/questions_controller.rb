@@ -12,7 +12,7 @@ module Admin
 
     def create
       @question = Question.new(set_params)
-      @valid = @question.question.match? /[a-z]/
+      @valid = @question.question.match? /[a-zA-Z]/
       if @question.question != "" and @valid == true
         if Question.where(question: @question.question) == []
           if @question.answer_type == 'Choice'
@@ -24,7 +24,7 @@ module Admin
             resource = resource_class.new(resource_params)
             authorize_resource(resource)
             if resource.save
-              flash.now[:notice] = 'Question created successfully'
+              flash[:notice] = 'Question created successfully'
               render js: "window.location='#{admin_questions_path}'"
             # else
             #   flash[:error] = 'Question cannot be blank!'
@@ -32,19 +32,19 @@ module Admin
             end
           end
         else 
-          flash.now[:error] = 'Question already existed!'
+          flash[:error] = 'Question already existed!'
           render js: "window.location='#{new_admin_question_path}'"
         end
       else
-        flash.now[:error] = 'Question cannot be blank!'
+        flash[:error] = 'Question cannot be blank!'
         render js: "window.location='#{new_admin_question_path}'"
       end
     end
 
     def create_choice
-      flash.now[:error] = ""
       if Question.where(id: params[:q_id]) == []
-        if params[:choice] != ""
+        @valid = params[:choice].match? /[a-zA-Z]/
+        if @valid
           @question = Question.create(question: params[:q_question], answer_type: 'Choice')
           @choice = Choice.create(choice: params[:choice], question_id: @question.id)
         else
@@ -52,7 +52,8 @@ module Admin
           @question = Question.new(question: params[:q_question], answer_type: 'Choice')
         end
       else
-        if params[:choice] != ""
+        @valid = params[:choice].match? /[a-zA-Z]/
+        if @valid
           @is_exist = Choice.where(question_id: params[:q_id], choice: params[:choice])
           if @is_exist == []
             @question = Question.find(params[:q_id])
@@ -70,6 +71,7 @@ module Admin
         format.js {render 'add.js.erb'}
         format.html
       end
+
     end
 
     def remove_choice
@@ -105,7 +107,7 @@ module Admin
     def delete_question
       @question = Question.find(params[:id])
       if @question.destroy
-        flash.now[:notice] = 'Question creation cancelled'
+        flash[:notice] = 'Question creation cancelled'
         redirect_to admin_questions_path
       end
     end
