@@ -58,11 +58,11 @@ class ChoicesController < ApplicationController
         format.html
       end
     end   
-    flash[:success] = ""
+    # flash[:success] = ""
   end
 
   def edit
-    flash[:errors] = ""
+    # flash[:errors] = ""
     @choice = Choice.find(params[:id])
     @question = @choice.question
     @question_box = @question.id.to_s
@@ -92,21 +92,34 @@ class ChoicesController < ApplicationController
         format.html
       end
     end
-    flash[:success] = ""
+    # flash[:success] = ""
   end
 
   def destroy
     @choice = Choice.find(params[:id])
-    if @choice.destroy
-      @questions = Question.where(answer_type: 'Choice')
-      @count = 0
-      flash.now[:success] = "Choice Deleted"
-      respond_to do |format|
-        format.js {render 'fresh.js.erb'}
-        format.html
+    @question = @choice.question
+    @choices = @question.choice.count
+    @question_num = params[:question_num].to_i
+    if @choices > 1
+      if @choice.destroy
+        @questions = Question.where(answer_type: 'Choice')
+        @count = 0
+        flash.now[:success] = "Choice Deleted"
+        respond_to do |format|
+          format.js {render 'fresh.js.erb'}
+          format.html
+        end
+      else
+        flash.now[:errors] = @choice.errors.full_messages
+        @questions = Question.where(answer_type: 'Choice')
+        @count = 0
+        respond_to do |format|
+          format.js {render 'fresh.js.erb'}
+          format.html
+        end
       end
     else
-      flash.now[:errors] = @choice.errors.full_messages
+      flash.now[:error] = 'Cannot delete last choice.'
       @questions = Question.where(answer_type: 'Choice')
       @count = 0
       respond_to do |format|
@@ -114,7 +127,6 @@ class ChoicesController < ApplicationController
         format.html
       end
     end
-    flash[:success] = ""
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized

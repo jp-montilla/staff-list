@@ -1,51 +1,4 @@
-<!-- 
 
-<div class="container-fluid" id="profile">
-  <div class="row"  id="column_materials">
-    <div class="col-4">
-      <%= image_tag(@employee.profile_picture)%>
-      <div id="profile_information">
-          <div class="row">
-            <div class="col-3"><span>Name: </span></div>
-            <div class="col-9"><span><%= @employee.name %></span></div>
-          </div>
-
-          <div class="row">
-            <div class="col-3"><span>Email: </span></div>
-            <div class="col-9"><span><%= @employee.email %></span></div>
-          </div>
-
-          <div class="row">
-            <div class="col-3"><span>Role: </span></div>
-            <div class="col-9"><span><%= @employee.role %></span></div>
-          </div>
-      </div>
-
-    </div>
-      <div class="col-8">
-        <div class="material_header text-center">
-          <label> Materials Assigned</label>
-        </div>
-        <% if @employee.material != [] %>
-          <div class="row">
-            <% @employee.material.each do|material| %>
-              <div class="col-3" >
-                <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
-                  <div class="card-header"><%= material.material_type%> - <small class="text-light"><%= material.status%></small></div>
-                  <div class="card-body">
-                    <h5 class="card-title text-dark"><%= material.name%></h5>
-                  </div>
-                  
-                </div>
-              </div>
-             <% end %>
-          </div>
-        <% else %>
-          <h3 class="text-center" style="color: red; padding-top: 50px;">No assigned materials.</h3>
-        <% end %>
-      </div>
-    </div>
-</div> -->
 <div class="container" id="profile_area">
   <div class="row">
     <div class="col-3"><%= image_tag(@employee.profile_picture)%></div>
@@ -55,7 +8,11 @@
       <div><%= @employee.email %></div>
       <div></div>
       <hr/>
-      <label class="text-muted"><span><%= @unanswered%> Unanswered Question</span><span><%= @employee.material.count%> Materials</span></label>
+      <div id="info">
+        <%= render 'homepages/info'%>
+        
+      </div>
+
     </div>
   </div>
 </div>

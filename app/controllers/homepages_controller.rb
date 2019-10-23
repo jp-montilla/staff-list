@@ -20,7 +20,7 @@ class HomepagesController < ApplicationController
   end
 
   def new
-    flash[:errors] = ""
+    # flash[:errors] = ""
     @answer = Answer.new
     @question = Question.find(params[:id])
     @choices = Choice.all
@@ -28,14 +28,17 @@ class HomepagesController < ApplicationController
       format.js {render 'add.js.erb'}
       format.html
     end
-    flash[:success] = ""
+    # flash[:success] = ""
   end
 
   def create
     @answer = Answer.new(set_params)
     if @answer.save
       @employee = Employee.find(current_employee.id)
+      @answers = Answer.where(employee_id: current_employee.id)
       @questions = Question.all
+      @answered = @answers.count
+      @unanswered = @questions.count - @answered
       flash.now[:success] = "Answer Saved"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
@@ -50,8 +53,8 @@ class HomepagesController < ApplicationController
         format.html
       end
     end
-    flash[:success] = ""
-    flash[:errors] = ""
+    # flash[:success] = ""
+    # flash[:errors] = ""
   end
 
   def edit
@@ -63,7 +66,7 @@ class HomepagesController < ApplicationController
       format.js {render 'edit.js.erb'}
       format.html
     end
-    flash[:success] = ""
+    # flash[:success] = ""
   end
 
   def update
@@ -85,8 +88,8 @@ class HomepagesController < ApplicationController
         format.html
       end
     end
-    flash[:success] = ""
-    flash[:errors] = ""
+    # flash[:success] = ""
+    # flash[:errors] = ""
   end
 
   def destroy
@@ -94,12 +97,15 @@ class HomepagesController < ApplicationController
     @answer.destroy
     flash.now[:success] = 'Answer deleted successfully.'
     @employee = Employee.find(current_employee.id)
+    @answers = Answer.where(employee_id: current_employee.id)
     @questions = Question.all
+    @answered = @answers.count
+    @unanswered = @questions.count - @answered
     respond_to do |format|
       format.js {render 'fresh.js.erb'}
       format.html
     end
-    flash[:success] = ""
+    # flash[:success] = ""
   end
 
   def answer

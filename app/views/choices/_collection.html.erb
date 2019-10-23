@@ -1,12 +1,14 @@
   <% @questions.each do |question|%>
   <div class="row">
-    
     <% @count += 1 %>
     <div class="card border-dark mb-3 col-6" style="max-width: 100rem;">
       <div class="card-header">Question <%= @count%></div>
 
       <div class="card-body text-dark">
         <h5 class="card-title"><%= question.question %></h5>
+          <% if flash[:error] and @question_num == @count%>
+            <p class="alert alert-danger"><%= flash[:error]%></p>
+          <% end %>
         <p class="card-text">
           <% question.choice.each do |choice|%>
             <div class="row">
@@ -15,7 +17,7 @@
               </div>
               <div class="col-s6">
                 <%= link_to 'Edit', edit_choice_path(choice.id), remote: true, :class => 'btn btn-sm btn-success'%> 
-                <%= link_to 'Delete', delete_choice_path(choice.id), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true, :class => 'btn btn-danger btn-sm'%>
+                <%= link_to 'Delete', delete_choice_path(:id => choice.id, :question_num => @count), data: {:confirm => 'Are you sure?'}, :method => :delete, :remote => true, :class => 'btn btn-danger btn-sm'%>
               </div>
             </div>
           <% end %>

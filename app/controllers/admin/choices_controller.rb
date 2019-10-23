@@ -26,7 +26,7 @@ module Admin
         if @choice == 1 and @question_id != requested_resource.question.id
           requested_resource.question_id = @question_id
           requested_resource.save
-          flash[:error] = 'Cannot remove last choice'
+          flash.now[:error] = 'Cannot remove last choice'
           render :edit, locals: {
           page: Administrate::Page::Form.new(dashboard, requested_resource),
         }
