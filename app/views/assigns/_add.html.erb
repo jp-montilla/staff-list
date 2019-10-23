@@ -1,7 +1,8 @@
-<div class="card border-success mb-3" style="max-width: 100rem;">
-  <div class="card-header">Assign material to <strong style="font-size: 20px"><%= @employee.name%></strong></div>
-  <div class="card-body">
-    <p class="card-text">
+
+<div id="assign_add">
+    <div class="text-center">
+      <div>Assign material to <strong style="font-size: 20px"><%= @employee.name%></strong></div>
+      <hr/>
       <% if flash[:success] and flash[:success] != "" %>
         <p class="alert alert-success" style="font-size: 15px"><%= flash[:success]%></p>
       <% end %>
@@ -25,6 +26,6 @@
           <%= link_to 'Close', assign_close_path , remote: true, :class => 'btn btn-danger btn-block'%>
          </div>
        </div>
-    </p>
+
   </div>
 </div>

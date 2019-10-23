@@ -15,8 +15,6 @@ class ChoicesController < ApplicationController
   end
 
   def new
-    flash[:errors] = ""
-    flash[:error] = ""
     @choice = Choice.new
     @question = Question.find(params[:id])
     @question_box = params[:id]
@@ -58,11 +56,9 @@ class ChoicesController < ApplicationController
         format.html
       end
     end   
-    # flash[:success] = ""
   end
 
   def edit
-    # flash[:errors] = ""
     @choice = Choice.find(params[:id])
     @question = @choice.question
     @question_box = @question.id.to_s
@@ -92,7 +88,6 @@ class ChoicesController < ApplicationController
         format.html
       end
     end
-    # flash[:success] = ""
   end
 
   def destroy
@@ -134,7 +129,7 @@ class ChoicesController < ApplicationController
     private
 
     def user_not_authorized
-      flash.now[:alert] = "You are not authorized to perform this action."
+      flash[:alert] = "You are not authorized to perform this action."
       redirect_to(request.referrer || root_path)
     end
 

@@ -20,7 +20,6 @@ class HomepagesController < ApplicationController
   end
 
   def new
-    # flash[:errors] = ""
     @answer = Answer.new
     @question = Question.find(params[:id])
     @choices = Choice.all
@@ -28,7 +27,6 @@ class HomepagesController < ApplicationController
       format.js {render 'add.js.erb'}
       format.html
     end
-    # flash[:success] = ""
   end
 
   def create
@@ -53,12 +51,9 @@ class HomepagesController < ApplicationController
         format.html
       end
     end
-    # flash[:success] = ""
-    # flash[:errors] = ""
   end
 
   def edit
-    flash[:errors] = ""
     @employee = Employee.find(current_employee.id)
     @answer_edit = Answer.find(params[:id])
     @choices = Choice.all
@@ -66,7 +61,6 @@ class HomepagesController < ApplicationController
       format.js {render 'edit.js.erb'}
       format.html
     end
-    # flash[:success] = ""
   end
 
   def update
@@ -88,8 +82,6 @@ class HomepagesController < ApplicationController
         format.html
       end
     end
-    # flash[:success] = ""
-    # flash[:errors] = ""
   end
 
   def destroy
@@ -105,7 +97,6 @@ class HomepagesController < ApplicationController
       format.js {render 'fresh.js.erb'}
       format.html
     end
-    # flash[:success] = ""
   end
 
   def answer

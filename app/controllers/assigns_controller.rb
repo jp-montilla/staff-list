@@ -22,7 +22,6 @@ class AssignsController < ApplicationController
   end
 
   def new
-    flash[:success] = ""
     @employee = Employee.find(params[:id])
     @employee_box = params[:id]
     @materials = Material.where(employee_id: nil)
@@ -40,20 +39,18 @@ class AssignsController < ApplicationController
     @employees = Employee.all.order(name: :asc)
     if @material.update(update_params)
       @employee = Employee.find(params[:id])
-      flash[:success] = "#{@material.name} assigned to #{@employee.email}!"
+      flash.now[:success] = "#{@material.name} assigned to #{@employee.email}!"
       respond_to do |format|
         format.js {render 'fresh.js.erb'}
         format.html
       end
     else
-      flash[:errors] = @material.errors.full_messages
+      flash.now[:errors] = @material.errors.full_messages
       respond_to do |format|
         format.js {render 'add.js.erb'}
         format.html
       end
     end
-    flash[:success] = ""
-
   end
 
   def destroy
@@ -66,7 +63,7 @@ class AssignsController < ApplicationController
         format.html
       end
     else
-      flash[:errors] = @choice.errors.full_messages
+      flash.now[:errors] = @choice.errors.full_messages
       respond_to do |format|
         format.js {render 'add.js.erb'}
         format.html

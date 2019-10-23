@@ -32,7 +32,7 @@ module Admin
       @employee = Employee.find(params[:id])
       @count = Employee.where(role: 'Admin').count
       if @employee.role == 'Admin' and @count == 1
-        flash.now[:error] = 'Cannot delete last admin!'
+        flash[:error] = 'Cannot delete last admin!'
         redirect_to admin_employees_path
       else
         super
