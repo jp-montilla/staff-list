@@ -7,12 +7,14 @@ class ViewsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @question_in_list = Question.where(view_to_list: 1)
+    @question_not_in_list = Question.where(view_to_list: 0)
   end
 
 
   def create
-    @questions = Question.all
+    @question_in_list = Question.where(view_to_list: 1)
+    @question_not_in_list = Question.where(view_to_list: 0)
     @question = Question.find(params[:id])
     if @question.update(update_params)
       respond_to do |format|
