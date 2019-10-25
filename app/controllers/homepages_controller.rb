@@ -12,6 +12,7 @@ class HomepagesController < ApplicationController
   end
 
   def show
+    @employee_detail = current_employee
     @employee = Employee.find(params[:id])
     @answers = Answer.where(employee_id: params[:id])
     @questions = Question.all
@@ -126,6 +127,24 @@ class HomepagesController < ApplicationController
     end
   end
 
+  def update_password
+    @employee_detail = current_employee
+    if @employee_detail.update_with_password(user_params)
+      bypass_sign_in(@employee_detail)
+      flash[:success] = 'Password changed!'
+      render js: "window.location='#{homepage_path(current_employee.id)}'"
+    else
+      flash.now[:errors] = @employee_detail.errors.full_messages
+      respond_to do |format|
+        format.js {render 'random.js.erb'}
+        format.html
+      end
+    end
+  end
+
+
+  
+
 
 
   private
@@ -134,6 +153,11 @@ class HomepagesController < ApplicationController
     end
     def update_params
       params.require(:answer).permit(:answer)
+    end
+
+    def user_params
+    # NOTE: Using `strong_parameters` gem
+      params.require(:employee).permit(:current_password, :password, :password_confirmation)
     end
 
 end

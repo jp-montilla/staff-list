@@ -26,9 +26,6 @@ module Admin
             if resource.save
               flash[:notice] = 'Question created successfully'
               render js: "window.location='#{admin_questions_path}'"
-            # else
-            #   flash[:error] = 'Question cannot be blank!'
-            #   render js: "window.location='#{new_admin_question_path}'"
             end
           end
         else 

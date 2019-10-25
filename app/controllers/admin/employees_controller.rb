@@ -20,7 +20,6 @@ module Admin
     def update
       @employee = Employee.find(params[:id])
       @count = Employee.where(role: 'Admin').count
-
       if params[:employee]["role"] == 'Employee' and @count == 1 and @employee.role == 'Admin'
         flash[:error] = "Cannot remove last admin"
         redirect_to edit_admin_employee_path

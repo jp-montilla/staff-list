@@ -33,12 +33,10 @@ Rails.application.routes.draw do
   patch '/view/create/:id', to: 'views#create', as: :create_view
   patch '/view/destroy/:id', to: 'views#destroy', as: :destroy_view
 
-  
 
   devise_for :employees
-  # devise_for :employees, controllers: {
-  #       sessions: 'employees/sessions'
-  #     }
+
+
 
   scope '(:locale)' do
     resources :homepages, :except => [:new, :create,:destroy]
@@ -48,10 +46,11 @@ Rails.application.routes.draw do
     delete 'homepage/:id/delete', to: 'homepages#destroy', as: :answer_delete
     
     get '/homepage/answer/:id', to: 'homepages#answer', as: :view_answer
-
     get '/homepage/view_question_in_list/:id', to: 'homepages#view_question_in_list', as: :view_question_in_list
-
     get '/homepage/close', to: 'homepages#close', as: :close_btn
+
+    patch 'homepage/update_password/:id', to: 'homepages#update_password', as: :update_password
+
 
     get 'material/charts' => 'charts#index', as: :chart_show
 

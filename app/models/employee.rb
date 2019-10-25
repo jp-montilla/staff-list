@@ -11,6 +11,6 @@ class Employee < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :session_limitable, 
+  devise :database_authenticatable, :session_limitable, :registerable,
          :recoverable, :rememberable, :validatable
 end
