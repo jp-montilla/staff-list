@@ -19,12 +19,19 @@ module Admin
 
     def update
       @employee = Employee.find(params[:id])
-      if @employee.update(employee_params)
-        flash[:success] = "Employee updated successfully!"
-        redirect_to admin_employee_path
-      else
-        flash[:error] = @employee.errors.full_messages.join('<br/>')
+      @count = Employee.where(role: 'Admin').count
+
+      if params[:employee]["role"] == 'Employee' and @count == 1 and @employee.role == 'Admin'
+        flash[:error] = "Cannot remove last admin"
         redirect_to edit_admin_employee_path
+      else
+        if @employee.update(employee_params)
+          flash[:success] = "Employee updated successfully!"
+          redirect_to admin_employee_path
+        else
+          flash[:error] = @employee.errors.full_messages.join('<br/>')
+          redirect_to edit_admin_employee_path
+        end
       end
     end
 
@@ -43,7 +50,7 @@ module Admin
 
     private
       def employee_params
-        params.require(:employee).permit(:name, :email, :profile_picture)
+        params.require(:employee).permit(:name, :email, :role, :profile_picture)
       end
 
     # Define a custom finder by overriding the `find_resource` method:

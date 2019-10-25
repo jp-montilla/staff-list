@@ -2,18 +2,44 @@
 
 <div id="question_view_in_list">
   <div class="row">
-    <div class="col-6" style="padding-left: 20px">
-      <h4 class="text-center">Included in the list</h4>
-      <div id="included">
-        <%if @question_in_list != []%>
-          <div class="row">
-              <% @question_in_list.each do |question|%>
+      <div class="col-6" style="padding-left: 20px">
+        <div id="left">
+        <h4 class="text-center">Included in the list</h4>
+        <div id="included">
+          <%if @question_in_list != []%>
+            <div class="row">
+                <% @question_in_list.each do |question|%>
+                  <div class="col-4">
+                    <div id="question_item" class="text-center">
+                      <label ><%= question.question %> </label><br/>
+                      <%= form_for(question, url: create_view_path(question.id),remote: true) do |f|%>
+                        <%= f.hidden_field :view_to_list, :value => 0 %>
+                        <%= f.submit 'Remove', :class => 'btn btn-danger btn-sm'%>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <br/>
+              <h5 class="text-muted text-center">Nothing here.</h5>
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-6" style="padding-right: 20px;">
+      <div id="right">
+        <h4 class="text-center">Not included in the list</h4>
+        <div id="included">
+          <%if @question_not_in_list != []%>
+            <div class="row">
+              <% @question_not_in_list.each do |question|%>
                 <div class="col-4">
                   <div id="question_item" class="text-center">
                     <label ><%= question.question %> </label><br/>
                     <%= form_for(question, url: create_view_path(question.id),remote: true) do |f|%>
-                      <%= f.hidden_field :view_to_list, :value => 0 %>
-                      <%= f.submit 'Remove', :class => 'btn btn-danger btn-sm'%>
+                      <%= f.hidden_field :view_to_list, :value => 1 %>
+                      <%= f.submit 'Add', :class => 'btn btn-success btn-sm'%>
                     <% end %>
                   </div>
                 </div>
@@ -23,29 +49,7 @@
             <br/>
             <h5 class="text-muted text-center">Nothing here.</h5>
           <% end %>
-      </div>
-    </div>
-    <div class="col-6" style="padding-right: 20px;">
-      <h4 class="text-center">Not included in the list</h4>
-      <div id="included">
-        <%if @question_not_in_list != []%>
-          <div class="row">
-            <% @question_not_in_list.each do |question|%>
-              <div class="col-4">
-                <div id="question_item" class="text-center">
-                  <label ><%= question.question %> </label><br/>
-                  <%= form_for(question, url: create_view_path(question.id),remote: true) do |f|%>
-                    <%= f.hidden_field :view_to_list, :value => 1 %>
-                    <%= f.submit 'Add', :class => 'btn btn-success btn-sm'%>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <br/>
-          <h5 class="text-muted text-center">Nothing here.</h5>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
