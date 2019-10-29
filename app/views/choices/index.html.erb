@@ -1,9 +1,13 @@
 <div class="container">
   <h1>Choices</h1>
   <hr>
-  <div id="choices-tbl">
-    <%= render 'choices/collection' %>
-  </div>
+  <% if @questions.count >= 1%>
+    <div id="choices-tbl">
+      <%= render 'choices/collection' %>
+    </div>
+  <% else %>
+    <h4 class="text-muted">Add question with answer type of choice.</h4>
+  <% end %>
 </div>
 
 

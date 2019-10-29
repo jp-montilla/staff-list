@@ -13,6 +13,23 @@ employee_list = [
   [ "Jonathan Doe", "jonathandoe@email.com", "Employee", "password", "password"]
 ]
 
+question_list = [
+  ["Question 1?", "Text"],
+  ["Question 2?", "Text"],
+  ["Question 3?", "Text"],
+  ["Question 4?", "Text"],
+  ["Question 5?", "Text"],
+  ["Question 6?", "Text"],
+  ["Question 7?", "Text"],
+  ["Question 8?", "Text"],
+  ["Question 9?", "Text"],
+  ["Question 10?", "Text"],
+]
+
 employee_list.each do |name, email, role, password, password_confirmation|
   Employee.create(name: name, email: email, role: role, password: password, password_confirmation: password_confirmation)
+end
+
+question_list.each do |question, answer_type|
+  Question.create(question: question, answer_type: answer_type)
 end

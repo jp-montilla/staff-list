@@ -9,10 +9,13 @@
     <div class="col-8">
       <div class="profile_name">
         <%= @employee.name %>
-        <button type="button" class="btn-sm" data-toggle="modal" data-target="#exampleModal">Change Password</button>
+        <% if current_employee.id == @employee.id%>
+          <button type="button" class="btn-sm" data-toggle="modal" data-target="#exampleModal">Change Password</button>
+        <% end %>
         <span class="badge badge-secondary"><%= @employee.role %></span>
       </div>
       <div><%= @employee.email %></div>
+      <% if current_employee.id == @employee.id%>
         <div class="modal fade" id="exampleModal" tabindex="-1">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -25,12 +28,10 @@
               <div id="password_modal">
                 <%= render 'homepages/change_password'%>
               </div>
-              
-                  
-              
             </div>
           </div>
         </div>
+      <% end %>
 
 
 
