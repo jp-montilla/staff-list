@@ -1,0 +1,9 @@
+<% if remotipart_submitted? %>
+  // alert('submitted via remotipart')
+$('#new_employee_form').html("<%= j render 'admin/employees/add' %>")
+
+<% else %>
+$('#new_employee_form').html("<%= j render 'admin/employees/add' %>")
+
+  // alert('submitted via native jquery-ujs')
+<% end %>

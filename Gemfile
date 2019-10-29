@@ -37,6 +37,7 @@ gem 'file_validators'
 gem "pundit"
 gem 'webpacker', '~> 3.0'
 gem 'ransack'
+gem 'remotipart', '~> 1.4', '>= 1.4.3'
 
 
 

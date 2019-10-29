@@ -12,6 +12,31 @@ module Admin
     # 
     # 
 
+    def index
+      @employee = Employee.new
+      super
+    end
+
+    def create
+      @employee = Employee.new(create_params)
+      # if remotipart_submitted?
+
+        if @employee.save
+          flash[:notice] = 'Employee created successfully!'
+          render js: "window.location='#{admin_employees_path}'"
+        else
+          flash.now[:errors] = @employee.errors.full_messages
+          respond_to do |format|
+            format.js {render 'add.js.erb'}
+            format.html
+            # format.js {render 'create.js.erb'}
+            # format.html
+
+          end
+        end
+      # end
+    end
+
     
     def edit
       super
@@ -24,7 +49,7 @@ module Admin
         flash[:error] = "Cannot remove last admin"
         redirect_to edit_admin_employee_path
       else
-        if @employee.update(employee_params)
+        if @employee.update(edit_params)
           flash[:success] = "Employee updated successfully!"
           redirect_to admin_employee_path
         else
@@ -48,9 +73,14 @@ module Admin
 
 
     private
-      def employee_params
+      def create_params
+        params.require(:employee).permit(:name, :email, :role, :profile_picture, :password, :password_confirmation)
+      end
+
+      def edit_params
         params.require(:employee).permit(:name, :email, :role, :profile_picture)
       end
+
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)

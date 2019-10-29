@@ -12,14 +12,16 @@
 //
 //= require rails-ujs
 //= require jquery3
-
-
+//= require jquery_ujs
+//= require jquery.remotipart
 //= require_tree .
 
 //= require popper
 //= require bootstrap-sprockets
 //= require chartkick
 //= require Chart.bundle
+
+
 
 
 $(document).ready(function(){
