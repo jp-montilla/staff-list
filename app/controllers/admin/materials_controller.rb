@@ -17,5 +17,33 @@ module Admin
 
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     # for more information
+
+    def index
+      @material = Material.new
+      super
+    end
+
+    def create
+      @material = Material.new(set_params)
+      if @material.save
+        flash[:notice] = 'Material created successfully!'
+        render js: "window.location='#{admin_materials_path}'"
+      else
+        flash.now[:error] = @material.errors.full_messages
+        respond_to do |format|
+          format.js {render 'add.js.erb'}
+          format.html
+        end
+      end
+
+    end
+
+
+    private
+
+    def set_params
+      params.require(:material).permit(:name, :material_type, :status)
+    end
+
   end
 end

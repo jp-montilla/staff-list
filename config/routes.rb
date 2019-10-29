@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :choices
     resources :materials
 
+    post 'material/create', to: 'materials#create', as: :material_create
+
     root to: "employees#index"
   end
 

@@ -1,0 +1,21 @@
+<% if flash[:error]%>
+  <p class="alert alert-danger"><%= flash[:error][0] %></p>
+<% end %>
+
+  <%= form_for(@material, url:admin_material_create_path, remote: true) do |f|%>
+    <p><div class="row">
+      <div class="col-3 "><%= f.label :name%></div>
+      <div class="col-9"><%= f.text_field :name%></div>
+    </div></p>
+
+    <p><div class="row">
+      <div class="col-4 "><%= f.label :material_type%></div>
+      <div class="col-8"><%= f.select(:material_type, ["Hardware", "Software", "Peripheral"]) %></div>
+    </div></p>
+
+    <p><div class="row">
+      <div class="col-4 "><%= f.label :status%></div>
+      <div class="col-8"><%= f.select(:status, ["Deployed", "Stored", "Defective"]) %></div>
+    </div></p>
+    <%= f.submit 'Submit', :class=> 'btn btn-primary btn-block'%>
+  <% end %>
