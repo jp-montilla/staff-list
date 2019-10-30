@@ -45,14 +45,7 @@ It renders the `_table` partial to display details about the resources.
   <div>
     <%= link_to 'Assign Materials', assigns_path, :class => 'btn btn-success'%>
     <%= link_to 'Materials Report', chart_show_path, :class => 'btn btn-warning'%>
-    <%#= link_to(
-      t(
-        "administrate.actions.new_resource",
-        name: page.resource_name.titleize.downcase
-      ),
-      [:new, namespace, page.resource_path],
-      class: "button",
-    ) if valid_action?(:new) && show_action?(:new, new_resource) %>
+    
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newMaterial" style="font-weight: bolder">New Material</button>
 
     <!-- Modal -->

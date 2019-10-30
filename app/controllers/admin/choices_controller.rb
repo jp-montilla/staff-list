@@ -42,5 +42,25 @@ module Admin
         }
       end
     end
+
+    def destroy
+      @choice = Choice.find(params[:id])
+      @question = Question.find(@choice.question_id)
+      @choices = @question.choice.count
+      if @choices > 1
+        requested_resource.destroy
+        flash[:notice] = translate_with_resource("destroy.success")
+      else
+        flash[:error] = "Cannot remove last choice"
+      end
+      redirect_to admin_question_path(@question.id)
+    end
+
+
+
+
+
+
+
   end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     post 'employee/create', to: 'employees#create', as: :employee_create
     post 'material/create', to: 'materials#create', as: :material_create
+    post 'question/create', to: 'questions#create', as: :question_create
 
     root to: "employees#index"
   end

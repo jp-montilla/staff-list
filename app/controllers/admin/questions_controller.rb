@@ -10,6 +10,11 @@ module Admin
     #     per(10)
     # end
 
+    def index
+      @question = Question.new
+      super
+    end
+
     def create
       @question = Question.new(set_params)
       @valid = @question.question.match? /[a-zA-Z]/
@@ -29,12 +34,18 @@ module Admin
             end
           end
         else 
-          flash[:error] = 'Question already existed!'
-          render js: "window.location='#{new_admin_question_path}'"
+          flash.now[:error] = 'Question already existed!'
+          respond_to do |format|
+              format.js {render 'error.js.erb'}
+              format.html
+            end
         end
       else
-        flash[:error] = 'Question cannot be blank!'
-        render js: "window.location='#{new_admin_question_path}'"
+        flash.now[:error] = 'Question cannot be blank!'
+        respond_to do |format|
+              format.js {render 'error.js.erb'}
+              format.html
+            end
       end
     end
 
