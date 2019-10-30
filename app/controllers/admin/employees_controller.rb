@@ -19,22 +19,18 @@ module Admin
 
     def create
       @employee = Employee.new(create_params)
-      # if remotipart_submitted?
 
-        if @employee.save
-          flash[:notice] = 'Employee created successfully!'
-          render js: "window.location='#{admin_employees_path}'"
-        else
-          flash.now[:errors] = @employee.errors.full_messages
-          respond_to do |format|
-            format.js {render 'add.js.erb'}
-            format.html
-            # format.js {render 'create.js.erb'}
-            # format.html
+      if @employee.save
+        flash[:notice] = 'Employee created successfully!'
+        render js: "window.location='#{admin_employees_path}'"
+      else
+        flash.now[:errors] = @employee.errors.full_messages
 
-          end
+        respond_to do |format|
+          format.js {render 'create.js.erb'}
+          format.html
         end
-      # end
+      end
     end
 
     
@@ -74,7 +70,7 @@ module Admin
 
     private
       def create_params
-        params.require(:employee).permit(:name, :email, :role, :profile_picture, :password, :password_confirmation)
+        params.require(:employee).permit(:name, :email, :role, :password, :password_confirmation)
       end
 
       def edit_params

@@ -1,6 +1,9 @@
 <% if remotipart_submitted? %>
+<% debugger %>
   // alert('submitted via remotipart')
-$('#new_employee_form').html("<%= j render 'admin/employees/add' %>")
+// $('#new_employee_form').html("<%= j render 'admin/employees/add' %>")
+location.reload(true);
+
 
 <% else %>
 $('#new_employee_form').html("<%= j render 'admin/employees/add' %>")
