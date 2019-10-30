@@ -18,19 +18,7 @@ module Admin
     end
 
     def create
-      @employee = Employee.new(create_params)
-
-      if @employee.save
-        flash[:notice] = 'Employee created successfully!'
-        render js: "window.location='#{admin_employees_path}'"
-      else
-        flash.now[:errors] = @employee.errors.full_messages
-
-        respond_to do |format|
-          format.js {render 'create.js.erb'}
-          format.html
-        end
-      end
+      super
     end
 
     

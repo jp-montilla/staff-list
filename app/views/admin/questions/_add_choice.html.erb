@@ -1,7 +1,7 @@
     <div class="card border-primary mb-3" style="max-width: 80rem;">
       <div class="card-header">Add Choice for <%= @question.question %></div>
       <div class="card-body">
-        <label style="font-size: 40px">CHOICES</label>
+        <label style="font-size: 20px">CHOICES</label>
         <% if flash[:error] and flash[:error]!= "" %>
         <p class="alert alert-danger"><%= flash[:error]%></p>
         <% end %>

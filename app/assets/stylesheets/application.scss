@@ -329,6 +329,8 @@ body{
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2); 
       background: white; 
       min-height: 100px;
+      padding: 20px;
+      margin-bottom: 10px;
       img{
         border-radius: 50%;
         border: 1px solid silver;
@@ -366,7 +368,7 @@ body{
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.2);
       min-height: 300px;
       background: white;
-      padding: 20px;
+      padding: 30px;
       max-height: 80vh;
       overflow-y: auto;
       display: block;
