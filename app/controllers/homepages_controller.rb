@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomepagesController < ApplicationController
   before_action :authenticate_employee!
   def index
@@ -6,7 +8,7 @@ class HomepagesController < ApplicationController
     @questions = Question.where(view_to_list: 1)
     @answers = Answer.all
     respond_to do |format|
-      format.js {render 'index.js.erb'}
+      format.js { render 'index.js.erb' }
       format.html
     end
   end
@@ -25,7 +27,7 @@ class HomepagesController < ApplicationController
     @question = Question.find(params[:id])
     @choices = Choice.all
     respond_to do |format|
-      format.js {render 'add.js.erb'}
+      format.js { render 'add.js.erb' }
       format.html
     end
   end
@@ -38,9 +40,9 @@ class HomepagesController < ApplicationController
       @questions = Question.all
       @answered = @answers.count
       @unanswered = @questions.count - @answered
-      flash.now[:success] = "Answer Saved"
+      flash.now[:success] = 'Answer Saved'
       respond_to do |format|
-        format.js {render 'fresh.js.erb'}
+        format.js { render 'fresh.js.erb' }
         format.html
       end
     else
@@ -48,7 +50,7 @@ class HomepagesController < ApplicationController
       @employee = Employee.find(current_employee.id)
       @question = @answer.question
       respond_to do |format|
-        format.js {render 'add.js.erb'}
+        format.js { render 'add.js.erb' }
         format.html
       end
     end
@@ -59,7 +61,7 @@ class HomepagesController < ApplicationController
     @answer_edit = Answer.find(params[:id])
     @choices = Choice.all
     respond_to do |format|
-      format.js {render 'edit.js.erb'}
+      format.js { render 'edit.js.erb' }
       format.html
     end
   end
@@ -71,7 +73,7 @@ class HomepagesController < ApplicationController
       @employee = Employee.find(current_employee.id)
       @questions = Question.all
       respond_to do |format|
-        format.js {render 'fresh.js.erb'}
+        format.js { render 'fresh.js.erb' }
         format.html
       end
     else
@@ -79,7 +81,7 @@ class HomepagesController < ApplicationController
       @employee = Employee.find(current_employee.id)
       @answer_edit = @answer
       respond_to do |format|
-        format.js {render 'edit.js.erb'}
+        format.js { render 'edit.js.erb' }
         format.html
       end
     end
@@ -95,7 +97,7 @@ class HomepagesController < ApplicationController
     @answered = @answers.count
     @unanswered = @questions.count - @answered
     respond_to do |format|
-      format.js {render 'fresh.js.erb'}
+      format.js { render 'fresh.js.erb' }
       format.html
     end
   end
@@ -105,7 +107,7 @@ class HomepagesController < ApplicationController
     @questions = Question.where(view_to_list: 1)
     @answers = Answer.all
     respond_to do |format|
-      format.js {render 'answer.js.erb'}
+      format.js { render 'answer.js.erb' }
       format.html
     end
   end
@@ -114,7 +116,7 @@ class HomepagesController < ApplicationController
     @question = Question.find(params[:id])
     @answers = Answer.where(question_id: @question.id)
     respond_to do |format|
-      format.js {render 'question.js.erb'}
+      format.js { render 'question.js.erb' }
       format.html
     end
   end
@@ -122,7 +124,7 @@ class HomepagesController < ApplicationController
   def close
     @questions = Question.where(view_to_list: 1)
     respond_to do |format|
-      format.js {render 'close.js.erb'}
+      format.js { render 'close.js.erb' }
       format.html
     end
   end
@@ -136,28 +138,24 @@ class HomepagesController < ApplicationController
     else
       flash.now[:errors] = @employee_detail.errors.full_messages
       respond_to do |format|
-        format.js {render 'random.js.erb'}
+        format.js { render 'random.js.erb' }
         format.html
       end
     end
   end
 
-
-  
-
-
-
   private
-    def set_params
-      params.require(:answer).permit(:answer, :question_id, :employee_id)
-    end
-    def update_params
-      params.require(:answer).permit(:answer)
-    end
 
-    def user_params
+  def set_params
+    params.require(:answer).permit(:answer, :question_id, :employee_id)
+  end
+
+  def update_params
+    params.require(:answer).permit(:answer)
+  end
+
+  def user_params
     # NOTE: Using `strong_parameters` gem
-      params.require(:employee).permit(:current_password, :password, :password_confirmation)
-    end
-
+    params.require(:employee).permit(:current_password, :password, :password_confirmation)
+  end
 end

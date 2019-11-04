@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssignsController < ApplicationController
   # before_action :
   before_action :admin
@@ -16,9 +18,9 @@ class AssignsController < ApplicationController
     @materials = Material.where(employee_id: nil)
     @employees = Employee.all.order(name: :asc)
     respond_to do |format|
-        format.js {render 'reload.js.erb'}
-        format.html
-      end
+      format.js { render 'reload.js.erb' }
+      format.html
+    end
   end
 
   def new
@@ -26,7 +28,7 @@ class AssignsController < ApplicationController
     @employee_box = params[:id]
     @materials = Material.where(employee_id: nil)
     respond_to do |format|
-      format.js {render 'add.js.erb'}
+      format.js { render 'add.js.erb' }
       format.html
     end
   end
@@ -41,13 +43,13 @@ class AssignsController < ApplicationController
       @employee = Employee.find(params[:id])
       flash.now[:success] = "#{@material.name} assigned to #{@employee.email}!"
       respond_to do |format|
-        format.js {render 'fresh.js.erb'}
+        format.js { render 'fresh.js.erb' }
         format.html
       end
     else
       flash.now[:errors] = @material.errors.full_messages
       respond_to do |format|
-        format.js {render 'add.js.erb'}
+        format.js { render 'add.js.erb' }
         format.html
       end
     end
@@ -59,31 +61,30 @@ class AssignsController < ApplicationController
     @employees = Employee.all.order(name: :asc)
     if @material.update(update_params)
       respond_to do |format|
-        format.js {render 'reload.js.erb'}
+        format.js { render 'reload.js.erb' }
         format.html
       end
     else
       flash.now[:errors] = @choice.errors.full_messages
       respond_to do |format|
-        format.js {render 'add.js.erb'}
+        format.js { render 'add.js.erb' }
         format.html
       end
     end
   end
-  
-
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   private
 
-    def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to(request.referrer || root_path)
-    end
+  def user_not_authorized
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to(request.referrer || root_path)
+  end
 
   private
-    def update_params
-      params.require(:material).permit(:employee_id)
-    end
+
+  def update_params
+    params.require(:material).permit(:employee_id)
+  end
 end

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
+  # Materials Controller for administrate
   class MaterialsController < Admin::ApplicationController
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
@@ -30,14 +33,9 @@ module Admin
         render js: "window.location='#{admin_materials_path}'"
       else
         flash.now[:error] = @material.errors.full_messages
-        respond_to do |format|
-          format.js {render 'add.js.erb'}
-          format.html
-        end
+        render_add
       end
-
     end
-
 
     private
 
@@ -45,5 +43,11 @@ module Admin
       params.require(:material).permit(:name, :material_type, :status)
     end
 
+    def render_add
+      respond_to do |format|
+        format.js { render 'add.js.erb' }
+        format.html
+      end
+    end
   end
 end

@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class QuestionDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -11,7 +13,7 @@ class QuestionDashboard < Administrate::BaseDashboard
     id: Field::Number,
     question: Field::String,
     answer_type: Field::Select.with_options(
-      collection: ['Text', 'Numerical', 'Choice']
+      collection: %w[Text Numerical Choice]
     ),
     # view_to_list: Field::Boolean,
     created_at: Field::DateTime,
@@ -27,7 +29,7 @@ class QuestionDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :question,
-    :answer_type,
+    :answer_type
     # :view_to_list,
   ].freeze
 
@@ -48,7 +50,7 @@ class QuestionDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :question,
-    :answer_type,
+    :answer_type
     # :view_to_list,
   ].freeze
 
@@ -56,6 +58,6 @@ class QuestionDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(question)
-    "#{question.question}"
+    question.question.to_s
   end
 end

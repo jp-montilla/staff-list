@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
 module Admin
+  # Employees controller for administrate
   class EmployeesController < Admin::ApplicationController
+    before_action :fetch_employee_count, only: %i[update destroy]
+    before_action :fetch_employee, only: %i[update destroy]
+
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -9,8 +15,8 @@ module Admin
     #     page(params[:page]).
     #     per(10)
     # end
-    # 
-    # 
+    #
+    #
 
     def index
       @employee = Employee.new
@@ -21,50 +27,66 @@ module Admin
       super
     end
 
-    
     def edit
       super
     end
 
     def update
-      @employee = Employee.find(params[:id])
-      @count = Employee.where(role: 'Admin').count
-      if params[:employee]["role"] == 'Employee' and @count == 1 and @employee.role == 'Admin'
-        flash[:error] = "Cannot remove last admin"
-        redirect_to edit_admin_employee_path
+      if params[:employee][:role] == 'Employee' && @count == 1 && @employee.adm?
+        remove_admin
+      elsif @employee.update(edit_params)
+        update_employee
       else
-        if @employee.update(edit_params)
-          flash[:success] = "Employee updated successfully!"
-          redirect_to admin_employee_path
-        else
-          flash[:error] = @employee.errors.full_messages.join('<br/>')
-          redirect_to edit_admin_employee_path
-        end
+        error_update_employee
       end
     end
 
     def destroy
-      @employee = Employee.find(params[:id])
-      @count = Employee.where(role: 'Admin').count
-      if @employee.role == 'Admin' and @count == 1
+      if (@employee.role == 'Admin') && (@count == 1)
         flash[:error] = 'Cannot delete last admin!'
         redirect_to admin_employees_path
       else
         super
       end
-
     end
 
-
     private
-      def create_params
-        params.require(:employee).permit(:name, :email, :role, :password, :password_confirmation)
-      end
 
-      def edit_params
-        params.require(:employee).permit(:name, :email, :role, :profile_picture)
-      end
+    def create_params
+      params.require(:employee)
+            .permit(:name, :email, :role, :password, :password_confirmation)
+    end
 
+    def edit_params
+      params.require(:employee).permit(:name, :email, :role, :profile_picture)
+    end
+
+    def fetch_employee
+      @employee = Employee.find(params[:id])
+    end
+
+    def fetch_employee_count
+      @count = Employee.where(role: 'Admin').count
+    end
+
+    def remove_admin
+      flash[:error] = 'Cannot remove last admin'
+      redirect_to edit_admin_employee_path
+    end
+
+    def update_employee
+      flash[:success] = 'Employee updated successfully!'
+      redirect_to admin_employee_path
+    end
+
+    def error_update_employee
+      flash[:error] = @employee.errors.full_messages.join('<br/>')
+      redirect_to edit_admin_employee_path
+    end
+
+    def adm?
+      role == 'Admin'
+    end
 
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)

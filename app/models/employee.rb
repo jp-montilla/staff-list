@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Employee < ApplicationRecord
   # devise :session_limitable
   has_many :answer, dependent: :destroy
@@ -7,7 +9,6 @@ class Employee < ApplicationRecord
   validates :profile_picture, file_size: { less_than: 1.megabytes }
 
   validates :name, presence: true
-
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,24 +7,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # ruby encoding: utf-8
+
 employee_list = [
-  [ "Admin Name", "admin@email.com", "Admin", "password", "password"],
-  [ "John Doe", "johndoe@email.com", "Employee", "password", "password"],
-  [ "Jane Doe", "janedoe@email.com", "Employee", "password", "password"],
-  [ "Jonathan Doe", "jonathandoe@email.com", "Employee", "password", "password"]
+  ['Admin Name', 'admin@email.com', 'Admin', 'password', 'password'],
+  ['John Doe', 'johndoe@email.com', 'Employee', 'password', 'password'],
+  ['Jane Doe', 'janedoe@email.com', 'Employee', 'password', 'password'],
+  ['Jonathan Doe', 'jonathandoe@email.com', 'Employee', 'password', 'password']
 ]
 
 question_list = [
-  ["Question 1?", "Text"],
-  ["Question 2?", "Text"],
-  ["Question 3?", "Text"],
-  ["Question 4?", "Text"],
-  ["Question 5?", "Text"],
-  ["Question 6?", "Text"],
-  ["Question 7?", "Text"],
-  ["Question 8?", "Text"],
-  ["Question 9?", "Text"],
-  ["Question 10?", "Text"],
+  ['Question 1?', 'Text'],
+  ['Question 2?', 'Text'],
+  ['Question 3?', 'Text'],
+  ['Question 4?', 'Text'],
+  ['Question 5?', 'Text'],
+  ['Question 6?', 'Text'],
+  ['Question 7?', 'Text'],
+  ['Question 8?', 'Text'],
+  ['Question 9?', 'Text'],
+  ['Question 10?', 'Text']
 ]
 
 employee_list.each do |name, email, role, password, password_confirmation|

@@ -1,4 +1,6 @@
-require "administrate/base_dashboard"
+# frozen_string_literal: true
+
+require 'administrate/base_dashboard'
 
 class MaterialDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -11,10 +13,10 @@ class MaterialDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     material_type: Field::Select.with_options(
-      collection: ['Hardware', 'Software', 'Peripheral']
+      collection: %w[Hardware Software Peripheral]
     ),
     status: Field::Select.with_options(
-      collection: ['Deployed', 'Stored', 'Defective']
+      collection: %w[Deployed Stored Defective]
     ),
     employee: AssignToField,
     # employee: Field::Hidden.with_options(
@@ -24,7 +26,7 @@ class MaterialDashboard < Administrate::BaseDashboard
     #   collection: [0]
     # ),
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -32,23 +34,23 @@ class MaterialDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :id,
-    :name,
-    :material_type,
-    :employee,
+  COLLECTION_ATTRIBUTES = %i[
+    id
+    name
+    material_type
+    employee
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :id,
-    :name,
-    :material_type,
-    :status,
-    :employee,
-    :created_at,
-    :updated_at,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    id
+    name
+    material_type
+    status
+    employee
+    created_at
+    updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -57,7 +59,7 @@ class MaterialDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :name,
     :material_type,
-    :status,
+    :status
     # :employee,
   ].freeze
 
@@ -65,6 +67,6 @@ class MaterialDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(material)
-    "#{material.name}"
+    material.name.to_s
   end
 end

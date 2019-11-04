@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
 module Admin
+  # Choices Controller for administrate
   class ChoicesController < Admin::ApplicationController
+    before_action :fetch_update_data, only: [:update]
+    before_action :fetch_delete_data, only: [:delete]
+
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -19,48 +25,59 @@ module Admin
     # for more information
 
     def update
-      @question_id = requested_resource.question_id
-      @question = Question.find(@question_id)
-      @choice = @question.choice.count
       if requested_resource.update(resource_params)
-        if @choice == 1 and @question_id != requested_resource.question.id
-          requested_resource.question_id = @question_id
-          requested_resource.save
-          flash.now[:error] = 'Cannot remove last choice'
-          render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
-        }
+        if (@choice == 1) && (@question_id != requested_resource.question.id)
+          update_rollback
+          redirect_edit
         else
-          redirect_to(
-            [namespace, requested_resource],
-            notice: translate_with_resource("update.success"),
-          )
+          redirect_show_success
         end
       else
-        render :edit, locals: {
-          page: Administrate::Page::Form.new(dashboard, requested_resource),
-        }
+        redirect_edit
       end
     end
 
     def destroy
-      @choice = Choice.find(params[:id])
-      @question = Question.find(@choice.question_id)
-      @choices = @question.choice.count
       if @choices > 1
         requested_resource.destroy
-        flash[:notice] = translate_with_resource("destroy.success")
+        flash[:notice] = translate_with_resource('destroy.success')
       else
-        flash[:error] = "Cannot remove last choice"
+        flash[:error] = 'Cannot remove last choice'
       end
       redirect_to admin_question_path(@question.id)
     end
 
+    private
 
+    def fetch_update_data
+      @question_id = requested_resource.question_id
+      @question = Question.find(@question_id)
+      @choice = @question.choice.count
+    end
 
+    def update_rollback
+      requested_resource.question_id = @question_id
+      requested_resource.save
+      flash.now[:error] = 'Cannot remove last choice'
+    end
 
+    def redirect_edit
+      render :edit, locals: {
+        page: Administrate::Page::Form.new(dashboard, requested_resource)
+      }
+    end
 
+    def redirect_show_success
+      redirect_to(
+        [namespace, requested_resource],
+        notice: translate_with_resource('update.success')
+      )
+    end
 
-
+    def fetch_delete_data
+      @choice = Choice.find(params[:id])
+      @question = Question.find(@choice.question_id)
+      @choices = @question.choice.count
+    end
   end
 end

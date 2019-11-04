@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # All Administrate controllers inherit from this `Admin::ApplicationController`,
 # making it the ideal place to put authentication logic or other
 # before_actions.
@@ -5,6 +7,7 @@
 # If you want to add pagination or other controller-level concerns,
 # you're free to overwrite the RESTful controller actions.
 module Admin
+  # Application Controller for administrate
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_admin
     before_action :authenticate_employee!
@@ -12,7 +15,7 @@ module Admin
     include Pundit
 
     def authenticate_admin
-      # TODO Add authentication logic here.
+      # TODO: Add authentication logic here.
     end
 
     def pundit_user
@@ -29,11 +32,9 @@ module Admin
     private
 
     def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
+      flash[:alert] = 'You are not authorized to perform this action.'
       redirect_to(request.referrer || root_path)
     end
-
-
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.

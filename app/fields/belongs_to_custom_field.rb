@@ -1,7 +1,8 @@
-require "administrate/field/base"
+# frozen_string_literal: true
+
+require 'administrate/field/base'
 
 class BelongsToCustomField < Administrate::Field::BelongsTo
-
   def candidate_resources
     associated_class.where(answer_type: 'Choice').order(:question) # add your custom order here
   end
@@ -10,5 +11,4 @@ class BelongsToCustomField < Administrate::Field::BelongsTo
   def to_partial_path
     "/fields/belongs_to/#{page}"
   end
-
 end

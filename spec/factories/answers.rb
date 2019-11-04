@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :answer do
     question
     employee
-    answer { "Sample Answer" }
+    answer { 'Sample Answer' }
 
     # trait :other1 do
     #   association :employee, :other1
