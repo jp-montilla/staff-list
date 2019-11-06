@@ -1,75 +1,49 @@
 # frozen_string_literal: true
 
+# Assigns Controller
 class AssignsController < ApplicationController
-  # before_action :
   before_action :admin
+  before_action :fetch_create_data, only: [:create]
+  before_action :fetch_destroy_data, only: [:destroy]
+  before_action :fetch_data, only: %i[index show]
 
   def admin
     @employee = Employee.find(current_employee.id)
     authorize(@employee, :admin?)
   end
 
-  def index
-    @materials = Material.where(employee_id: nil)
-    @employees = Employee.all.order(name: :asc)
-  end
+  def index; end
 
   def show
-    @materials = Material.where(employee_id: nil)
-    @employees = Employee.all.order(name: :asc)
-    respond_to do |format|
-      format.js { render 'reload.js.erb' }
-      format.html
-    end
+    refresh
   end
 
   def new
     @employee = Employee.find(params[:id])
     @employee_box = params[:id]
     @materials = Material.where(employee_id: nil)
-    respond_to do |format|
-      format.js { render 'add.js.erb' }
-      format.html
-    end
+    add
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
-    @material = Material.find(params[:material_id])
-    @employee = Employee.find(params[:employee])
-    @employee_box = params[:employee]
-    @materials = Material.where(employee_id: nil)
-    @employees = Employee.all.order(name: :asc)
     if @material.update(update_params)
       @employee = Employee.find(params[:id])
       flash.now[:success] = "#{@material.name} assigned to #{@employee.email}!"
-      respond_to do |format|
-        format.js { render 'fresh.js.erb' }
-        format.html
-      end
+      refresh
     else
       flash.now[:errors] = @material.errors.full_messages
-      respond_to do |format|
-        format.js { render 'add.js.erb' }
-        format.html
-      end
+      add
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def destroy
-    @material = Material.find(params[:id])
-    @materials = Material.where(employee_id: nil)
-    @employees = Employee.all.order(name: :asc)
     if @material.update(update_params)
-      respond_to do |format|
-        format.js { render 'reload.js.erb' }
-        format.html
-      end
+      refresh
     else
       flash.now[:errors] = @choice.errors.full_messages
-      respond_to do |format|
-        format.js { render 'add.js.erb' }
-        format.html
-      end
+      add
     end
   end
 
@@ -82,9 +56,40 @@ class AssignsController < ApplicationController
     redirect_to(request.referrer || root_path)
   end
 
-  private
-
   def update_params
     params.require(:material).permit(:employee_id)
+  end
+
+  def fetch_create_data
+    @material = Material.find(params[:material_id])
+    @employee = Employee.find(params[:employee])
+    @employee_box = params[:employee]
+    @materials = Material.where(employee_id: nil)
+    @employees = Employee.all.order(name: :asc)
+  end
+
+  def refresh
+    respond_to do |format|
+      format.js { render 'fresh.js.erb' }
+      format.html
+    end
+  end
+
+  def add
+    respond_to do |format|
+      format.js { render 'add.js.erb' }
+      format.html
+    end
+  end
+
+  def fetch_destroy_data
+    @material = Material.find(params[:id])
+    @materials = Material.where(employee_id: nil)
+    @employees = Employee.all.order(name: :asc)
+  end
+
+  def fetch_data
+    @materials = Material.where(employee_id: nil)
+    @employees = Employee.all.order(name: :asc)
   end
 end

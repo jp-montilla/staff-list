@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Material Charts
 class ChartsController < ApplicationController
   before_action :admin
 

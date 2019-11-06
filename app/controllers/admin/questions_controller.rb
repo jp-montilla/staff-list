@@ -60,10 +60,7 @@ module Admin
       if @question == []
         flash.now[:error] = 'Question must have at least 1 choice'
         @question = Question.new(question: @que, answer_type: 'Choice')
-        respond_to do |format|
-          format.js { render 'add.js.erb' }
-          format.html
-        end
+        question_with_choice
       else
         flash.now[:notice] = 'Question created successfully'
         render js: "window.location='#{admin_questions_path}'"
@@ -167,11 +164,10 @@ module Admin
 
     def add_choice_valid
       @is_exist = Choice.where(question_id: @que, choice: params[:choice])
+      @question = Question.find(@que)
       if @is_exist == []
-        @question = Question.find(@que)
         @choice = Choice.create(choice: @choi, question_id: params[:q_id])
       else
-        @question = Question.find(@que)
         flash.now[:error] = "#{@cho} already exist"
       end
     end
