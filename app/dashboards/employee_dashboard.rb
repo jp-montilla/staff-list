@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'administrate/base_dashboard'
-
+# Dashboard for employee model
 class EmployeeDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.

@@ -6,7 +6,7 @@ module Admin
     before_action :set_create, only: [:create]
     before_action :valid, only: [:create_choice]
     before_action :fetch_check_question, only: [:check_question]
-    before_action :set_params_choice, only: [:add_choice_valid]
+    # before_action :set_params_choice, only: [:add_choice_valid]
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -27,19 +27,15 @@ module Admin
         if Question.where(question: @question.question) == []
           create_question
         else
-          question_existed
+          error_question(:existed)
         end
       else
-        question_blank
+        error_question(:blank)
       end
     end
 
     def create_choice
-      if Question.where(id: params[:q_id]) == []
-        add_first_choice
-      else
-        add_choice
-      end
+      add_choice
       render_add_choice
     end
 
@@ -108,22 +104,14 @@ module Admin
     end
 
     def save_question
-      resource = resource_class.new(resource_params)
+      resource = resource_class.create(resource_params)
       authorize_resource(resource)
       flash[:notice] = 'Question created successfully'
       render js: "window.location='#{admin_questions_path}'"
     end
 
-    def question_blank
-      flash.now[:error] = 'Question cannot be blank!'
-      respond_to do |format|
-        format.js { render 'error.js.erb' }
-        format.html
-      end
-    end
-
-    def question_existed
-      flash.now[:error] = 'Question already existed!'
+    def error_question(error)
+      flash.now[:error] = I18n.t "controllers.admin.question.errors.#{error}"
       respond_to do |format|
         format.js { render 'error.js.erb' }
         format.html
@@ -134,24 +122,24 @@ module Admin
       @valid = params[:choice].match?(/[a-zA-Z]/)
     end
 
-    def add_first_choice
+    def add_choice
       @que = params[:q_question]
       @cho = params[:choice]
       if @valid
-        @question = Question.create(question: @que, answer_type: 'Choice')
-        @choice = Choice.create(choice: @cho, question_id: @question.id)
+        @question = Question.find_or_create_by(question: @que, answer_type: 'Choice')
+        @is_exist = Choice.where(question_id: @que, choice: @cho)
+        if @is_exist == []
+          @choice = Choice.create(choice: @cho, question_id: @question.id)
+        else
+          flash.now[:error] = "#{@cho} already exist"
+        end
       else
         flash.now[:error] = "Choice can't be blank."
-        @question = Question.new(question: @que, answer_type: 'Choice')
-      end
-    end
-
-    def add_choice
-      if @valid
-        add_choice_valid
-      else
-        @question = Question.find(params[:q_id])
-        flash.now[:error] = "Choice can't be blank."
+        if Question.where(id: params[:q_id]) == []
+          @question = Question.new(question: @que, answer_type: 'Choice')
+        else
+          @question = Question.find(params[:q_id])
+        end
       end
     end
 
@@ -159,16 +147,6 @@ module Admin
       respond_to do |format|
         format.js { render 'add.js.erb' }
         format.html
-      end
-    end
-
-    def add_choice_valid
-      @is_exist = Choice.where(question_id: @que, choice: params[:choice])
-      @question = Question.find(@que)
-      if @is_exist == []
-        @choice = Choice.create(choice: @choi, question_id: params[:q_id])
-      else
-        flash.now[:error] = "#{@cho} already exist"
       end
     end
 

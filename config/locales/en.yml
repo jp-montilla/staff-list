@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+
+  controllers:
+    admin:
+      question:
+        errors:
+          existed: "Question already existed"
+          blank: "Question can't be blank"

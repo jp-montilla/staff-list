@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-require 'administrate/field/base'
 
+# rubocop:disable Metrics/LineLength
+
+require 'administrate/field/base'
+# Custom field
 class AssignToField < Administrate::Field::BelongsTo
   def candidate_resources
     associated_class.where(role: 'Employee').order(:name) # add your custom order here
@@ -12,3 +15,5 @@ class AssignToField < Administrate::Field::BelongsTo
     "/fields/belongs_to/#{page}"
   end
 end
+# rubocop:enable Metrics/LineLength
+

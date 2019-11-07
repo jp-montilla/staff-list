@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'administrate/base_dashboard'
-
+# Dashboard for question model
 class QuestionDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
