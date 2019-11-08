@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Question Model
 class Question < ApplicationRecord
   has_many :choice, dependent: :destroy
   has_many :answer, dependent: :destroy

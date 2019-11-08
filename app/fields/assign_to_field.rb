@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # rubocop:disable Metrics/LineLength
 
 require 'administrate/field/base'
@@ -16,4 +15,3 @@ class AssignToField < Administrate::Field::BelongsTo
   end
 end
 # rubocop:enable Metrics/LineLength
-

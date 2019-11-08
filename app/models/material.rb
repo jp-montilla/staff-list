@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Material Model
 class Material < ApplicationRecord
   belongs_to :employee, optional: true
 

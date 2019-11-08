@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/LineLength
+
 module Admin
   # Questions Controller for administrate
   class QuestionsController < Admin::ApplicationController # rubocop:disable Metrics/ClassLength
     before_action :set_create, only: [:create]
     before_action :valid, only: [:create_choice]
     before_action :fetch_check_question, only: [:check_question]
-    # before_action :set_params_choice, only: [:add_choice_valid]
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -123,24 +124,31 @@ module Admin
     end
 
     def add_choice
-      @que = params[:q_question]
-      @cho = params[:choice]
+      set_params_choice
       if @valid
-        @question = Question.find_or_create_by(question: @que, answer_type: 'Choice')
-        @is_exist = Choice.where(question_id: @que, choice: @cho)
-        if @is_exist == []
-          @choice = Choice.create(choice: @cho, question_id: @question.id)
-        else
-          flash.now[:error] = "#{@cho} already exist"
-        end
+        add_choice_valid
       else
-        flash.now[:error] = "Choice can't be blank."
-        if Question.where(id: params[:q_id]) == []
-          @question = Question.new(question: @que, answer_type: 'Choice')
-        else
-          @question = Question.find(params[:q_id])
-        end
+        add_choice_error
       end
+    end
+
+    def add_choice_valid
+      @question = Question.where(question: @que).first_or_create(answer_type: 'Choice')
+      @is_exist = Choice.where(question_id: @que, choice: @cho)
+      if @is_exist == []
+        @choice = Choice.create(choice: @cho, question_id: @question.id)
+      else
+        flash.now[:error] = "#{@cho} already exist"
+      end
+    end
+
+    def add_choice_error
+      flash.now[:error] = "Choice can't be blank."
+      @question = if Question.where(id: params[:q_id]) == []
+                    Question.new(question: @que, answer_type: 'Choice')
+                  else
+                    Question.find(params[:q_id])
+                  end
     end
 
     def render_add_choice
@@ -151,7 +159,7 @@ module Admin
     end
 
     def set_params_choice
-      @que = params[:q_id]
+      @que = params[:q_question]
       @cho = params[:choice]
     end
 
@@ -160,3 +168,4 @@ module Admin
     end
   end
 end
+# rubocop:enable Metrics/LineLength

@@ -8,6 +8,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # ruby encoding: utf-8
 
+# rubocop:disable Metrics/LineLength
+
 employee_list = [
   ['Admin Name', 'admin@email.com', 'Admin', 'password', 'password'],
   ['John Doe', 'johndoe@email.com', 'Employee', 'password', 'password'],
@@ -35,3 +37,4 @@ end
 question_list.each do |question, answer_type|
   Question.create(question: question, answer_type: answer_type)
 end
+# rubocop:enable Metrics/LineLength

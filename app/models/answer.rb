@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Answer Model
 class Answer < ApplicationRecord
   belongs_to :question
   belongs_to :employee

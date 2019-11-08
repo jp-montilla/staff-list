@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Employee Model
 class Employee < ApplicationRecord
   # devise :session_limitable
   has_many :answer, dependent: :destroy

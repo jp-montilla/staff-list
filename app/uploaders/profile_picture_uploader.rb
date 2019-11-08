@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/LineLength
+
+# Profile Picture Uploader
 class ProfilePictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -51,3 +54,4 @@ class ProfilePictureUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 end
+# rubocop:enable Metrics/LineLength
