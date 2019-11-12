@@ -15,7 +15,10 @@ class AssignsController < ApplicationController
   def index; end
 
   def show
-    refresh
+    respond_to do |format|
+      format.js { render 'reload.js.erb' }
+      format.html
+    end
   end
 
   def new
