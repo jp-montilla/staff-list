@@ -60,7 +60,6 @@ class HomepagesController < ApplicationController
 
   def update
     if @answer.update(update_params)
-      flash.now[:success] = 'Answer updated successfully.'
       @questions = Question.all
       refresh
     else
@@ -170,6 +169,9 @@ class HomepagesController < ApplicationController
   end
 
   def refresh
+    @answers = Answer.where(employee_id: current_employee.id)
+    @answered = @answers.count
+    @unanswered = @questions.count - @answered
     respond_to do |format|
       format.js { render 'fresh.js.erb' }
       format.html
