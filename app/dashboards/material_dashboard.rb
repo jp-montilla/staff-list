@@ -13,7 +13,7 @@ class MaterialDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     material_type: Field::Select.with_options(
-      collection: %w[Hardware Software Peripheral]
+      collection: ["Hardware", "License", "Online Account", "Peripheral"]
     ),
     status: Field::Select.with_options(
       collection: %w[Deployed Stored Defective]
