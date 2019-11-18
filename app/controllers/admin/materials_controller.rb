@@ -3,6 +3,7 @@
 module Admin
   # Materials Controller for administrate
   class MaterialsController < Admin::ApplicationController
+    before_action :create_params, only: [:create]
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -27,12 +28,12 @@ module Admin
     end
 
     def create
-      @material = Material.new(set_params)
-      if @material.save
+      if @material.save && @valid
         flash[:notice] = 'Material created successfully!'
         render js: "window.location='#{admin_materials_path}'"
       else
         flash.now[:error] = @material.errors.full_messages
+        add_error
         render_add
       end
     end
@@ -40,7 +41,23 @@ module Admin
     private
 
     def set_params
-      params.require(:material).permit(:name, :material_type, :status)
+      params.require(:material).permit(:name, :material_type, :status, :serial_number)
+    end
+
+    def create_params
+      @material = Material.new(set_params)
+      if @material.material_type == 'License'
+        @valid = @material.serial_number.match?(/\d{3}\-\d{3}\-\d{3}/)
+      else
+        @material.serial_number = nil
+        @valid = true
+      end
+    end
+
+    def add_error
+      if @valid == false
+        flash.now[:error].push("Invalid Format for Serial Number")
+      end
     end
 
     def render_add
