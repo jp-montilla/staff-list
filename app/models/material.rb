@@ -8,4 +8,12 @@ class Material < ApplicationRecord
   validates :material_type, presence: true
   validates :status, presence: true
   validates :employee_id, presence: false
+  validates :serial_number, format: { with:/\d{3}\-\d{3}\-\d{3}/}, unless: :flag?
+
+  attr_accessor :flag
+
+  def flag?
+    @flag
+  end    
+
 end
