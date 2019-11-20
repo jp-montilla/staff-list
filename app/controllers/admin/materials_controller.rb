@@ -29,7 +29,6 @@ module Admin
 
     def create
       @material = Material.new(set_params)
-      @material.flag = true if @material.material_type != 'License'
       if @material.save
         flash[:notice] = 'Material created successfully!'
         render js: "window.location='#{admin_materials_path}'"
