@@ -1,1 +1,14 @@
 $('#new_material_form').html("<%= j render 'admin/materials/add' %>")
+$("#serial_number").hide()
+$("#material_material_type").val("Hardware");
+// $("#material_serial_number").val(null);
+$("#material_material_type").change(function(){
+	var item=$(this);
+	if (item.val() == 'License') {
+		$("#serial_number").show()
+	}
+	else{
+		$("#serial_number").hide()
+	}
+});
+

@@ -3,6 +3,7 @@
 module Admin
   # Materials Controller for administrate
   class MaterialsController < Admin::ApplicationController
+    # before_action :create_params, only: [:create]
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -40,7 +41,7 @@ module Admin
     private
 
     def set_params
-      params.require(:material).permit(:name, :material_type, :status)
+      params.require(:material).permit(:name, :material_type, :status, :serial_number)
     end
 
     def render_add

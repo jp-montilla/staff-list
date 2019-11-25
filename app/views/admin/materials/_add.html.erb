@@ -1,5 +1,7 @@
 <% if flash[:error]%>
-  <p class="alert alert-danger"><%= flash[:error][0] %></p>
+  <% flash[:error].each do |e|%>
+    <p class="alert alert-danger"><%= e %></p>
+  <% end %>
 <% end %>
 
   <%= form_for(@material, url:admin_material_create_path, remote: true) do |f|%>
@@ -10,8 +12,19 @@
 
     <p><div class="row">
       <div class="col-4 "><%= f.label :material_type%></div>
-      <div class="col-8"><%= f.select(:material_type, ["Hardware", "License", "Online Account", "Peripheral"]) %></div>
+      <div class="col-8">
+        <%= f.select(:material_type, ["Hardware", "License", "Online Account", "Peripheral"]) %>
+      </div>
     </div></p>
+
+    <p id="serial_number_area">
+      <div class="row" id="serial_number">
+        <div class="col-4 "><%= f.label :serial_number%></div>
+        <div class="col-8">
+          <%= f.text_field :serial_number%>
+        </div>
+      </div>
+    </p>
 
     <p><div class="row">
       <div class="col-4 "><%= f.label :status%></div>

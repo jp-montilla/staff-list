@@ -19,6 +19,7 @@ class MaterialDashboard < Administrate::BaseDashboard
       collection: %w[Deployed Stored Defective]
     ),
     employee: AssignToField,
+    serial_number: Field::String,
     # employee: Field::Hidden.with_options(
     #   value: nil
     # ),
@@ -39,6 +40,7 @@ class MaterialDashboard < Administrate::BaseDashboard
     name
     material_type
     employee
+    serial_number
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -49,6 +51,7 @@ class MaterialDashboard < Administrate::BaseDashboard
     material_type
     status
     employee
+    serial_number
     created_at
     updated_at
   ].freeze

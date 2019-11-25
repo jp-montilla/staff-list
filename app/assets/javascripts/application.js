@@ -107,7 +107,6 @@ $(document).ready(function(){
     $("#form-show").removeClass("col-4");
     $("#form-show").hide()
     $("#cancel-btn").hide()
-
   });
   $("#button_material").click(function(){
     $("#button_question").removeClass("active_button");
@@ -120,8 +119,6 @@ $(document).ready(function(){
     $("#form-show").removeClass("col-4");
     $("#form-show").hide()
     $("#cancel-btn").hide()
-
   });
-  
 
 });

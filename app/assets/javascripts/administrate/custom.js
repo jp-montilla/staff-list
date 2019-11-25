@@ -1,12 +1,12 @@
 $(document).ready(function(){
-	$('#question_answer_type').on('change', function() {
-	  		// $('#form_choice').hide()
-	});
-	// $('#btn_submit_question').click(function() {
-	// 	$('#question_answer_type').prop('disabled', true);
-	// 	$('#btn_submit_question').prop('disabled', true);
-
-	// })
-
-
+  $("#serial_number").hide()
+  $("#material_material_type").change(function(){
+    var item=$(this);
+    if (item.val() == 'License') {
+      $("#serial_number").show()
+    }
+    else{
+      $("#serial_number").hide()
+    }
+  });
 });
