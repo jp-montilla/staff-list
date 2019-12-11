@@ -28,11 +28,12 @@ module Admin
     end
 
     def edit
+      @show_employee = Employee.find(params[:id])
       super
     end
 
     def update
-      if params[:employee][:role] == 'Employee' && @count == 1 && @employee.adm?
+      if params[:employee][:role] == 'Employee' && @count == 1 && @admin
         remove_admin
       elsif @employee.update(edit_params)
         update_employee
@@ -54,15 +55,16 @@ module Admin
 
     def create_params
       params.require(:employee)
-            .permit(:name, :email, :role, :password, :password_confirmation)
+            .permit(:name, :email, :role, :password, :password_confirmation, :lat, :long)
     end
 
     def edit_params
-      params.require(:employee).permit(:name, :email, :role, :profile_picture)
+      params.require(:employee).permit(:name, :email, :role, :profile_picture, :lat, :long)
     end
 
     def fetch_employee
       @employee = Employee.find(params[:id])
+      @admin = true if @employee.role == 'Admin'
     end
 
     def fetch_employee_count
@@ -82,10 +84,6 @@ module Admin
     def error_update_employee
       flash[:error] = @employee.errors.full_messages.join('<br/>')
       redirect_to edit_admin_employee_path
-    end
-
-    def adm?
-      role == 'Admin'
     end
 
     # Define a custom finder by overriding the `find_resource` method:

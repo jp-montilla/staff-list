@@ -11,10 +11,10 @@
 # rubocop:disable Metrics/LineLength
 
 employee_list = [
-  ['Admin Name', 'admin@email.com', 'Admin', 'password', 'password'],
-  ['John Doe', 'johndoe@email.com', 'Employee', 'password', 'password'],
-  ['Jane Doe', 'janedoe@email.com', 'Employee', 'password', 'password'],
-  ['Jonathan Doe', 'jonathandoe@email.com', 'Employee', 'password', 'password']
+  ['Admin Name', 'admin@email.com', 'Admin', 'password', 'password', 14.584675126561596, 120.98679036268592],
+  ['John Doe', 'johndoe@email.com', 'Employee', 'password', 'password', 14.584675126561596, 120.98679036268592],
+  ['Jane Doe', 'janedoe@email.com', 'Employee', 'password', 'password', 14.584675126561596, 120.98679036268592],
+  ['Jonathan Doe', 'jonathandoe@email.com', 'Employee', 'password', 'password', 14.584675126561596, 120.98679036268592]
 ]
 
 question_list = [
@@ -30,8 +30,8 @@ question_list = [
   ['Question 10?', 'Text']
 ]
 
-employee_list.each do |name, email, role, password, password_confirmation|
-  Employee.create(name: name, email: email, role: role, password: password, password_confirmation: password_confirmation)
+employee_list.each do |name, email, role, password, password_confirmation, lat, long|
+  Employee.create(name: name, email: email, role: role, password: password, password_confirmation: password_confirmation, lat: lat, long: long)
 end
 
 question_list.each do |question, answer_type|

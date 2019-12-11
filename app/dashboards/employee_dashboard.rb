@@ -20,7 +20,9 @@ class EmployeeDashboard < Administrate::BaseDashboard
     password_confirmation: Field::Password,
     created_at: Field::DateTime,
     profile_picture: CarrierwaveField,
-    material: Field::HasMany
+    material: Field::HasMany,
+    lat: Field::String,
+    long: Field::String
     # material: Field::HasMany.with_options(show: %i[name material_type])
   }.freeze
 
@@ -45,6 +47,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :name,
     :email,
     :role,
+    :lat,
+    :long,
     # :created_at,
     :material
   ].freeze
