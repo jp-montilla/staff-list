@@ -20,6 +20,7 @@ class HomepagesController < ApplicationController
   end
 
   def show
+    @show_employee = Employee.find(params[:id])
     @employee_detail = current_employee
     @employee = Employee.find(params[:id])
     @answers = Answer.where(employee_id: params[:id])
