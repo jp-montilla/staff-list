@@ -64,7 +64,7 @@ module Admin
 
     def fetch_employee
       @employee = Employee.find(params[:id])
-      @admin = true if @employee.role == 'Admin'
+      @admin = @employee.role == 'Admin'
     end
 
     def fetch_employee_count
