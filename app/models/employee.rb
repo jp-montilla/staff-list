@@ -11,6 +11,9 @@ class Employee < ApplicationRecord
 
   validates :name, presence: true
 
+  attribute :lat, :float, default: 14.584675126561596
+  attribute :long, :float, default: 120.98679036268592
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :session_limitable, :registerable,

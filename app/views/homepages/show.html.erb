@@ -44,6 +44,8 @@
   </div>
 </div>
 
+<div style="margin: auto; width:50%; height: 300px" id="mapContainer"></div>
+
 <div class="container text-center" id="button_profile">
   <hr>
   <label class="active_button" id="button_question"><a href="#question">Question</a></label>
@@ -90,6 +92,34 @@
     <h3 class="text-center text-muted" style="padding-top: 50px;">No assigned materials.</h3>
   <% end %>
 </div>
+
+
+<script>
+  // Initialize the platform object:
+  var platform = new H.service.Platform({
+  'apikey': "<%= ENV["API_KEY"] %>"
+  });
+
+  // Obtain the default map types from the platform object
+  var maptypes = platform.createDefaultLayers();
+
+  // Instantiate (and display) a map object:
+  var map = new H.Map(
+  document.getElementById('mapContainer'),
+  maptypes.vector.normal.map,
+  {
+    zoom: 15,
+    center: { lng: <%= @show_employee.long%>, lat: <%= @show_employee.lat%> }
+  });
+
+  window.addEventListener('resize', () => map.getViewPort().resize());
+  var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+  var ui = H.ui.UI.createDefault(map, maptypes);
+
+  var berlinMarker = new H.map.Marker({lat:<%= @show_employee.lat%>, lng:<%= @show_employee.long%>});
+  map.addObject(berlinMarker);
+  
+</script>
   
 
 
