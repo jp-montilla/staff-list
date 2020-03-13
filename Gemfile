@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'turbolinks', '~> 5'
 
-gem 'administrate', '~> 0.11.0'
+gem 'administrate', '~> 0.13.0'
 gem 'better_errors', '~> 2.5', '>= 2.5.1'
 gem 'chartkick'
 gem 'devise', '~> 4.7', '>= 4.7.1'
